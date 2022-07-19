@@ -57,6 +57,7 @@ unclutter &
 syncthing --no-browser &
 warp-cli connect &
 picom &
-# Set wallpaper
+xflux -l 50 &
+# Set random wallpaper
 pic="$(find ~/hdd/library/pictures/wallpapers/ -maxdepth 1 -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -type f | shuf -n 1)" && xwallpaper --zoom "$pic" &
 exec dwm
