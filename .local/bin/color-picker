@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Description: Pick color and copy hex code to clipboard
+# Dependencies: grabc
+# Github: https://github.com/basilioss/dotfiles
+
+color=$(grabc)
+echo "$color" | tr -d '\n' | xclip -sel c
+

@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+#
+# Description: Search an offline copy of the Arch Wiki.
+# Dependencies: dmenu, arch-wiki-docs
+# Author: https://www.gitlab.com/dwt1/dmscripts
+# Github: https://github.com/basilioss/dotfiles
+
+# Set with the flags "-e", "-u","-o pipefail" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
+
+wikidir="/usr/share/doc/arch-wiki/html/"
+lang=""
+
+languages() {
+    langs="$(find ${wikidir} -maxdepth 1 -type d -not -path "${wikidir}")"
+    choice=$(printf '%s\n' "${langs[@]}" | \
+        sed 's/.*\///' | \
+        sort -g | \
+        dmenu -l 15 -i -p 'Language: ' "$@") || exit 1
+
+    if [ "$choice" ]; then
+        lang=$(printf '%s\n' "${choice}/")
+        wikipages "$@"
+    else
+        echo "Program terminated." && exit 0
+    fi
+}
+
+wikipages() {
+    wikidocs="$(find ${wikidir}"${lang}" -iname "*.html")"
+    # printf '%s\n' - put everything on new line
+    choice=$(printf '%s\n' "${wikidocs[@]}" | \
+           # remove wikidir path before filename
+           cut -d '/' -f8- | \
+           # replace underscores with spaces and remove ".html" at the end
+           sed -e 's/_/ /g' -e 's/.html//g' | \
+           # sort alphabeticaly
+           sort -g | \
+           dmenu -l 15 -i -p 'Arch Wiki Docs: ' "$@") || exit 1
+
+    if [ "$choice" ]; then
+        article=$(printf '%s\n' "${wikidir}${lang}${choice}.html" | sed 's/ /_/g')
+        xdg-open "$article"
+    else
+        echo "Program terminated." && exit 0
+    fi
+}
+
+[[ "${BASH_SOURCE[0]}" == "${0}" ]] && languages "$@"
+

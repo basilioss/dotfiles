@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# Description: Dmenu script to share a file (files are deleted after 30-365 days)
+# Source: https://0x0.st/
+# Maximum file size: 512.0 MiB
+# Blocked file types: application/x-dosexec, application/x-executable, application/x-hdf5, application/java-archive, Android APKs and system images
+# Github: https://github.com/basilioss/dotfiles
+
+file=$(find $HOME -type f | dmenu -i -l 20)
+curl -F "file=@$file" http://0x0.st/ | tr -d '\n' | xclip -sel c
+notify-send "Link have been coppied to the cilpboard"

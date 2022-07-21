@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+#
+# Description: Configure brightness level and show notification using dunst
+# Usage:
+#     Increase brightness: ./brightness-control.sh up
+#     Decrease brightness: ./brightness-control.sh down
+# Credits: https://gist.github.com/Blaradox/030f06d165a82583ae817ee954438f2e
+# Github: https://gist.github.com/basilioss/baa36bf5d4b91b50da81313281dbc887
+
+# Icon path: /usr/share/icons/Papirus/16x16/apps
+icon="display-brightness"
+
+function get_brightness {
+  xbacklight -get | cut -d '.' -f 1
+}
+
+function send_notification {
+  dunstify -i "$icon" -r 5555 -u normal -h int:value:"$1" "$1%"
+}
+
+case $1 in
+  up)
+    xbacklight -inc 5
+    send_notification "$(get_brightness)"
+    ;;
+  down)
+    xbacklight -dec 5
+    send_notification "$(get_brightness)"
+    ;;
+esac

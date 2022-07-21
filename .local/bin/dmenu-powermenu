@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# Description: Dmenu script to logout, shutdown, sleep, rebootor lock the screen
+# Dependencies: Nerd font (for icons), dmenu, betterlockscreen (to lock the screen)
+# Github: https://github.com/basilioss/dotfiles
+
+actions="ﰇ Reboot\n襤 Shutdown\n⏾ Sleep\n Lock\n Logout"
+action=$(echo -e "$actions" | dmenu -i)
+
+case "$action" in
+    "ﰇ Reboot")
+        [ "$(echo -e "No\nYes" | dmenu -i -p "Are you sure?")" == "Yes" ] && shutdown -r now
+        ;;
+    "襤 Shutdown")
+        [ "$(echo -e "No\nYes" | dmenu -i -p "Are you sure?")" == "Yes" ] && shutdown -h now
+        ;;
+    "⏾ Sleep")
+        systemctl suspend
+        ;;
+    " Lock")
+        [ "$(echo "No" && echo "Yes" | dmenu -i -p "Are you sure?")" == "Yes" ] && betterlockscreen -l
+        ;;
+    " Logout")
+        pkill -15 Xorg
+        ;;
+esac

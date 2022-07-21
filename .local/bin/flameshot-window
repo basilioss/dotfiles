@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#
+# Description: Chose a window and take screenshot using flameshot
+# Credits: https://codeberg.org/mehrad/dmenu_shot
+# Github: https://github.com/basilioss/dotfiles
+
+# Get Window ID, Width, Height, X and Y
+WINDOW_ID=$(xdotool selectwindow)
+eval $(xdotool getwindowgeometry --shell "${WINDOW_ID}")
+
+# Put the window in focus
+xdotool windowfocus --sync "${WINDOW_ID}"
+
+# Run flameshot in gui mode in the desired coordinates
+flameshot gui --region "${WIDTH}x${HEIGHT}+${X}+${Y}"

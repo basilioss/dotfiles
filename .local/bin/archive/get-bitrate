@@ -1,0 +1,3 @@
+#!/bin/sh
+bitrate=$(ffprobe "$1" 2>&1 | grep "Stream #0:0" | awk '{print $9}')
+echo "$bitrate kb/s"

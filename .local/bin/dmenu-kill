@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# Description: Dmenu script to kill a process
+# Dependencies: dmenu
+# Credits: https://youtu.be/1w40EAqjub0
+# Github: https://github.com/basilioss/dotfiles
+
+pid=$(ps -u $USER -o pid,%mem,%cpu,comm | sort -b -k3 -r | sed -n '1!p' | dmenu -i -l 12 | awk '{print $1}')
+
+if [ ! -z "$pid" ]
+then
+    # Prompt to confirm the choice and kill the process
+    [ $(echo -e "No\nYes" | dmenu -i -p "Are you sure?") == "Yes" ] && kill -15 $pid 2>/dev/null
+fi
