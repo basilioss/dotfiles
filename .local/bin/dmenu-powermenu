@@ -4,23 +4,32 @@
 # Dependencies: Nerd font (for icons), dmenu, betterlockscreen (to lock the screen)
 # Github: https://github.com/basilioss/dotfiles
 
-actions="ﰇ Reboot\n襤 Shutdown\n⏾ Sleep\n Lock\n Logout"
+case "$(readlink -f /sbin/init)" in
+	*systemd*) ctl='systemctl' ;;
+	*) ctl='loginctl' ;;
+esac
+
+actions="ﰇ Reboot\n襤 Shutdown\n⏾ Sleep\n Lock\n Logout\nﴹ Display off"
 action=$(echo -e "$actions" | dmenu -i)
 
 case "$action" in
     "ﰇ Reboot")
-        [ "$(echo -e "No\nYes" | dmenu -i -p "Are you sure?")" == "Yes" ] && shutdown -r now
+        [ "$(echo -e "No\nYes" | dmenu -i -p "Are you sure?")" == "Yes" ] && $ctl reboot -i
         ;;
     "襤 Shutdown")
-        [ "$(echo -e "No\nYes" | dmenu -i -p "Are you sure?")" == "Yes" ] && shutdown -h now
+        [ "$(echo -e "No\nYes" | dmenu -i -p "Are you sure?")" == "Yes" ] && $ctl poweroff -i
         ;;
     "⏾ Sleep")
-        systemctl suspend
+        $ctl suspend -i
         ;;
     " Lock")
-        [ "$(echo "No" && echo "Yes" | dmenu -i -p "Are you sure?")" == "Yes" ] && betterlockscreen -l
+        betterlockscreen -l
         ;;
     " Logout")
         pkill -15 Xorg
+        ;;
+    'ﴹ Display off') xset dpms force off
+        ;;
+    *) exit 1
         ;;
 esac

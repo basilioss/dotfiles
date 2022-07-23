@@ -35,7 +35,8 @@ case $1 in
     pamixer --decrease 5
     send_notification "$(get_volume)"
     ;;
-  mute) pamixer --toggle-mute
+  mute)
+    pamixer --toggle-mute
     send_notification "$(get_volume)"
     ;;
 esac
