@@ -1,0 +1,44 @@
+description: "Global variables and different matches"
+name: "base.yml"
+homepage: "https://github.com/basilioss/dotfiles"
+
+global_vars:
+
+  - name: date
+    type: date
+    params:
+      format: "%Y-%m-%d"
+  - name: time
+    type: date
+    params:
+      format: "%H:%M"
+
+matches:
+
+  - trigger: ":date"
+    replace: "{{date}}"
+
+  - trigger: ":time"
+    replace: "{{time}}"
+
+  - trigger: ":stamp"
+    replace: "{{stampdate}}"
+    vars:
+      - name: stampdate
+        type: date
+        params:
+          format: "%Y%m%d%H%M%S"
+
+  - trigger: ":shrug"
+    replace: "¯\\_(ツ)_/¯"
+
+  - trigger: ":newcpp"
+    replace: "#include <iostream>\nusing namespace std;\nint main()\n{$|$"
+
+  - triggers: ["ppp", "PPP", "ззз", "ЗЗЗ"]
+    force_clipboard: true
+    replace: "{{clipboard}}"
+    label: "Paste clipboard content as plain text"
+    vars:
+      - name: "clipboard"
+        type: "clipboard"

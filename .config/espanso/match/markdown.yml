@@ -1,0 +1,94 @@
+name: "markdown.yml"
+homepage: "https://github.com/basilioss/dotfiles"
+
+matches:
+
+  - trigger: "ttt"
+    replace: "- [ ] "
+    label: "Markdown task"
+
+  - trigger: ":com"
+    replace: "<!-- $|$ -->"
+    label: "HTML comment tag"
+
+  - trigger: ":mark:"
+    replace: "<mark>$|$</mark>"
+    label: "HTML mark tag"
+
+  - trigger: ":mdlink"
+    replace: "[$|$]({{clipboard}})"
+    force_clipboard: true
+    vars:
+      - name: "clipboard"
+        type: "clipboard"
+
+  - trigger: ":mdfile"
+    replace: "[$|$](file://{{filepath}})"
+    label: "Markdown absolute path link"
+    vars:
+      - name: filepath
+        type: shell
+        params:
+          cmd: find $HOME -type f | dmenu -i -l 20 | tr -d '\n'
+
+  # :cb;<programming_language>;
+  - regex: ":cb;(?P<lang>\\w*);"
+    force_clipboard: true
+    replace: "```{{lang}}\n{{clipboard}}\n```\n\n"
+    label: "Paste clipboard content as markdown codeblock"
+    vars:
+      - name: "clipboard"
+        type: "clipboard"
+
+  - trigger: ":cbsh"
+    replace: "```bash\n"
+    label: "Bash code block"
+
+  - trigger: ":cbpy"
+    replace: "```python\n"
+    label: "Python code block"
+
+  - trigger: ":cbdv"
+    replace: "```dataview\n"
+    label: "Dataview code block"
+
+  - trigger: ":call"
+    replace: "> [!{{callout.type}}]\n"
+    label: "Obsidian callout"
+    vars:
+      - name: "callout"
+        type: form
+        params:
+          layout: "[[type]]"
+          fields:
+            type:
+              type: choice
+              default: ABSTRACT
+              values:
+                - ABSTRACT
+                - ATTENTION
+                - BUG
+                - CAUTION
+                - CHECK
+                - CITE
+                - DANGER
+                - DONE
+                - ERROR
+                - EXAMPLE
+                - FAIL
+                - FAILURE
+                - FAQ
+                - HELP
+                - HINT
+                - IMPORTANT
+                - INFO
+                - MISSING
+                - NOTE
+                - QUESTION
+                - QUOTE
+                - SUCCESS
+                - SUMMARY
+                - TIP
+                - TLDR
+                - TODO
+                - WARNING

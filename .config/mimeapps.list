@@ -1,0 +1,25 @@
+[Default Applications]
+x-scheme-handler/tg=userapp-Telegram Desktop-MZXLN1.desktop
+x-scheme-handler/http=librewolf.desktop
+x-scheme-handler/https=librewolf.desktop
+text/plain=typora.desktop
+text/html=librewolf.desktop
+x-scheme-handler/about=librewolf.desktop
+x-scheme-handler/unknown=librewolf.desktop
+image/jpeg=sxiv.desktop
+text/markdown=typora.desktop
+text/md=typora.desktop
+image/png=sxiv.desktop
+image/gif=sxiv.desktop
+application/pdf=org.pwmt.zathura.desktop
+video/x-matroska=mpv.desktop
+video/mp4=mpv.desktop
+inode/directory=thunar.desktop
+text/x-shellscript=nvim.desktop
+
+[Added Associations]
+audio/mpeg=mpv.desktop;
+text/plain=userapp-st nvim-KQMYO1.desktop;
+application/x-shellscript=userapp-st nvim-KQMYO1.desktop;
+text/markdown=userapp-st nvim-KQMYO1.desktop;
+application/json=userapp-st nvim-KQMYO1.desktop;

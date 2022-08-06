@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+#
+# Description: Configure volume level and show notification using dunst
+# Usage:
+#     ./volume-control.sh up
+#     ./volume-control.sh down
+#     ./volume-control.sh mute
+# Dependencies: pamixer, dunst
+# Credits: https://gist.github.com/Blaradox/030f06d165a82583ae817ee954438f2e
+# Github: https://gist.github.com/basilioss/baa36bf5d4b91b50da81313281dbc887
+
+iconSound="audio-volume-high"
+iconMuted="audio-volume-muted"
+
+function get_volume {
+  pamixer --get-volume
+}
+
+function send_notification {
+  if [ "$(pamixer --get-mute)" = true ]; then
+    dunstify -i $iconMuted -r 2593 -u normal "mute"
+  else
+    dunstify -i $iconSound -r 2593 -u normal -h int:value:"$1" "$1%"
+  fi
+}
+
+case $1 in
+  up)
+    pamixer --unmute
+    pamixer --increase 5
+    send_notification "$(get_volume)"
+    ;;
+  down)
+    pamixer --unmute
+    pamixer --decrease 5
+    send_notification "$(get_volume)"
+    ;;
+  mute)
+    pamixer --toggle-mute
+    send_notification "$(get_volume)"
+    ;;
+esac

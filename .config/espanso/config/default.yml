@@ -1,0 +1,87 @@
+# espanso configuration file
+
+# For a list of all the available options, visit the official docs at: https://espanso.org/docs/
+
+# You can use this file to define the global configuration options for espanso.
+# These are the parameters that will be used by default on every application,
+# but you can also override them on a per-application basis.
+# If the value of the App-specific field is Yes, then the option can be used on a per-application basis.
+
+# To make customization easier, this file contains some of the commonly used
+# parameters. Feel free to uncomment and tune them to fit your needs!
+
+# --- Toggle key
+
+# Customize the key used to disable and enable espanso (when double tapped)
+# Available options: CTRL, SHIFT, ALT, CMD, OFF
+# You can also specify the key variant, such as LEFT_CTRL, RIGHT_SHIFT, etc...
+# You can also disable the toggle key completely
+# App-Specific: No
+toggle_key: OFF
+
+# --- Injection Backend
+
+# Espanso supports multiple ways of injecting text into applications. Each of
+# them has its quirks, therefore you may want to change it if you are having problems.
+# By default, espanso uses the "Auto" backend which should work well in most cases,
+# but you may want to try the "Clipboard" or "Inject" backend in case of issues.
+# App-Specific: Yes
+# backend: Clipboard
+
+# --- Auto-restart
+
+# Enable/disable the config auto-reload after a file change is detected.
+# App-Specific: No
+# auto_restart: false
+
+# --- Clipboard threshold
+
+# Because injecting long texts char-by-char is a slow operation, espanso automatically
+# uses the clipboard if the text is longer than 'clipboard_threshold' characters.
+# App-Specific: Yes
+# clipboard_threshold: 100
+
+# --- Search bar
+
+# The Search bar lets you choose the right snippet without having to remember the trigger.
+# These are the supported keys:
+# ALT, CTRL, CMD, SHIFT, ENTER, TAB, SPACE, META, OPTION, INSERT, DOWN, LEFT, RIGHT, UP, END, HOME, PAGEDOWN, PAGEUP, F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, F13, F14, F15, F16, F17, F18, F19, F20, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, NUMPAD0, NUMPAD1, NUMPAD2, NUMPAD3, NUMPAD4, NUMPAD5, NUMPAD6, NUMPAD7, NUMPAD8, NUMPAD9
+# App-Specific: No
+# search_shortcut: off
+search_shortcut: ALT+SPACE
+
+# --- Search trigger
+# Trigger used to show the Search UI
+# App-Specific: No
+# search_trigger: ".search"
+
+# --- Paste shortcut
+
+# Customize the keyboard shortcut used to paste an expansion.
+# App-Specific: Yes
+# paste_shortcut: CTRL+SHIFT+V
+
+# --- Undo
+
+# When enabled, espanso automatically "reverts" an expansion if the user presses the Backspace key afterwards.
+# App-Specific: No
+undo_backspace: false
+
+# --- Status icon
+
+# Works on Window and macOS
+# App-Specific: No
+# show_icon: false
+
+# --- Notifications
+
+# App-Specific: No
+# show_notifications: false
+
+# --- Enable
+
+# If false, Espanso will be disabled for the current configuration. This option
+# can be used to selectively disable espanso when using a specific application
+# (by creating an app-specific config).
+# App-Specific: Yes
+# enable: false

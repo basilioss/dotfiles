@@ -1,0 +1,7 @@
+! mod1 = left alt
+! mod3 = right alt
+! Useful with sxhkd
+clear mod1
+clear mod3
+add mod1 = Alt_L Meta_L
+add mod3 = Alt_R

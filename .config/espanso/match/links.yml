@@ -1,0 +1,28 @@
+name: "links.yml"
+homepage: "https://github.com/basilioss/dotfiles"
+
+matches:
+
+  - trigger: "//gm"
+    replace: "https://mail.google.com"
+
+  - trigger: "//yt"
+    replace: "https://youtube.com"
+
+  - trigger: "//tr"
+    replace: "https://translate.google.com"
+
+  - trigger: "//gd"
+    replace: "https://drive.google.com"
+
+  - trigger: "//cb"
+    replace: "https://codeberg.org"
+
+  - trigger: "//gh/"
+    replace: "https://github.com"
+
+  - trigger: "//ghdots"
+    replace: "https://github.com/basilioss/dotfiles"
+
+  - trigger: "//sync"
+    replace: "http://127.0.0.1:8384"

@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# start some nice programs
+
+if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+ for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+  [ -x "$f" ] && . "$f"
+ done
+ unset f
+fi
+
+(sleep 2; xmodmap $HOME/.config/xmodmap/Xmodmap) &
+xrdb -merge $HOME/.config/x11/xresources &
+setxkbmap us,ru &
+slstatus &
+clipmenud &
+sxhkd &
+remaps &
+unclutter &
+syncthing --no-browser &
+warp-cli connect &
+picom &
+xflux -l 50 &
+# Set random wallpaper
+pic="$(find ~/hdd/library/pictures/wallpapers/ -maxdepth 1 -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -type f | shuf -n 1)" && xwallpaper --zoom "$pic" &
+exec dwm

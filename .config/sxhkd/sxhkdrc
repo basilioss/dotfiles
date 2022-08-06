@@ -1,0 +1,73 @@
+# Launch apps
+super + o ; {t,d,o,l,k,m,Return}
+        {telegram-desktop,discord,obsidian,librewolf,keepassxc,deadbeef,tabbed -c -r 2 st -w ""}
+
+super + o ; shift + {t,h,o}
+        {thunar,ghb,obs}
+
+# Take a screenshot
+Print
+    flameshot screen
+
+# Select area to screenshot
+shift + Print
+    flameshot gui
+
+# Select window to screenshot
+# ~/.local/bin/flameshot-window
+alt + Print
+    flameshot-window
+
+# Clipboard
+super + v
+    clipmenu && xdotool key shift+Insert
+
+# Layout
+super + c
+    xkblayout-state set +1 && dunstify -r 2593 "$(xkblayout-state print "Current layout: %s")"
+
+# Turn off screen
+XF86ScreenSaver
+    xset dpms force off
+
+# Toggle f.lux
+alt + KP_End
+    [ -z "$(pgrep "xflux")" ] && xflux -l 50 || killall xflux
+
+# Volume control
+XF86Audio{Mute,LowerVolume,RaiseVolume}
+    volume-control {mute,down,up}
+
+# Brightness
+XF86MonBrightness{Up,Down}
+    brightness-control {up,down}
+
+# Toggle touchpad
+XF86TouchpadToggle
+    {xinput disable "FTE1200:00 0B05:0201 Touchpad", xinput enable "FTE1200:00 0B05:0201 Touchpad"}
+
+# Audio player
+XF86Audio{Next,Prev,Stop,Play}
+	deadbeef {--next,--prev,--stop,--play-pause}
+
+# Dmenu
+super + {shift+p,grave,x,shift+x}
+    {dmenu-powermenu,dmenu-unicode,dmenu-kill,xkill}
+
+# Lock
+super + l
+    betterlockscreen -l
+
+# Special symbols
+# mod4 = right alt
+# Require this in Xmodmap:
+# clear mod1
+# clear mod3
+# add mod1 = Alt_L Meta_L
+# add mod3 = Alt_R
+
+mod3 + {bracketleft,bracketright,3,backslash,period,comma,minus,equal,0,9,8,n,y,b,v,6,m,g,r}
+    sleep .3; xdotool type {"[","]","#","|",">","<","—","≠","→","←","∞","✘","✓","•","↓","↑","≈","§","√"}
+
+mod3 + shift + {period,comma,minus,equal,b}
+    sleep .3; xdotool type {"»","«","–","±","★"}

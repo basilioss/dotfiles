@@ -1,0 +1,28 @@
+description: "Snippets for the terminal and shell scripting"
+name: "_shell.yml"
+homepage: "https://github.com/basilioss/dotfiles"
+
+matches:
+
+  - trigger: ":shebang"
+    replace: |
+      #!/usr/bin/env bash
+      #
+      # Description:
+      # Name:
+      # Usage:
+      # Dependencies:
+      # Homepage: https://github.com/basilioss/dotfiles
+    label: "Shabang line and metadata"
+
+  - trigger: ":sed"
+    replace: "| sed 's/$|$//g' "
+    label: "Pipe to sed"
+
+  - trigger: ":null"
+    replace: "&> /dev/null"
+    label: "dev/null"
+
+  - trigger: ":prompt"
+    replace: '[ $(echo -e "No\nYes" | dmenu -p "Are you sure?") == "Yes" ] && $|$'
+    label: "Dmenu confirm prompt"

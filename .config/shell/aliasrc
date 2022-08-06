@@ -1,0 +1,57 @@
+#!/bin/sh
+
+# Use neovim for vim if present.
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+
+# Prefix sudo automatically
+for command in mount umount pacman shutdown poweroff reboot ; do
+	alias $command="sudo $command"
+done; unset command
+
+# General
+alias \
+    cp="cp -iv" \
+    mv="mv -iv" \
+    rm="rm -vI" \
+    bc="bc -ql" \
+    mkd="mkdir -pv" \
+    df="df -h" \
+    free="free -m" \
+    ls='lsd --group-dirs first' \
+    l='lsd -l' \
+    la='ls -a' \
+    lla='ls -la' \
+    lt='ls --tree' \
+    lf='lfub' \
+    g="git" \
+    v="$EDITOR" \
+    zz='z -' \
+    ...='cd ../..' \
+    ....='cd ../../..'
+
+# Colorize commands
+alias \
+    grep='grep --color=auto' \
+    diff='diff --color=auto' \
+    egrep='egrep --color=auto' \
+    fgrep='fgrep --color=auto' \
+    cal="cal -m --color=auto" \
+    p="pacman --color=auto" \
+    paru="paru --color=auto"
+
+# Shorten the commands
+alias \
+    ytm-dlp="yt-dlp -x --audio-format mp3 --audio-quality 0 --embed-metadata --embed-thumbnail" \
+    shred='shred -uzvn3' \
+    rip='rip --graveyard ~/hdd/removed' \
+    webcam='mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
+    neofetch="neofetch --disable cpu gpu memory" \
+    h='history 1 | cut -c 8- | uniq | fzf -0 --tac | xclip -r -sel -c' \
+    dot='/usr/bin/git --git-dir=/home/basilios/.dotfiles/ --work-tree=/home/basilios' \
+    open='xdg-open "$(find -type f -not -path "*/.*" | fzf)"' \
+    vopen='find -type f -not -path "*/.*" | fzf | xargs -r -I % $EDITOR %' \
+    fcd='cd "$(find -type d | fzf)"' \
+    getpath="find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -sel c" \
+
+alias mdtodo='nvim ~/hdd/notes/personal/_todo.md'
+alias mdtmp='nvim ~/hdd/notes/personal/_tmp.md'
