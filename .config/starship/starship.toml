@@ -1,0 +1,145 @@
+[aws]
+symbol = "  "
+
+[buf]
+format = "via [$symbol]($style)"
+symbol = " "
+
+[c]
+format = "via [$symbol]($style)"
+symbol = " "
+
+[cmake]
+format = "via [$symbol]($style)"
+
+[cobol]
+format = "via [$symbol]($style)"
+
+[conda]
+symbol = " "
+
+[crystal]
+format = "via [$symbol]($style)"
+
+[daml]
+format = "via [$symbol]($style)"
+
+[dart]
+format = "via [$symbol]($style)"
+symbol = " "
+
+[deno]
+format = "via [$symbol]($style)"
+
+[directory]
+read_only = " "
+
+[docker_context]
+symbol = " "
+
+[dotnet]
+format = "[$symbol(🎯 $tfm )]($style)"
+
+[elixir]
+format = 'via [$symbol]($style)'
+symbol = " "
+
+[elm]
+format = 'via [$symbol]($style)'
+symbol = " "
+
+[erlang]
+format = 'via [$symbol]($style)'
+
+[git_branch]
+symbol = " "
+
+[golang]
+format = 'via [$symbol]($style)'
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[helm]
+format = 'via [$symbol]($style)'
+
+[java]
+symbol = " "
+
+[julia]
+format = 'via [$symbol]($style)'
+symbol = " "
+
+[kotlin]
+format = 'via [$symbol]($style)'
+
+[lua]
+format = 'via [$symbol]($style)'
+
+[memory_usage]
+symbol = " "
+
+[nim]
+format = 'via [$symbol]($style)'
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+format = 'via [$symbol]($style)'
+symbol = " "
+
+[ocaml]
+format = 'via [$symbol(\($switch_indicator$switch_name\) )]($style)'
+
+[package]
+symbol = " "
+
+[perl]
+format = 'via [$symbol]($style)'
+
+[php]
+format = 'via [$symbol]($style)'
+
+[pulumi]
+format = 'via [$symbol$stack]($style)'
+
+[purescript]
+format = 'via [$symbol]($style)'
+
+[python]
+format = 'via [$symbol]($style)'
+symbol = " "
+
+[raku]
+format = 'via [$symbol]($style)'
+
+[red]
+format = 'via [$symbol]($style)'
+
+[rlang]
+format = 'via [$symbol]($style)'
+
+[ruby]
+format = 'via [$symbol]($style)'
+
+[rust]
+format = 'via [$symbol]($style)'
+symbol = " "
+
+[swift]
+format = 'via [$symbol]($style)'
+
+[vagrant]
+format = 'via [$symbol]($style)'
+
+[vlang]
+format = 'via [$symbol]($style)'
+
+[zig]
+format = 'via [$symbol]($style)'
