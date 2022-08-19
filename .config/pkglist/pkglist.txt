@@ -15,10 +15,13 @@ code
 cronie
 ctags
 dash
+deluge
+deluge-gtk
 discord
 dunst
 efibootmgr
 fakeroot
+fd
 ffmpeg
 ffmpegthumbnailer
 file
@@ -40,6 +43,7 @@ gparted
 grep
 groff
 grub
+gtop
 gzip
 handbrake
 htop
@@ -47,6 +51,7 @@ intel-media-driver
 intel-ucode
 jq
 keepassxc
+kiwix-desktop
 libreoffice-fresh
 libtool
 libva-intel-driver
@@ -89,6 +94,7 @@ pulseaudio-jack
 python-fonttools
 python-pip
 python-pywal
+python-virtualenv
 rsync
 sed
 shellcheck
@@ -113,6 +119,10 @@ thunar
 thunar-archive-plugin
 tidy
 timidity++
+transmission-cli
+transmission-gtk
+trash-cli
+tree
 ttf-dejavu
 ttf-jetbrains-mono
 ttf-joypixels

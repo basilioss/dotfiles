@@ -37,21 +37,29 @@ alias \
     fgrep='fgrep --color=auto' \
     cal="cal -m --color=auto" \
     p="pacman --color=auto" \
-    paru="paru --color=auto"
+    paru="paru --color=auto" \
+    gitl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
 # Shorten the commands
 alias \
     ytm-dlp="yt-dlp -x --audio-format mp3 --audio-quality 0 --embed-metadata --embed-thumbnail" \
     shred='shred -uzvn3' \
-    rip='rip --graveyard ~/hdd/removed' \
     webcam='mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
     neofetch="neofetch --disable cpu gpu memory" \
     h='history 1 | cut -c 8- | uniq | fzf -0 --tac | xclip -r -sel -c' \
-    dot='/usr/bin/git --git-dir=/home/basilios/.dotfiles/ --work-tree=/home/basilios' \
+    dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
+    dot=dotbare \
     open='xdg-open "$(find -type f -not -path "*/.*" | fzf)"' \
     vopen='find -type f -not -path "*/.*" | fzf | xargs -r -I % $EDITOR %' \
     fcd='cd "$(find -type d | fzf)"' \
     getpath="find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -sel c" \
+
+# trash-cli
+alias \
+    trashp='trash-put' \
+    trashe='trash-empty' \
+    trashl='trash-list' \
+    trashr='trash-restore'
 
 alias mdtodo='nvim ~/hdd/notes/personal/_todo.md'
 alias mdtmp='nvim ~/hdd/notes/personal/_tmp.md'

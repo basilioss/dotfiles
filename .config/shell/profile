@@ -34,6 +34,9 @@ export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export XINITRC="$XDG_CONFIG_HOME"/x11/xinitrc
 export XCURSOR_PATH=/usr/share/icons:${XDG_DATA_HOME}/icons
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
+# dotbare
+export DOTBARE_DIR="$HOME/.dotfiles"
+export DOTBARE_TREE="$HOME"
 
 # Auto start X at login
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then

@@ -84,3 +84,6 @@ function stt () {
     #st -t "$title" -w $XEMBED & disown
     nohup st -t "$title" -w $XEMBED &
 }
+
+# Select and edit configs
+bindkey -s '^g' "dotbare fedit"^j
