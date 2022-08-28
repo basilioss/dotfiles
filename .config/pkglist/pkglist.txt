@@ -9,6 +9,7 @@ base
 bat
 binutils
 bison
+bottom
 chromium
 clipmenu
 code
@@ -43,7 +44,6 @@ gparted
 grep
 groff
 grub
-gtop
 gzip
 handbrake
 htop
@@ -52,6 +52,7 @@ intel-ucode
 jq
 keepassxc
 kiwix-desktop
+kiwix-tools
 libreoffice-fresh
 libtool
 libva-intel-driver
@@ -96,6 +97,7 @@ python-pip
 python-pywal
 python-virtualenv
 rsync
+sdcv
 sed
 shellcheck
 slop
@@ -133,7 +135,6 @@ unrar
 unzip
 v4l2loopback-utils
 vi
-vim
 vulkan-intel
 webkit2gtk
 wget
@@ -142,6 +143,7 @@ wmctrl
 xbindkeys
 xcape
 xclip
+xcolor
 xdg-user-dirs
 xorg-server
 xorg-xev

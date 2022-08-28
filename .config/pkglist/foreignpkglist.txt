@@ -11,7 +11,6 @@ dotbare
 espanso-bin
 fzf-tab-git
 git-open
-grabc
 howdoi
 jackett
 keepmenu-git
@@ -27,6 +26,7 @@ peerflix
 pup
 python-spotdl
 qogir-gtk-theme
+qt5-styleplugins
 sc-im
 simple-mtpfs
 slugify
@@ -36,3 +36,4 @@ xdg-ninja-git
 xflux
 xkblayout-state-git
 ytfzf
+zeal
