@@ -18,9 +18,9 @@ alias \
     df="df -h" \
     free="free -m" \
     ls='lsd --group-dirs first' \
-    l='lsd -l' \
+    l='lsd --blocks permission,links,user,group,size,date,name -l' \
     la='ls -a' \
-    lla='ls -la' \
+    lla='l -a' \
     lt='ls --tree' \
     lf='lfub' \
     g="git" \
@@ -45,7 +45,7 @@ alias \
     ytm-dlp="yt-dlp -x --audio-format mp3 --audio-quality 0 --embed-metadata --embed-thumbnail" \
     shred='shred -uzvn3' \
     webcam='mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
-    neofetch="neofetch --disable cpu gpu memory" \
+    neofetch='neofetch --ascii "$(tput setaf 4; cat $HOME/.config/neofetch/ascii-arch)"' \
     h='history 1 | cut -c 8- | uniq | fzf -0 --tac | xclip -r -sel -c' \
     dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
     dot=dotbare \
