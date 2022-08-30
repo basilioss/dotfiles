@@ -60,6 +60,15 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
+# Yank to the system clipboard
+function vi-yank-xclip {
+    zle vi-yank
+   echo "$CUTBUFFER" | xclip -r -sel c
+}
+
+zle -N vi-yank-xclip
+bindkey -M vicmd 'y' vi-yank-xclip
+
 # Accept autosuggestion with Ctrl + Space
 bindkey '^ ' autosuggest-accept
 
@@ -87,3 +96,9 @@ function stt () {
 
 # Select and edit configs
 bindkey -s '^g' "dotbare fedit"^j
+
+function dic() {
+	sdcv -n --color "$@" 2>&1 | \
+	fold --width=$(tput cols) | \
+	less --quit-if-one-screen -RX
+}
