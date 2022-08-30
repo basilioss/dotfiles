@@ -16,6 +16,7 @@ video/x-matroska=mpv.desktop
 video/mp4=mpv.desktop
 inode/directory=thunar.desktop
 text/x-shellscript=nvim.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=onlyoffice-desktopeditors.desktop
 
 [Added Associations]
 audio/mpeg=mpv.desktop;
@@ -23,3 +24,4 @@ text/plain=userapp-st nvim-KQMYO1.desktop;
 application/x-shellscript=userapp-st nvim-KQMYO1.desktop;
 text/markdown=userapp-st nvim-KQMYO1.desktop;
 application/json=userapp-st nvim-KQMYO1.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=onlyoffice-desktopeditors.desktop;

@@ -1,6 +1,6 @@
 # Launch apps
-super + o ; {t,d,o,l,k,m,Return}
-        {telegram-desktop,discord,obsidian,librewolf,keepassxc,deadbeef,tabbed -c -r 2 st -w ""}
+super + o ; {t,d,o,l,k,m,Return,n}
+        {telegram-desktop,discord,obsidian,librewolf,keepmenu,deadbeef,tabbed -c -r 2 st -w "",networkmanager_dmenu}
 
 super + o ; shift + {t,h,o}
         {thunar,ghb,obs}
