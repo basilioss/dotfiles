@@ -3,7 +3,7 @@
 # Description: Apply all the available palettes from ImageGoNerd to the image
 # Name: batch-ign
 # Usage: batch-ign <path/to/image.png>
-# Homepage: https://github.com/basilioss/dotfile
+# Homepage: https://github.com/basilioss/dotfiles
 # https://github.com/Schrodinger-Hat/ImageGoNord
 
 # Path to source code of ImageGoNerd
@@ -12,18 +12,18 @@ image_go_nerd="$HOME/.local/src/image-go-nord/"
 file="$(basename "$1")"
 # Remove image extension
 filename="${file%%.*}"
-colorschames=($(ls "$image_go_nerd"/src/palettes))
+colorpalettes=($(ls "$image_go_nerd"/src/palettes))
 count=0
 
 mkdir "$HOME/wal-$filename"
 cd "$HOME/wal-$filename" || exit
 
 # Color schames to lowercase
-for i in "${colorschames[@]}"; do
-    colorschames[$count]="$(printf "$i" | tr [:upper:] [:lower:])"
+for i in "${colorpalettes[@]}"; do
+    colorpalettes[$count]="$(printf "$i" | tr [:upper:] [:lower:])"
     count=$((count + 1))
 done
 
-for i in "${colorschames[@]}"; do
+for i in "${colorpalettes[@]}"; do
     python "$image_go_nerd"/src/cli.py --"$i" -i="$1" -o="$filename-$i"
 done
