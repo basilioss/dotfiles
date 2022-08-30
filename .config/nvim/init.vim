@@ -1,7 +1,7 @@
 let mapleader=" "
 
 " Spellchecker
-map <leader>o :setlocal spell! spelllang=en_us,ru,uk<CR>
+map <leader>s :setlocal spell! spelllang=en_us,ru,uk<CR>
 
 " Copy
 vnoremap <C-y> "*y :let @+=@*<CR>
@@ -43,6 +43,10 @@ map <C-w>tk <C-w>t<C-w>K
 
 " Mouse support
 set mouse=a
+
+" Soft Wrap
+set wrap
+set linebreak
 
 " Relative number support
 set number relativenumber
@@ -121,6 +125,9 @@ nnoremap K {
 nnoremap L g_
 nnoremap H ^
 
+"Insert filename
+"nnoremap <leader>F !!basename %:r<CR>
+
 " Install vim plug if uninstalled
 if ! filereadable(system('echo -n "${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim"'))
 	echo "Downloading junegunn/vim-plug to manage plugins..."
@@ -153,6 +160,8 @@ Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 " Visual undo history
 Plug 'mbbill/undotree'
+" Indent lines
+Plug 'lukas-reineke/indent-blankline.nvim'
 " Notes
 Plug 'vimwiki/vimwiki'
 " Addition for vimwiki
@@ -207,12 +216,12 @@ map <C-c> gc
 
 """ Lightline colorscheme and icons support
 let g:lightline = {
-      \ 'colorscheme': 'darcula',
-      \ 'component_function': {
-      \   'filetype': 'MyFiletype',
-      \   'fileformat': 'MyFileformat',
-      \ }
-      \ }
+            \ 'colorscheme': 'darcula',
+            \ 'component_function': {
+            \   'filetype': 'MyFiletype',
+            \   'fileformat': 'MyFileformat',
+            \ }
+            \ }
 
 function! MyFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
@@ -226,10 +235,15 @@ endfunction
 let g:goyo_width=80
 map <leader>f :Goyo \| set linebreak <bar> echo ''<CR>
 
+" Indentation guidelines
+let g:indent_blankline_max_indent_increase = 1
+let g:indent_blankline_filetype_exclude = ['lua']
+
 """ Vimwiki
 let g:vimwiki_list = [{'path': '~/hdd/notes/',
             \ 'index': 'readme',
-            \ 'diary_index': 'index',
+            \ 'diary_rel_path': 'main/',
+            \ 'diary_index': '00-diary',
             \ 'syntax': 'markdown',
             \ 'ext': '.md',
             \ 'links_space_char': '-',
