@@ -1,3 +1,30 @@
-set statusbar-h-padding 0
-set statusbar-v-padding 0
-map p print
+# Copy to clipboard
+set selection-clipboard clipboard
+
+# Dark mode by default
+set recolor
+# Dark colors
+set recolor-lightcolor "#17212b"
+# Background color
+set default-bg "#17212b"
+
+# Statusbar colors
+set statusbar-bg "#17212b"
+set inputbar-bg "#2B3D4F"
+set inputbar-fg "#FFFFFF"
+
+# Index mode colors (tab)
+set index-bg "#17212b"
+set index-fg "#FFFFFF"
+set index-active-bg "#32475D"
+set index-active-fg "#FFFFFF"
+
+# Selection, follow links colors
+set highlight-color "#5fafff"
+set highlight-fg "#ff6059"
+
+# Completition
+set completion-bg "#17212b"
+set completion-group-bg "#2B3D4F"
+set completion-highlight-bg "#415976"
+set completion-highlight-fg "#DEDEDE"
