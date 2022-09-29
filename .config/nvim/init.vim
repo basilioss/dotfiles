@@ -12,8 +12,11 @@ map Y y$
 " Paste
 map <C-p> "+P
 
-" Vertically center document when entering insert mode
-autocmd InsertEnter * norm zz
+" Save a file
+nnoremap ZS :w<CR>
+
+" Typewriter mode
+set scrolloff=999
 
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
