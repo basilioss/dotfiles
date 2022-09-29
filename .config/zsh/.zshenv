@@ -29,7 +29,7 @@ export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 # ~/.npmrc
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 # ~/.python_history (require ~/.config/python/pythonrc)
-export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
+export PYTHONSTARTUP="/etc/python/pythonrc"
 export GOPATH="$XDG_DATA_HOME"/go
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export XINITRC="$XDG_CONFIG_HOME"/x11/xinitrc

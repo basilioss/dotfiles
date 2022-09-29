@@ -43,8 +43,8 @@ XF86MonBrightness{Up,Down}
     brightness-control {up,down}
 
 # Toggle touchpad
-XF86TouchpadToggle
-    {xinput disable "FTE1200:00 0B05:0201 Touchpad", xinput enable "FTE1200:00 0B05:0201 Touchpad"}
+XF86TouchpadEnable
+    {xinput disable "ELAN0515:00 04F3:3142 Touchpad"; notify-send "Touchpad disabled", xinput enable "ELAN0515:00 04F3:3142 Touchpad"; notify-send "Touchpad enabled"}
 
 # Audio player
 XF86Audio{Next,Prev,Stop,Play}

@@ -1,8 +1,8 @@
 [Default Applications]
-x-scheme-handler/tg=userapp-Telegram Desktop-MZXLN1.desktop
+x-scheme-handler/tg=userapp-Telegram Desktop-M6L0R1.desktop
 x-scheme-handler/http=librewolf.desktop
 x-scheme-handler/https=librewolf.desktop
-text/plain=typora.desktop
+text/plain=userapp-st nvim-7H4DS1.desktop
 text/html=librewolf.desktop
 x-scheme-handler/about=librewolf.desktop
 x-scheme-handler/unknown=librewolf.desktop
@@ -20,8 +20,10 @@ application/vnd.openxmlformats-officedocument.wordprocessingml.document=onlyoffi
 
 [Added Associations]
 audio/mpeg=mpv.desktop;
-text/plain=userapp-st nvim-KQMYO1.desktop;
+text/plain=userapp-st nvim-KQMYO1.desktop;userapp-st nvim-7H4DS1.desktop;
 application/x-shellscript=userapp-st nvim-KQMYO1.desktop;
 text/markdown=userapp-st nvim-KQMYO1.desktop;
-application/json=userapp-st nvim-KQMYO1.desktop;
+application/json=userapp-st nvim-7H4DS1.desktop;userapp-st nvim-KQMYO1.desktop;
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=onlyoffice-desktopeditors.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-M6L0R1.desktop;
+image/webp=sxiv.desktop;

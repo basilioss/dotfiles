@@ -7,6 +7,10 @@ matches:
     replace: "- [ ] "
     label: "Markdown task"
 
+  - trigger: ":ref"
+    replace: "## References\n\n"
+    label: "Makrdown reference heading"
+
   - trigger: ":com"
     replace: "<!-- $|$ -->"
     label: "HTML comment tag"
