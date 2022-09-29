@@ -1,5 +1,5 @@
 # Recursively adds `~/.local/bin` to $PATH
-export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}:$HOME/.dotnet/tools"
 
 # Default programs
 export EDITOR=nvim
@@ -15,7 +15,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_STATE_HOME="$HOME/.local/state"
 
 export HISTFILE="${XDG_STATE_HOME}"/bash/history
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+#export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
@@ -35,19 +35,15 @@ export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export XINITRC="$XDG_CONFIG_HOME"/x11/xinitrc
 export XCURSOR_PATH=/usr/share/icons:${XDG_DATA_HOME}/icons
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
-# dotbare
+# Dotbare
 export DOTBARE_DIR="$HOME/.dotfiles"
 export DOTBARE_TREE="$HOME"
 # Dotnet
 export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
-
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+# Dotnet: disable telemetry
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 # Qt theme
 export QT_STYLE_OVERRIDE=gtk2
-
 # Dictionary
 export STARDICT_DATA_DIR=$HOME/hdd/library/other/dictionaries
-
-# Auto start X at login
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-  exec startx
-fi

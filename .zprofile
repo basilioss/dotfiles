@@ -1,1 +1,0 @@
-/home/basilios/.config/shell/profile

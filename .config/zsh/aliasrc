@@ -52,7 +52,10 @@ alias \
     open='xdg-open "$(find -type f -not -path "*/.*" | fzf)"' \
     vopen='find -type f -not -path "*/.*" | fzf | xargs -r -I % $EDITOR %' \
     fcd='cd "$(find -type d | fzf)"' \
-    getpath="find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -sel c" \
+    getpath="find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -sel c"
+
+# Open zathura with tabs
+alias zathura="tabbed -r 2 -c zathura -e -w"
 
 # trash-cli
 alias \

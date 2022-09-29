@@ -9,7 +9,7 @@ setopt autocd
 setopt interactivecomments
 
 # History
-HISTFILE=~/.cache/zsh/history
+HISTFILE=~/.config/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt APPEND_HISTORY
@@ -20,13 +20,13 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 
 # Load aliases
-source "$XDG_CONFIG_HOME/shell/aliasrc"
+source "$XDG_CONFIG_HOME/zsh/aliasrc"
 
 # Basic auto/tab complete:
-autoload -U compinit
+autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
+compinit -i
 _comp_options+=(globdots)		# Include hidden files.
 
 # Vi mode
@@ -69,22 +69,27 @@ function vi-yank-xclip {
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
 
+# zsh parameter completion for the dotnet CLI
+
+_dotnet_zsh_complete()
+{
+  local completions=("$(dotnet complete "$words")")
+
+  reply=( "${(ps:\n:)completions}" )
+}
+
+compctl -K _dotnet_zsh_complete dotnet
+
 # Accept autosuggestion with Ctrl + Space
 bindkey '^ ' autosuggest-accept
+
+# Select and edit configs
+bindkey -s '^g' "dotbare fedit"^j
 
 # Plugins
 source /usr/share/zsh/plugins/fzf-tab-git/fzf-tab.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-
-# Starhship prompt
-eval "$(starship init zsh)"
-
-# The fuck
-eval $(thefuck --alias)
-
-# Zoxide
-eval "$(zoxide init zsh)"
 
 # Open new st tab in tabbed with specified title
 # Example: stt dwm config
@@ -94,11 +99,17 @@ function stt () {
     nohup st -t "$title" -w $XEMBED &
 }
 
-# Select and edit configs
-bindkey -s '^g' "dotbare fedit"^j
-
 function dic() {
 	sdcv -n --color "$@" 2>&1 | \
 	fold --width=$(tput cols) | \
 	less --quit-if-one-screen -RX
 }
+
+# Starhship prompt
+eval "$(starship init zsh)"
+
+# The fuck
+eval $(thefuck --alias)
+
+# Zoxide
+eval "$(zoxide init zsh)"
