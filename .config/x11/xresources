@@ -1,3 +1,13 @@
+! Image viewer
 Sxiv.background: #17212b
 Sxiv.foreground: #E8E8E8
 Sxiv.font: JetBrainsMono Nerd
+
+! HiDPI scaling for 1920x1080 resolution
+Xft.dpi: 130
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb

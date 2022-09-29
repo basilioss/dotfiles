@@ -11,6 +11,10 @@ fi
 
 (sleep 2; xmodmap $HOME/.config/xmodmap/Xmodmap) &
 xrdb -merge $HOME/.config/x11/xresources &
+
+# Fix small dwm bar in HiDPI displays (sometimes xresources does not work)
+xrandr --dpi 130 &
+
 setxkbmap us,ru &
 slstatus &
 clipmenud &
@@ -21,6 +25,9 @@ syncthing --no-browser &
 warp-cli connect &
 picom &
 xflux -l 50 &
+
 # Set random wallpaper
-pic="$(find ~/hdd/library/pictures/wallpapers/ -maxdepth 1 -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -type f | shuf -n 1)" && xwallpaper --zoom "$pic" &
+wallpapers="$HOME/hdd/library/pictures/wallpapers/"
+pic="$(find "$wallpapers" -maxdepth 1 -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -type f | shuf -n 1)" && xwallpaper --zoom "$pic" &
+
 exec dwm
