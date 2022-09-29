@@ -19,11 +19,11 @@ mkdir "$HOME/wal-$filename"
 cd "$HOME/wal-$filename" || exit
 
 # Color schames to lowercase
-for i in "${colorpalettes[@]}"; do
-    colorpalettes[$count]="$(printf "$i" | tr [:upper:] [:lower:])"
+for colorpalette in "${colorpalettes[@]}"; do
+    colorpalettes[$count]="$(printf "$colorpalette" | tr [:upper:] [:lower:])"
     count=$((count + 1))
 done
 
-for i in "${colorpalettes[@]}"; do
-    python "$image_go_nerd"/src/cli.py --"$i" -i="$1" -o="$filename-$i"
+for colorpalette in "${colorpalettes[@]}"; do
+    python "$image_go_nerd"/src/cli.py --"$colorpalette" -i="$1" -o="$filename-$colorpalette"
 done

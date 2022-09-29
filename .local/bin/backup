@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+#
+# Description: Archive/encrypt and unarchive folders
+# Usage:
+#   Archive:
+#       backup -a ~/path/to/folder
+#       backup -a folder
+#   Unarchive:
+#       backup -u folder
+# Homepage: https://github.com/basilioss/dotfiles
+
+bak_path="$HOME/hdd/system/backup"
+file="$2"
+
+function archive {
+    # Full path and directory name
+    directory="$2"
+    # Directory path to a folder/file
+    dir_path="$(dirname "$file")"
+    # Folder name without leading directory portions
+    dir_name="$(basename "$file")"
+    # Name of archive
+    archive="$(date +%Y-%m-%d)"_"$dir_name".tar.gz
+
+    # Create compressed archive
+    tar -czf "$bak_path"/"$archive" -C "$dir_path" "$dir_name"
+    # -c: symmetric encryption (use a passphrase)
+    # --no-sysmkey-cache: do not cache a passphrase
+    # --clipher-algo AES256: improve security algorithm a little
+    gpg -c --no-symkey-cache --cipher-algo AES256 "$bak_path"/"$archive"
+    rm "$bak_path"/"$archive"
+    echo "Successfully archived"
+}
+
+function unarchive {
+    filename="${file%%.*}"
+    archive="$filename".tar.gz
+
+    gpg "$file"
+    tar -xf $archive
+    rm "$archive" "$archive".gpg
+    echo "Successfully unarchived"
+}
+
+# delete the backup files that are older than five days.
+# find "/backupfolder" -type f -mtime +5 -exec rm {} \;
+
+case $1 in
+    -a) archive ;;
+    -u) unarchive ;;
+esac
