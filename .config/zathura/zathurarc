@@ -16,7 +16,7 @@ set inputbar-fg "#FFFFFF"
 # Index mode colors (tab)
 set index-bg "#17212b"
 set index-fg "#FFFFFF"
-set index-active-bg "#32475D"
+set index-active-bg "#2B3D4F"
 set index-active-fg "#FFFFFF"
 
 # Selection, follow links colors
