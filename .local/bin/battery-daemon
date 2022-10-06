@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# Description: Notify if battery capacity is less than 30 or more than 80
+# Name: battery-daemon
+# Usage: Put it in autostart (xinitrc)
+# Homepage: https://github.com/basilioss/dotfiles
+
+while true; do
+	battery="/sys/class/power_supply/BAT1"
+    capacity="$(cat "$battery/capacity" 2>&1)"
+    status="$(cat "$battery/status" 2>&1)"
+
+	if [ "$capacity" -lt 30 ] && [ "$status" = "Discharging" ]
+	then
+        icon="/usr/share/icons/Qogir/24/panel/battery-caution.svg"
+		notify-send "Charge your battery!" -i $icon
+		sleep 60s
+	fi
+
+	if [ "$capacity" -gt 80 ] && [ "$status" = "Charging" ] || [ "$status" = "Not charging" ]
+	then
+        icon="/usr/share/icons/Qogir/24/panel/battery-full-charged.svg"
+		notify-send "Turn off battery charger!" -i $icon
+		sleep 60s
+	fi
+
+	sleep 5s
+done &

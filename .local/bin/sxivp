@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#
+# Description: Allows to navigate to the next/previous file in a folder when opening only one image with sxiv
+# Name: Simple X Image Viewer Plus
+# Homepage: https://github.com/basilioss/dotfiles
+# Author: https://www.antixforum.com/forums/topic/tip-using-sxiv-image-viewer/
+
+# get only image from CLI input, without path
+x=$1
+y=${x%}
+image_name=$(echo ${y##*/})
+# list all images to file images_list.txt
+ls -r  *.jpg *.jpeg *.png *.bmp *.gif > /tmp/images_list.txt
+tac /tmp/images_list.txt > /tmp/images_list_reversed.txt
+# Get number of selected image
+image_number=$(grep -n $image_name /tmp/images_list_reversed.txt | cut -f1 -d:)
+echo $image_number
+# pipe result of image list, starting by displaying the selected image number
+cat /tmp/images_list_reversed.txt | sxiv -i -n $image_number
