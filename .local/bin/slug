@@ -2,12 +2,15 @@
 #
 # Description: Convert filenames into a web/system friendly format
 # Name: slug
-# Usage: slug <file>
+# Usage: 
+#     slug <file>
+#     ls | fzf -m | slug
 # Dependencies: python-slugify (https://github.com/un33k/python-slugify)
 # Homepage: https://github.com/basilioss/dotfiles
 
-# For each file, directory, or glob
-for source in "$@" ; do
+slugify_string() {
+    source="$1"
+
     # Verify if source exists
     if [ ! -e "$source" ]; then
       echo "not found: $source"
@@ -63,4 +66,17 @@ for source in "$@" ; do
     else
         echo "ignore: $folder/$source$ext"
     fi
-done
+}
+
+# Check to see if a pipe exists on stdin
+if [ -p /dev/stdin ]; then
+    # If we want to read the input line by line
+    while IFS= read source; do
+        slugify_string "$source"
+    done
+else
+    # For each file, directory, or glob
+    for source in "$@" ; do
+        slugify_string "$source"
+    done
+fi
