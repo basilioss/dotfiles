@@ -1,0 +1,13 @@
+activation_key: C-M-c
+hint_activation_key: C-M-x
+grid_activation_key: C-M-z
+scroll_down: C-j
+scroll_up: C-k
+start: H
+end: L
+bottom: J
+top: K
+exit: Return
+cursor_size: 12
+grid_color: #476072
+grid_border_color: #476072
