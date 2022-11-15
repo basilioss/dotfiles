@@ -1,12 +1,12 @@
 # Recursively adds `~/.local/bin` to $PATH
-export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}:${$(find ~/.local/bin-personal -type d -printf %p:)%%:}:$HOME/.dotnet/tools"
+export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}:$HOME/.dotnet/tools"
 
 # Default programs
 export EDITOR=nvim
 export VISUAL=nvim
-export TERMINAL="st"
+export TERMINAL=st
 export BROWSER=librewolf
-export READER="zathura"
+export READER=zathura
 
 # $HOME cleanup (https://github.com/b3nj5m1n/xdg-ninja)
 export XDG_CONFIG_HOME="$HOME/.config"

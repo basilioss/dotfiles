@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#
+# Description: Add album cover art to audio with spotify link
+# Name: add-cover
+# Usage: 
+#     add-cover <file> <spotify_link>
+#     for i in *.mp3; do add-cover <file> <spotify_link>; done
+# Dependencies: ffmpeg, spotdl (https://github.com/spotDL/spotify-downloader/)
+# Homepage: https://github.com/basilioss/dotfiles
+
+# Get album cover from Spotify link
+date="$(date +%s)"
+metadata="${date}-meta.spotdl"
+cover="${date}-cover"
+spotdl save "$2" --save-file "${metadata}"
+cover_url="$(jq --raw-output '.[0].cover_url' "${metadata}")"
+curl "${cover_url}" --output "${cover}"
+
+# Add album cover to file
+ffmpeg -i "$1" -i "${cover}" -map 0:0 -map 1:0 -c copy -id3v2_version 3 -metadata:s:v title="Album cover" -metadata:s:v comment="Cover (front)" "tmp_${1}"
+mv "tmp_${1}" "$1"
+
+# Delete unnecessary files
+rm "${metadata}"
+rm "${cover}"
