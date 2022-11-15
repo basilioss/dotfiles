@@ -3,14 +3,17 @@ let mapleader=" "
 " Spellchecker
 map <leader>s :setlocal spell! spelllang=en_us,ru,uk<CR>
 
-" Copy
-vnoremap <C-y> "*y :let @+=@*<CR>
+" Copy to system clipboard
+set clipboard=unnamed
+
+" Delete without coping to the clipboard
+nnoremap d "_d
+vnoremap d "_d
+nnoremap D "_D
+vnoremap D "_D
 
 " Copy line without newline character
 map Y y$
-
-" Paste
-map <C-p> "+P
 
 " Save a file
 nnoremap ZS :w<CR>
@@ -18,8 +21,8 @@ nnoremap ZS :w<CR>
 " Typewriter mode
 set scrolloff=999
 
-" Remove trailing whitespace on save
-autocmd BufWritePre * %s/\s\+$//e
+" Remove trailing whitespace
+nnoremap <leader>w :%s/\s\+$//e<CR>
 
 " Disable auto comment
 autocmd VimEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -28,28 +31,15 @@ autocmd VimEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 "map <leader>i :setlocal autoindent<CR>
 "map <leader>I :setlocal noautoindent<CR>
 
-" Split navigation shortcuts
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" Split sizes adjusting shortcuts
-noremap <silent> <C-Left> :vertical resize +3<CR>
-noremap <silent> <C-Right> :vertical resize -3<CR>
-noremap <silent> <C-Up> :resize +3<CR>
-noremap <silent> <C-Down> :resize -3<CR>
-
-" Shortcuts to change splits from horizontal to vertical
-map <C-w>th <C-w>t<C-w>H
-map <C-w>tk <C-w>t<C-w>K
-
 " Mouse support
-set mouse=a
+" set mouse=a
 
 " Soft Wrap
 set wrap
 set linebreak
+
+" Wrap in vimdiff
+au VimEnter * if &diff | execute 'windo set wrap' | endif
 
 " Relative number support
 set number relativenumber
@@ -63,12 +53,11 @@ set expandtab
 " Autocompletition
 set wildmode=longest,list,full
 
+" Abandoned
 " Replace hotkey
 nnoremap S :%s//g<Left><Left>
 
-" Jump points
-"inoremap <leader><Tab> <Esc>/<++><Enter>"_c4l
-vnoremap <leader><Tab> <Esc>/<++><Enter>"_c4l
+" Jump to <++>
 map <leader><Tab> <Esc>/<++><Enter>"_c4l
 
 " Turn off mode information
@@ -105,8 +94,8 @@ set foldlevel=99
 set ignorecase
 set smartcase
 
-" Remove search highlights nmap <F9> :nohl<CR>
-nmap <F9> :nohl<CR>
+" Disable search highlights
+nnoremap <ESC> :nohlsearch<CR>:echo<CR>
 
 " More logical undo
 nnoremap U <C-r>
@@ -128,8 +117,22 @@ nnoremap K {
 nnoremap L g_
 nnoremap H ^
 
+" Append punctuation to end of line
+nnoremap <leader>; mzA;<Esc>`z
+nnoremap <leader>. mzA.<Esc>`z
+nnoremap <leader>: mzA:<Esc>`z
+nnoremap <leader>) mzA)<Esc>`z
+nnoremap <leader>( mzA(<Esc>`z
+nnoremap <leader>] mzA]<Esc>`z
+nnoremap <leader>[ mzA[<Esc>`z
+nnoremap <leader>{ mzA{<Esc>`z
+nnoremap <leader>} mzA}<Esc>`z
+
 "Insert filename
 "nnoremap <leader>F !!basename %:r<CR>
+
+" Save undos after file closes
+set undofile
 
 " Install vim plug if uninstalled
 if ! filereadable(system('echo -n "${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim"'))
@@ -182,6 +185,8 @@ Plug 'junegunn/fzf.vim'
 " Required for Telescope
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+" Auto save
+Plug 'Pocco81/auto-save.nvim'
 "
 " Additional
 "
@@ -198,7 +203,8 @@ call plug#end()
 
 """ Markdown images
 autocmd FileType markdown nmap <buffer><silent> <leader>i :call mdip#MarkdownClipboardImage()<CR>
-let g:mdip_imgdir = '_assets'
+let g:mdip_imgdir_absolute = '/home/basilios/hdd/notes/assets'
+let g:mdip_imgdir_intext = '../assets'
 let g:mdip_imgname = ''
 
 """ Markdown preview
@@ -213,6 +219,15 @@ let g:purify_override_colors = {
     \ 'pink':  { 'gui': '#af87ff', 'cterm': '141' },
 \ }
 colorscheme purify
+
+" Diff colorscheme
+highlight DiffAdd    cterm=NONE ctermfg=NONE ctermbg=22
+highlight DiffDelete cterm=NONE ctermfg=NONE ctermbg=88
+highlight DiffChange cterm=NONE ctermfg=NONE ctermbg=25
+highlight DiffText   cterm=NONE ctermfg=NONE ctermbg=25
+
+" Fix Telescope colors after updating to neovim-0.8.0-3
+hi NormalFloat ctermfg=LightGrey
 
 """ Comentary
 map <C-c> gc
@@ -243,14 +258,13 @@ let g:indent_blankline_max_indent_increase = 1
 let g:indent_blankline_filetype_exclude = ['lua']
 
 """ Vimwiki
-let g:vimwiki_list = [{'path': '~/hdd/notes/',
-            \ 'index': 'readme',
-            \ 'diary_rel_path': 'main/',
-            \ 'diary_index': '00-diary',
+let g:vimwiki_list = [{'path': '~/hdd/notes/pages',
+            \ 'index': 'moc-home',
+            \ 'diary_index': 'moc-diary',
             \ 'syntax': 'markdown',
             \ 'ext': '.md',
-            \ 'links_space_char': '-',
-            \ 'exclude_files': ['templates/*', 'draws/*']}]
+            \ 'diary_rel_path': '',
+            \ 'links_space_char': '-'}]
 " https://minimal.guide/Block+types/Checklists
 let g:vimwiki_listsyms = ' <>/x'
 " Auto update diary index
@@ -267,13 +281,12 @@ let g:vimwiki_toc_header_level = 2
 let g:vimwiki_toc_link_format = 1
 
 """ Notational FZF
-let g:nv_search_paths = ['~/hdd/notes/']
+let g:nv_search_paths = ['~/hdd/notes/pages']
 
 """ Vim-zettel
 let g:zettel_format = "%title"
-let g:zettel_date_format = "%Y-%m-%d"
-let g:zettel_options = [{"disable_front_matter" : 1,
-   \ "template" :  "~/hdd/notes/templates/vimwiki.tpl"}]
+"let g:zettel_fzf_command = "rg --column --line-number --ignore-case --no-heading --color=always "
+let g:zettel_fzf_command = "rg --line-number --smart-case --with-filename --no-heading --color=always"
 
 """ Leap
 lua require('leap').set_default_keymaps()
@@ -310,10 +323,17 @@ nnoremap <Leader>fs :Telescope spell_suggest<CR>
 " Fuzzy search inside of the currently open file
 inoremap <C-f> <Esc>:lua require'telescope.builtin'.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({}))<cr>
 " Find word under cursor
-nnoremap <Leader>w :lua require'telescope.builtin'.grep_string(require('telescope.themes').get_dropdown({}))<cr>
+nnoremap <Leader>fw :lua require'telescope.builtin'.grep_string(require('telescope.themes').get_dropdown({}))<cr>
 " :Telescope help_tags
 
-" Russian keyboard support
+lua << EOF
+	require("auto-save").setup {
+		-- your config goes here
+		-- or just leave it empty :)
+	}
+EOF
+
+" Cyrillic keyboard support
 map ё `
 map ’ `
 map й q
