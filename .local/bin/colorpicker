@@ -3,4 +3,4 @@
 # Description: Pick color and copy hex code to clipboard
 # Github: https://github.com/basilioss/dotfiles
 
-xcolor -s clipboard -P 150
+farge --notify --expire-time 5000
