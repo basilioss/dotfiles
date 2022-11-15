@@ -53,7 +53,7 @@ search_shortcut: off
 # --- Search trigger
 # Trigger used to show the Search UI
 # App-Specific: No
-search_trigger: ":find"
+#search_trigger: ":find"
 
 # --- Paste shortcut
 

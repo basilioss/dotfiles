@@ -5,7 +5,7 @@ homepage: "https://github.com/anthonygraignic/espanso-package-lower-upper"
 
 matches:
 
-  - trigger: ":clow"
+  - trigger: ":low:"
     replace: "{{output}}"
     label: "Conver clipboard content to lowercase"
     vars:
@@ -16,7 +16,7 @@ matches:
         params:
           cmd: "echo $ESPANSO_CLIPBOARD | tr '[:upper:]' '[:lower:]'"
 
-  - trigger: ":cup"
+  - trigger: ":up:"
     replace: "{{output}}"
     label: "Convert clipboard content to uppercase"
     vars:
