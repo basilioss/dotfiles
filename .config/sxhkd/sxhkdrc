@@ -1,9 +1,16 @@
 # Launch apps
-super + o ; {t,d,o,l,k,m,Return,n}
-        {telegram-desktop,discord,obsidian,librewolf,keepmenu,deadbeef,tabbed -c -r 2 st -w "",networkmanager_dmenu}
+super + o ; {t,d,o,l,k,m,Return,n,v}
+        {telegram-desktop,discord,obsidian,librewolf,keepmenu,deadbeef,tabbed -c -r 2 st -w "",networkmanager_dmenu,yt}
 
-super + o ; shift + {t,h,o}
-        {thunar,ghb,obs}
+super + o ; w
+    restart-warp
+
+super + o ; shift + {t,o}
+        {thunar,obs}
+
+# Colorpicker
+super + o ; shift + f
+    farge --notify --expire-time 5000
 
 # Take a screenshot
 Print
@@ -20,11 +27,11 @@ alt + Print
 
 # Clipboard
 super + v
-    clipmenu && xdotool key shift+Insert
+    clipmenu -i && xdotool key shift+Insert
 
 # Layout
-super + c
-    xkblayout-state set +1 && dunstify -r 2593 "$(xkblayout-state print "Current layout: %s")"
+super + space
+    xkblayout-state set +1 && dunstify -r 2593 "$(xkblayout-state print "Current layout: %n")"
 
 # Turn off screen
 XF86ScreenSaver
@@ -32,7 +39,7 @@ XF86ScreenSaver
 
 # Toggle f.lux
 alt + KP_End
-    [ -z "$(pgrep "xflux")" ] && xflux -l 50 || killall xflux
+    [ -z "$(pgrep redshift)" ] && redshift -l 50:30 & || killall redshift
 
 # Volume control
 XF86Audio{Mute,LowerVolume,RaiseVolume}
