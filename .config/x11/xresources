@@ -4,10 +4,56 @@ Sxiv.foreground: #E8E8E8
 Sxiv.font: JetBrainsMono Nerd
 
 ! HiDPI scaling for 1920x1080 resolution
-Xft.dpi: 130
+Xft.dpi: 125
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
+
+! st: font
+st.font: JetBrainsMono Nerd Font:style:medium:pixelsize=22
+
+! st: window padding
+st.borderpx: 10
+
+! st: transparency (0.1 to 1.0)
+st.alpha: 1.0
+
+! st: colors
+*background: #151f29
+*foreground: #ffffff
+*cursorColor: #ffffff
+
+! st: Black + DarkGrey
+*color0:  #17212b
+*color8:  #476072
+
+! st: DarkRed + Red
+*color1:  #FF6059
+*color9:  #FF6059
+
+! st: DarkGreen + Green
+*color2:  #5FFF87
+*color10: #5FFF87
+
+! st: DarkYellow + Yellow
+*color3:  #FFFF87
+*color11: #FFFF87
+
+! st: DarkBlue + Blue
+*color4:  #5FAFFF
+*color12: #5FAFFF
+
+! st: DarkMagenta + Magenta
+*color5:  #AF87FF
+*color13: #AF87FF
+
+! st: DarkCyan + Cyan
+*color6:  #5FAFFF
+*color14: #5FAFFF
+
+! st: LightGrey + White
+*color7:  #FAFAFA
+*color15: #FAFAFA

@@ -1,7 +1,6 @@
 #!/bin/sh
 
-# start some nice programs
-
+# Start some nice programs
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
   [ -x "$f" ] && . "$f"
@@ -9,25 +8,26 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-(sleep 2; xmodmap $HOME/.config/xmodmap/Xmodmap) &
-xrdb -merge $HOME/.config/x11/xresources &
-
 # Fix small dwm bar in HiDPI displays (sometimes xresources does not work)
-xrandr --dpi 130 &
+xrandr --dpi 125 &
 
-setxkbmap us,ru &
+# Set random wallpaper
+wallpapers="$HOME/main/library/pictures/wallpapers/"
+picture="$(find "$wallpapers" -maxdepth 1 -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -type f | shuf -n 1)"
+xwallpaper --zoom "$picture" &
+
+(sleep 2; xmodmap "$HOME/.config/xmodmap/Xmodmap") &
+xrdb -merge "$HOME/.config/x11/xresources" &
+setxkbmap us,ru,ua &
 slstatus &
 clipmenud &
 sxhkd &
 remaps &
 unclutter &
-syncthing --no-browser &
 warp-cli connect &
-picom &
-xflux -l 50 &
-
-# Set random wallpaper
-wallpapers="$HOME/hdd/library/pictures/wallpapers/"
-pic="$(find "$wallpapers" -maxdepth 1 -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -type f | shuf -n 1)" && xwallpaper --zoom "$pic" &
+picom --experimental-backends &
+redshift -l 50:30 &
+battery-daemon &
+(sleep 2; warpd) &
 
 exec dwm
