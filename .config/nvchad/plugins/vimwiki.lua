@@ -1,6 +1,6 @@
 vim.g["vimwiki_list"] = {
   {
-    path = "~/hdd/notepad/pages",
+    path = "~/main/notepad/pages",
     syntax = "markdown",
     ext = ".md",
     index = "moc-home",

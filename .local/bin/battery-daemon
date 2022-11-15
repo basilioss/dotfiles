@@ -17,7 +17,7 @@ while true; do
 		sleep 60s
 	fi
 
-	if [ "$capacity" -gt 80 ] && [ "$status" = "Charging" ] || [ "$status" = "Not charging" ]
+    if [ "$capacity" -gt 90 ] && [ "$status" = "Charging" ] || [ "$status" = "Full" ]
 	then
         icon="/usr/share/icons/Qogir/24/panel/battery-full-charged.svg"
 		notify-send "Turn off battery charger!" -i $icon

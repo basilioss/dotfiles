@@ -130,7 +130,7 @@ return {
           img_name = function() return os.date('%Y-%m-%d-%H-%M-%S') end,
         },
         vimwiki = {
-          img_dir = "$HOME/hdd/notepad/assets",
+          img_dir = "$HOME/main/notepad/assets",
           img_dir_txt = "../assets",
           affix = "![](%s)",
           -- manually insert image name

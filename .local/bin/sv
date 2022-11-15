@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Description: Allows to navigate to the next/previous file in a folder when opening only one image with sxiv
-# Name: Simple X Image Viewer Plus
+# Name: sv
 # Homepage: https://github.com/basilioss/dotfiles
 # Author: https://www.antixforum.com/forums/topic/tip-using-sxiv-image-viewer/
 

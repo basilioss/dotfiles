@@ -9,7 +9,7 @@
 #       backup -u folder
 # Homepage: https://github.com/basilioss/dotfiles
 
-bak_path="$HOME/hdd/system/backup"
+bak_path="$HOME/main/system/backup"
 file="$2"
 
 function archive {

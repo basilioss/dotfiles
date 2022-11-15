@@ -12,7 +12,7 @@
 set -euo pipefail
 
 # Specify path to the folder
-vaultpath="/home/basilios/hdd/notes/"
+vaultpath="/home/basilios/main/notepad/"
 
 vault_path_length=$(echo "$vaultpath" | wc -c | tr -d " ")
 
