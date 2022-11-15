@@ -2,9 +2,10 @@
 #
 # Description: https://www.youtube.com/watch?v=z_CcQhbwINU
 # Usage: ytsplit audio.mp3 timestamps.txt
-# Dependencies: ffmpeg
+# Dependencies: ffmpeg, python-slugify
 # Author: https://github.com/LukeSmithxyz/voidrice
 # Github: https://github.com/basilioss/dotfiles
+# Improvements: slugify filenames
 #
 # Timestamps example:
 #
@@ -25,7 +26,7 @@ inputaudio="$1"
 ext="${1##*.}"
 
 # Get a safe file name from the book.
-escbook="$(echo "$booktitle" | iconv -cf UTF-8 -t ASCII//TRANSLIT | tr -d '[:punct:]' | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | sed "s/-\+/-/g;s/\(^-\|-\$\)//g")"
+escbook="$(echo "$author"-"$booktitle" | slugify --stdin)"
 
 ! mkdir -p "$escbook" &&
     echo "Do you have write access in this directory?" &&
@@ -44,7 +45,7 @@ do
 	cmd="$cmd -metadata artist=\"$author\" -metadata title=\"$title\" -metadata album=\"$booktitle\" -metadata year=\"$year\" -metadata track=\"$track\" -metadata total=\"$total\" -ss \"$start\" -to \"$end\" -vn -c:a copy \"$file\" "
     fi
     title="$(echo "$x" | cut -d' ' -f2-)"
-    esctitle="$(echo "$title" | iconv -cf UTF-8 -t ASCII//TRANSLIT | tr -d '[:punct:]' | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | sed "s/-\+/-/g;s/\(^-\|-\$\)//g")"
+    esctitle="$(echo "$title" | slugify --stdin)"
     track="$((track+1))"
     start="$end"
 done < "$2"
