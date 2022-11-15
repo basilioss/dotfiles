@@ -2,7 +2,7 @@
 autoload -U colors && colors
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
-# Automatically cd into typed directory.
+# Automatically cd into typed directory
 setopt autocd
 
 # Activate comments
@@ -14,7 +14,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
-
+# No duplicates
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
@@ -44,7 +44,7 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-# Change cursor shape for different vi modes.
+# Change cursor shape for different vi modes
 function zle-keymap-select () {
     case $KEYMAP in
         vicmd) echo -ne '\e[1 q';;      # block
@@ -70,7 +70,6 @@ zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
 
 # zsh parameter completion for the dotnet CLI
-
 _dotnet_zsh_complete()
 {
   local completions=("$(dotnet complete "$words")")
@@ -83,13 +82,17 @@ compctl -K _dotnet_zsh_complete dotnet
 # Accept autosuggestion with Ctrl + Space
 bindkey '^ ' autosuggest-accept
 
-# Select and edit configs
-bindkey -s '^g' "dotbare fedit"^j
+# Select and edit configs with Alt + Enter (requires dotbare)
+bindkey -s '^[^M' "dotbare fedit"^j
 
 # Plugins
 source /usr/share/zsh/plugins/fzf-tab-git/fzf-tab.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source /etc/profile.d/undistract-me.sh
+
+# Fix comment highlight
+ZSH_HIGHLIGHT_STYLES[comment]=fg=#476072
 
 # Open new st tab in tabbed with specified title
 # Example: stt dwm config
@@ -99,6 +102,7 @@ function stt () {
     nohup st -t "$title" -w $XEMBED &
 }
 
+# Dictionary
 function dic() {
 	sdcv -n --color "$@" 2>&1 | \
 	fold --width=$(tput cols) | \
@@ -113,3 +117,6 @@ eval $(thefuck --alias)
 
 # Zoxide
 eval "$(zoxide init zsh)"
+
+# Navi
+eval "$(navi widget zsh)"
