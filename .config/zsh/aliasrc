@@ -20,7 +20,6 @@ alias \
     la='ls -a' \
     lla='l -a' \
     lt='ls --tree' \
-    lf='lfub' \
     g="git" \
     p="paru" \
     v="$EDITOR" \
