@@ -1,0 +1,21 @@
+[user]
+	email = vasyl.tyshchuk.xyz@gmail.com
+    name = Basilios
+[alias]
+    i = init
+    c = clone
+    a = add
+    ci = commit -m
+    s = status -sb
+    p = push
+    pl = pull
+    d = diff
+    b = branch
+    co = checkout
+    unstage = reset HEAD --
+    save = !git add -A && git commit -m
+    undo = reset HEAD~1
+    # prettier log
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    # diff for one file
+    df = log --patch --follow

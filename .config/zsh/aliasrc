@@ -37,7 +37,6 @@ alias \
     cal="cal -m --color=auto" \
     pacman="pacman --color=auto" \
     paru="paru --color=auto" \
-    gitl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative" \
     tldr="tldr --theme ocean"
 
 # Shorten the commands
