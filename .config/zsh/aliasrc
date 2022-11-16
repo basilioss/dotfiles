@@ -41,7 +41,8 @@ alias \
 
 # Shorten the commands
 alias \
-    ytm-dlp="yt-dlp -x --audio-format mp3 --audio-quality 0 --embed-metadata --embed-thumbnail" \
+    wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"' \
+    ytm-dlp='yt-dlp -x --audio-format mp3 --audio-quality 0 --embed-metadata --embed-thumbnail' \
     shred='shred -uzvn3' \
     webcam='mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
     h='history 1 | cut -c 8- | uniq | fzf -0 --tac | xclip -r -sel -c' \
