@@ -3,7 +3,6 @@ alsa-utils
 amd-ucode
 android-file-transfer
 arandr
-arch-wiki-docs
 aria2
 aspnet-runtime
 autoconf
@@ -32,6 +31,7 @@ fd
 ffmpeg
 ffmpegthumbnailer
 file-roller
+firefox
 firejail
 flameshot
 flex
@@ -58,13 +58,11 @@ jdk-openjdk
 jq
 jre-openjdk
 keepassxc
-kiwix-desktop
 kiwix-tools
-lf
 lib32-mesa
-libreoffice-fresh
 libtool
 libva-intel-driver
+libxft
 linux-firmware
 linux-headers
 linux-lts
@@ -109,7 +107,6 @@ pulseaudio-alsa
 pulseaudio-jack
 python-fonttools
 python-pip
-python-pywal
 python-slugify
 python-virtualenv
 rebuild-detector
@@ -133,7 +130,6 @@ tesseract
 tesseract-data-rus
 tesseract-data-ukr
 texinfo
-the_silver_searcher
 thefuck
 thunar
 thunar-archive-plugin
@@ -158,7 +154,8 @@ v4l2loopback-utils
 vi
 virt-manager
 virtualbox
-vulkan-intel
+vulkan-radeon
+vulkan-tools
 webkit2gtk
 wget
 which

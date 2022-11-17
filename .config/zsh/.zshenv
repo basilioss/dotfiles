@@ -5,7 +5,7 @@ export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}:$HOME/.dotnet/
 export EDITOR=nvim
 export VISUAL=nvim
 export TERMINAL=st
-export BROWSER=librewolf
+export BROWSER=firefox
 export READER=zathura
 
 # $HOME cleanup (https://github.com/b3nj5m1n/xdg-ninja)
