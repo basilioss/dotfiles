@@ -1,5 +1,5 @@
 ! Image viewer
-Sxiv.background: #17212b
+Sxiv.background: #151f29
 Sxiv.foreground: #E8E8E8
 Sxiv.font: JetBrainsMono Nerd
 
@@ -27,7 +27,7 @@ st.alpha: 1.0
 *cursorColor: #ffffff
 
 ! st: Black + DarkGrey
-*color0:  #17212b
+*color0:  #151f29
 *color8:  #476072
 
 ! st: DarkRed + Red
