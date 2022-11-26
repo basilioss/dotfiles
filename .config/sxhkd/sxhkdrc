@@ -1,29 +1,34 @@
 # Launch apps
-super + o ; {t,d,o,l,k,m,Return,n,v}
-        {telegram-desktop,discord,obsidian,librewolf,keepmenu,deadbeef,tabbed -c -r 2 st -w "",networkmanager_dmenu,yt}
+super + o ; {t,o,f,k,m,n,v}
+        {telegram-desktop,ocr,firefox,keepmenu,deadbeef,networkmanager_dmenu,yt}
+
+# st with tabs
+super + o ; Return
+    tabbed -c -r 2 st -w ""
+
+super + o ; d
+    $BROWSER https://discord.com/login
 
 super + o ; w
     restart-warp
 
+super + o ; e
+    espanso cmd search
+
 super + o ; shift + {t,o}
-        {thunar,obs}
+    {thunar,obs}
 
 # Colorpicker
 super + o ; shift + f
     farge --notify --expire-time 5000
 
-# Take a screenshot
+# Screenshot
 Print
-    flameshot screen
+    screenshot
 
-# Select area to screenshot
-shift + Print
-    flameshot gui
-
-# Select window to screenshot
-# ~/.local/bin/flameshot-window
-alt + Print
-    flameshot-window
+# Select area, copy to clipboard, edit last screenshot
+{alt,shift,super} + Print
+    screenshot {-s,-c,-e}
 
 # Clipboard
 super + v
@@ -33,13 +38,13 @@ super + v
 super + space
     xkblayout-state set +1 && dunstify -r 2593 "$(xkblayout-state print "Current layout: %n")"
 
+# Toggle blue light
+alt + KP_End
+    [ -z "$(pgrep redshift)" ] && redshift -l 50:30 || killall redshift
+
 # Turn off screen
 XF86ScreenSaver
     xset dpms force off
-
-# Toggle f.lux
-alt + KP_End
-    [ -z "$(pgrep redshift)" ] && redshift -l 50:30 & || killall redshift
 
 # Volume control
 XF86Audio{Mute,LowerVolume,RaiseVolume}
@@ -48,10 +53,6 @@ XF86Audio{Mute,LowerVolume,RaiseVolume}
 # Brightness
 XF86MonBrightness{Up,Down}
     brightness-control {up,down}
-
-# Toggle touchpad
-XF86TouchpadEnable
-    {xinput disable "ELAN0515:00 04F3:3142 Touchpad"; notify-send "Touchpad disabled", xinput enable "ELAN0515:00 04F3:3142 Touchpad"; notify-send "Touchpad enabled"}
 
 # Audio player
 XF86Audio{Next,Prev,Stop,Play}
@@ -65,16 +66,10 @@ super + {shift+p,grave,x,shift+x}
 super + l
     betterlockscreen -l
 
-# Special symbols
-# mod4 = right alt
-# Require this in Xmodmap:
-# clear mod1
-# clear mod3
-# add mod1 = Alt_L Meta_L
-# add mod3 = Alt_R
+# Close all notifications
+super + BackSpace
+    dunstctl close-all 
 
-mod3 + {bracketleft,bracketright,3,backslash,period,comma,minus,equal,0,9,8,n,y,b,v,6,m,g,r}
-    sleep .3; xdotool type {"[","]","#","|",">","<","—","≠","→","←","∞","✘","✓","•","↓","↑","≈","§","√"}
-
-mod3 + shift + {period,comma,minus,equal,b}
-    sleep .3; xdotool type {"»","«","–","±","★"}
+# Show previous notification
+super + shift + BackSpace
+    dunstctl history-pop

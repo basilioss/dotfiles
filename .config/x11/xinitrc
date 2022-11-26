@@ -18,14 +18,14 @@ xwallpaper --zoom "$picture" &
 
 (sleep 2; xmodmap "$HOME/.config/xmodmap/Xmodmap") &
 xrdb -merge "$HOME/.config/x11/xresources" &
-setxkbmap us,ru,ua &
+setxkbmap us,ru -option "compose:ralt" &
 slstatus &
 clipmenud &
 sxhkd &
 remaps &
 unclutter &
 warp-cli connect &
-picom --experimental-backends &
+picom &
 redshift -l 50:30 &
 battery-daemon &
 (sleep 2; warpd) &

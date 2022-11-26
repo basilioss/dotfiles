@@ -22,11 +22,13 @@ export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
 export LESSHISTFILE="$XDG_DATA_HOME/lesshst"
 export NVM_DIR="$XDG_DATA_HOME"/nvm
 export STACK_ROOT="$XDG_DATA_HOME"/stack
-export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export GOPATH="$XDG_DATA_HOME"/go
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 # xinit
 export XINITRC="$XDG_CONFIG_HOME"/x11/xinitrc
+# XCompose
+export XCOMPOSEFILE="$XDG_CONFIG_HOME"/x11/xcompose
+export GTK_IM_MODULE=xim
 # android-studio
 export ANDROID_HOME="$XDG_DATA_HOME"/android
 # gtk-2

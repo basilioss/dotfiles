@@ -1,0 +1,48 @@
+include "%L"
+# test
+
+# Find keyname:
+# xev | fgrep "keysym"
+
+# Examples:
+# /usr/share/X11/locale/<language>/Compose
+
+# Cyrillic markdown
+<Multi_key> <Multi_key> <Cyrillic_ha> : "["
+<Multi_key> <Multi_key> <Cyrillic_hardsign> : "]"
+<Multi_key> None <3> : "#"
+<Multi_key> Shift <slash> : "|"
+<Multi_key> <Cyrillic_be> : "<"
+<Multi_key> <Cyrillic_yu> : ">"
+<Multi_key> <Cyrillic_BE> : "«"
+<Multi_key> <Cyrillic_YU> : "»"
+
+# Ukrainian letters
+<Multi_key> None <Cyrillic_hardsign> : "ї"
+<Multi_key> <Cyrillic_HARDSIGN> : "Ї"
+<Multi_key> None <Cyrillic_yeru> : "і"
+<Multi_key> <Cyrillic_YERU> : "І"
+<Multi_key> None <Cyrillic_ghe> : "ґ"
+<Multi_key> <Cyrillic_GHE> : "Ґ"
+<Multi_key> None <Cyrillic_e> : "є"
+<Multi_key> <Cyrillic_E> : "Є"
+
+# Special characters
+<Multi_key> None <minus> : "—"
+<Multi_key> None <minus> : "–"
+<Multi_key> None <equal> : "≠"
+<Multi_key> Shift <plus> : "±"
+<Multi_key> None <0> : "→"
+<Multi_key> None <9> : "←"
+<Multi_key> None <8> : "∞"
+<Multi_key> None <n> : "✘"
+<Multi_key> None <y> : "✓"
+<Multi_key> None <b> : "•"
+<Multi_key> Shift <B> : "★"
+<Multi_key> None <v> : "↓"
+<Multi_key> None <6> : "↑"
+<Multi_key> None <m> : "≈"
+<Multi_key> None <g> : "§"
+<Multi_key> None <r> : "√"
+<Multi_key> Shift <less> : "«"
+<Multi_key> Shift <greater> : "»"
