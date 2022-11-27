@@ -2,7 +2,7 @@
 #
 # Description: Allows to navigate to the next/previous file in a folder when opening only one image with sxiv
 # Name: sv
-# Homepage: https://github.com/basilioss/dotfiles
+# GitHub: https://github.com/basilioss/dotfiles
 # Author: https://www.antixforum.com/forums/topic/tip-using-sxiv-image-viewer/
 
 # get only image from CLI input, without path

@@ -12,7 +12,7 @@ date="$(date +%s)"
 img="$dir/img-$date.png"
 output="$dir/out-$date"
 
-function do_magic() {
+function ocr() {
     # Wait till the menu animation is finished (by picom)
     sleep 0.3
     # Show pointer if it was hidden (by unclutter)
@@ -29,14 +29,14 @@ function do_magic() {
 
 case "$language" in
   Ukrainian)
-    do_magic ukr
+    ocr ukr
     ;;
 
   Russian)
-    do_magic rus
+    ocr rus
     ;;
 
   English)
-    do_magic eng
+    ocr eng
     ;;
 esac

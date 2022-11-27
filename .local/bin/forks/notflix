@@ -1,9 +1,7 @@
 #!/bin/bash
 #
-# Description: Search and stream torrent
-# Dependencies: peerflix, mpv
-# Author: https://github.com/Bugswriter/notflix
-# Github: https://github.com/basilioss/dotfiles
+# Search and stream torrents
+# https://github.com/Bugswriter/notflix
 
 mkdir -p $HOME/.cache/notflix
 

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Prefix sudo automatically
-for command in mount umount pacman shutdown poweroff reboot ; do
+for command in mount umount pacman timeshift ; do
 	alias $command="sudo $command"
 done; unset command
 
@@ -13,19 +13,22 @@ alias \
     bc="bc -ql" \
     mkd="mkdir -pv" \
     df="df -h" \
-    free="free -m" \
+    free="free -h" \
     ls='lsd --group-dirs first' \
     sl='lsd --group-dirs first' \
     l='lsd --blocks permission,links,user,group,size,date,name -l' \
-    la='ls -a' \
+    la='ls -A' \
     lla='l -a' \
     lt='ls --tree' \
     g="git" \
     p="paru" \
     v="$EDITOR" \
+    s="sxiv" \
+    f="fuck" \
     zz='z -' \
     ...='cd ../..' \
-    ....='cd ../../..'
+    ....='cd ../../..' \
+    date='date -I'
 
 # Colorize commands
 alias \
@@ -42,21 +45,20 @@ alias \
 alias \
     wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"' \
     ytm-dlp='yt-dlp -x --audio-format mp3 --audio-quality 0 --embed-metadata --embed-thumbnail' \
-    shred='shred -uzvn3' \
-    webcam='mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
+    webcam='st mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
     h='history 1 | cut -c 8- | uniq | fzf -0 --tac | xclip -r -sel -c' \
     dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
     dot=dotbare \
-    open='xdg-open "$(find -type f -not -path "*/.*" | fzf)"' \
-    vopen='find -type f -not -path "*/.*" | fzf | xargs -r -I % $EDITOR %' \
+    open='xdg-open "$(find -type f -not -path "*/.*" | dmenu -F -i -l 10)"' \
+    opendl='xdg-open "$(find "$HOME/main/downloads" | dmenu -F -i -l 10)"' \
     fcd='cd "$(find -type d | fzf)"' \
-    getpath="find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -sel c" 
+    nerdicons='emoji-menu -f "$HOME/.local/share/nerd-icons"'
 
-# Neofetch ascii art
-alias neofetch='neofetch --ascii "$(tput setaf 4; cat $HOME/.config/neofetch/ascii-arch)"'
-
-# Open zathura with tabs
-alias zathura="tabbed -r 2 -c zathura -e -w"
+# sudo
+alias \
+    sudo=doas \
+    pls=doas \
+    please=doas
 
 # trash-cli
 alias \
@@ -64,3 +66,15 @@ alias \
     trashe='trash-empty' \
     trashl='trash-list' \
     trashr='trash-restore'
+
+# Office
+alias \
+    excel='onlyoffice-desktopeditors --system-title-bar --new=cell' \
+    word='onlyoffice-desktopeditors --system-title-bar --new=doc' \
+    powerpoint='onlyoffice-desktopeditors --system-title-bar --new=slide'
+
+# Neofetch ascii art
+alias neofetch='neofetch --ascii "$(tput setaf 4; cat $HOME/.config/neofetch/ascii-arch)"'
+
+# Open zathura with tabs
+alias zathura="tabbed -r 2 -c zathura -e -w"

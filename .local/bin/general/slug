@@ -14,7 +14,7 @@ slugify_string() {
     # Verify if source exists
     if [ ! -e "$source" ]; then
       echo "not found: $source"
-      continue
+      exit
     fi
 
     isHidden=false

@@ -1,6 +1,0 @@
-#!/bin/sh
-#
-# Description: Pick color and copy hex code to clipboard
-# Github: https://github.com/basilioss/dotfiles
-
-farge --notify --expire-time 5000

@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+#
+# Easily find and copy emojis via dmenu or rofi
+# https://github.com/jchook/emoji-menu
+
+set -e
+
+# dmenu or rofi
+EMOJI_MENU_FINDER=${EMOJI_MENU_FINDER:-dmenu}
+
+# Emoji database location
+EMOJI_MENU_DB=${EMOJI_MENU_DB:-"$HOME/.local/share/emojis"}
+
+# Command to run after user chooses an emoji
+EMOJI_MENU_COMMAND=${EMOJI_MENU_COMMAND:-'xclip -selection clipboard'}
+
+# Report usage
+usage() {
+    echo "Usage: $(basename "$0") [-t | -c <command>] [-f <filepath> ]" 1>&2
+    echo
+    echo "   -f <filepath>  Use a custom emoji database."
+    echo "   -c <command>   Apply a custom command to the emoji choice."
+    echo "   -t             Simulate typing the emoji choice with the keyboard."
+    echo
+    exit "$1"
+}
+
+# Convert emoji to HEX
+ordhex() {
+    LC_CTYPE=C.UTF-8 printf 0x%x "'$1" | cut -d'x' -f2
+}
+
+# Type result using xte
+typeResultXte() {
+    HEX=$(ordhex $(cat))
+    xte \
+        'keydown Control_L' 'keydown Shift_L' 'key u' \
+        "str $HEX" 'keyup Control_L' 'keyup Shift_L'
+}
+
+# Type result using xdotool
+typeResult() {
+    awk '{ print "type " $0 }' | xdotool -
+}
+
+# Get Options
+while getopts ":c:f:th" o; do
+    case "${o}" in
+        f) EMOJI_MENU_DB="${OPTARG}" ;;
+        c) EMOJI_MENU_COMMAND="${OPTARG}" ;;
+        t) EMOJI_MENU_COMMAND=typeResult ;;
+        h) usage 0 ;;
+        *) usage 1 ;;
+    esac
+done
+
+# Default DB
+if [ ! -e "$EMOJI_MENU_DB" ]; then
+    echo "Downloading default emoji DB to $EMOJI_MENU_DB" >&2
+    wget -O "${EMOJI_MENU_DB}.tmp" 'https://unicode.org/Public/emoji/11.0/emoji-test.txt'
+    grep -Po '(?<=   #).*' "${EMOJI_MENU_DB}.tmp" \
+        | sed -e 's/^[[:space:]]*//' > "$EMOJI_MENU_DB"
+    rm "${EMOJI_MENU_DB}.tmp"
+fi
+
+if [ "$EMOJI_MENU_FINDER" = "dmenu" ]; then
+    cat "$EMOJI_MENU_DB" | dmenu -i -l 10 -p '🔍' \
+        | grep -oP '^[^\s]+' \
+        | tr -d '\n' \
+        | ${EMOJI_MENU_COMMAND}
+elif [ "$EMOJI_MENU_FINDER" = "rofi" ]; then
+    rofi -p '🔍' -width 610 -dmenu \
+        < "$EMOJI_MENU_DB" \
+        | grep -oP '^[^\s]+' \
+        | tr -d '\n' \
+        | ${EMOJI_MENU_COMMAND}
+else
+    notify-send "Incorect fuzzy finder"
+    exit 1
+fi

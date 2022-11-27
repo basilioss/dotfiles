@@ -1,22 +1,29 @@
 # Launch apps
-super + o ; {t,o,f,k,m,n,v}
-        {telegram-desktop,ocr,firefox,keepmenu,deadbeef,networkmanager_dmenu,yt}
+super + o ; {t,o,f,k,m,n}
+        {telegram-desktop,ocr,firefox,keepmenu,deadbeef,networkmanager_dmenu}
+
+super + o ; shift + {t,o}
+    {thunar,obs}
+
+alt + space
+    dmenu-recent-aliases
+
+super + o ; d
+    $BROWSER https://discord.com/login
+
+super + o ; e
+    espanso cmd search
+
+super + o ; w
+    restart-warp
 
 # st with tabs
 super + o ; Return
     tabbed -c -r 2 st -w ""
 
-super + o ; d
-    $BROWSER https://discord.com/login
-
-super + o ; w
-    restart-warp
-
-super + o ; e
-    espanso cmd search
-
-super + o ; shift + {t,o}
-    {thunar,obs}
+# Open link with mpv
+super + o ; v
+    st mpv $(xclip -o -sel clip)
 
 # Colorpicker
 super + o ; shift + f
