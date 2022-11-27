@@ -7,28 +7,22 @@ done; unset command
 
 # General
 alias \
-    cp="cp -iv" \
-    mv="mv -iv" \
-    rm="rm -vI" \
-    bc="bc -ql" \
-    mkd="mkdir -pv" \
-    df="df -h" \
-    free="free -h" \
-    ls='lsd --group-dirs first' \
-    sl='lsd --group-dirs first' \
-    l='lsd --blocks permission,links,user,group,size,date,name -l' \
-    la='ls -A' \
-    lla='l -a' \
-    lt='ls --tree' \
-    g="git" \
-    p="paru" \
-    v="$EDITOR" \
-    s="sxiv" \
-    f="fuck" \
-    zz='z -' \
-    ...='cd ../..' \
-    ....='cd ../../..' \
-    date='date -I'
+    cp='cp -iv' \
+    mv='mv -iv' \
+    rm='rm -vI' \
+    bc='bc -ql' \
+    mkd='mkdir -pv' \
+    df='df -h' \
+    free='free -h' \
+    g='git' \
+    p='paru' \
+    v='$EDITOR' \
+    s='sxiv' \
+    f='fuck' \
+    date='date -I' \
+    wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"' \
+    webcam='st mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
+    nerdicons='emoji-menu -f "$HOME/.local/share/nerd-icons"'
 
 # Colorize commands
 alias \
@@ -36,23 +30,26 @@ alias \
     diff='diff --color=auto' \
     egrep='egrep --color=auto' \
     fgrep='fgrep --color=auto' \
-    cal="cal -m --color=auto" \
-    pacman="pacman --color=auto" \
-    paru="paru --color=auto" \
-    tldr="tldr --theme ocean"
+    cal='cal -m --color=auto' \
+    pacman='pacman --color=auto' \
+    paru='paru --color=auto' \
+    tldr='tldr --theme ocean'
 
-# Shorten the commands
+# ls
 alias \
-    wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"' \
-    ytm-dlp='yt-dlp -x --audio-format mp3 --audio-quality 0 --embed-metadata --embed-thumbnail' \
-    webcam='st mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
-    h='history 1 | cut -c 8- | uniq | fzf -0 --tac | xclip -r -sel -c' \
-    dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
-    dot=dotbare \
-    open='xdg-open "$(find -type f -not -path "*/.*" | dmenu -F -i -l 10)"' \
-    opendl='xdg-open "$(find "$HOME/main/downloads" | dmenu -F -i -l 10)"' \
-    fcd='cd "$(find -type d | fzf)"' \
-    nerdicons='emoji-menu -f "$HOME/.local/share/nerd-icons"'
+    ls='lsd --group-dirs first' \
+    sl='lsd --group-dirs first' \
+    l='lsd --blocks permission,links,user,group,size,date,name -l' \
+    la='ls -A' \
+    lla='l -a' \
+    lt='ls --tree' \
+
+# z / cd
+alias \
+    zz='z -' \
+    ...='cd ../..' \
+    ....='cd ../../..' \
+    fz='cd "$(find -type d | fzf)"' \
 
 # sudo
 alias \
@@ -62,10 +59,10 @@ alias \
 
 # trash-cli
 alias \
-    trashp='trash-put' \
-    trashe='trash-empty' \
-    trashl='trash-list' \
-    trashr='trash-restore'
+    tp='trash-put' \
+    te='trash-empty' \
+    tl='trash-list' \
+    tr='trash-restore'
 
 # Office
 alias \
@@ -73,8 +70,27 @@ alias \
     word='onlyoffice-desktopeditors --system-title-bar --new=doc' \
     powerpoint='onlyoffice-desktopeditors --system-title-bar --new=slide'
 
+# Dotfiles
+alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias dot=dotbare
+
+# Fuzzy select and copy command from history
+alias h='history 1 | cut -c 8- | uniq | fzf -0 --tac | xclip -r -sel -c' 
+
+# Open files with dmenu
+alias open='xdg-open "$(find -type f -not -path "*/.*" | dmenu -F -i -l 10)"'
+alias opendl='xdg-open "$(find "$HOME/main/downloads" | dmenu -F -i -l 10)"'
+alias openzk='xdg-open "$(find "$HOME/main/notepad/pages" | dmenu -F -i -l 10)"'
+
+# Download music from youtube
+alias ytm-dlp='yt-dlp -x --audio-format mp3 --audio-quality 0 --embed-metadata --embed-thumbnail'
+
 # Neofetch ascii art
 alias neofetch='neofetch --ascii "$(tput setaf 4; cat $HOME/.config/neofetch/ascii-arch)"'
 
 # Open zathura with tabs
-alias zathura="tabbed -r 2 -c zathura -e -w"
+alias zathura='tabbed -r 2 -c zathura -e -w'
+
+# Empty cache (mostly useful for benchmarking)
+# https://unix.stackexchange.com/questions/87908/how-do-you-empty-the-buffers-and-cache-on-a-linux-system
+alias dropcache='free && sync && sudo sh -c "echo 3 > /proc/sys/vm/drop_caches" && free'
