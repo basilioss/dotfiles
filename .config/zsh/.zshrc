@@ -13,6 +13,7 @@ HISTFILE=~/.config/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt APPEND_HISTORY
+# Write to the history file immediately, not when the shell exits
 setopt INC_APPEND_HISTORY
 # No duplicates
 setopt HIST_IGNORE_ALL_DUPS
@@ -69,6 +70,10 @@ function vi-yank-xclip {
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
 
+# history
+bindkey "^j" down-line-or-history
+bindkey "^k" up-line-or-history
+
 # zsh parameter completion for the dotnet CLI
 _dotnet_zsh_complete()
 {
@@ -83,7 +88,7 @@ compctl -K _dotnet_zsh_complete dotnet
 bindkey '^ ' autosuggest-accept
 
 # Select and edit configs with Alt + Enter (requires dotbare)
-bindkey -s '^[^M' "dotbare fedit"^j
+bindkey -s '^[^M' "dotbare fedit"^M
 
 # Plugins
 source /usr/share/zsh/plugins/fzf-tab-git/fzf-tab.zsh
