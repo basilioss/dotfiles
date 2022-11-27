@@ -3,9 +3,8 @@
     name = Basilios
 [alias]
     i = init
-    c = clone
     a = add
-    ci = commit -m
+    c = commit
     s = status -sb
     p = push
     pl = pull
@@ -15,7 +14,12 @@
     unstage = reset HEAD --
     save = !git add -A && git commit -m
     undo = reset HEAD~1
-    # prettier log
-    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     # diff for one file
     df = log --patch --follow
+    # Clone a repository including all submodules
+    cln = clone --recursive
+    # prettier log
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset' --abbrev-commit --date=relative
+[help]
+    # Automatically correct and execute mistyped commands
+    autocorrect = 1
