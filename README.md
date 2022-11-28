@@ -10,5 +10,6 @@
 - Music player: [DeaDBeeF](https://deadbeef.sourceforge.io/)
 - Video player: [mpv](https://mpv.io/)
 - Image viewer: sxiv
+- Dotfiles manager: [dotbare](https://github.com/kazhala/dotbare) around [git bare repo](https://linuxkamarada.com/en/2020/06/05/manage-your-dotfiles-with-git/)
 
 ![neofetch](https://user-images.githubusercontent.com/71596800/204150099-1c68d889-9802-436b-8089-9b40295c2ce2.png)
