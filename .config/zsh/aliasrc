@@ -94,3 +94,9 @@ alias zathura='tabbed -r 2 -c zathura -e -w'
 # Empty cache (mostly useful for benchmarking)
 # https://unix.stackexchange.com/questions/87908/how-do-you-empty-the-buffers-and-cache-on-a-linux-system
 alias dropcache='free && sync && sudo sh -c "echo 3 > /proc/sys/vm/drop_caches" && free'
+
+# Get External IP
+alias getip='curl -s https://ipinfo.io/json | jq'
+
+# Check Internet Speed
+alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
