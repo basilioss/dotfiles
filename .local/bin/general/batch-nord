@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #
 # Description: Apply all the available palettes from ImageGoNerd to the image
-# Name: batch-ign
-# Usage: batch-ign <path/to/image.png>
+# Name: batch-nord
+# Usage: batch-nord <path/to/image.png>
 # Homepage: https://github.com/basilioss/dotfiles
 # https://github.com/Schrodinger-Hat/ImageGoNord
 
