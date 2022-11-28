@@ -54,7 +54,8 @@ matches:
       done < "file"
     force_clipboard: true
 
-  - label: "SHELL: case statement"
+  - trigger: ":case"
+    label: "SHELL: case statement"
     replace: |
       case $var in
           a)

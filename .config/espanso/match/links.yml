@@ -23,6 +23,3 @@ matches:
 
   - trigger: "//ghdots"
     replace: "https://github.com/basilioss/dotfiles"
-
-  - trigger: "//sync"
-    replace: "http://127.0.0.1:8384"

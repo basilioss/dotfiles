@@ -32,10 +32,7 @@ matches:
   - trigger: ":shrug"
     replace: "¯\\_(ツ)_/¯"
 
-  - trigger: ":newcpp"
-    replace: "#include <iostream>\nusing namespace std;\nint main()\n{$|$"
-
-  - triggers: ["ppp", "PPP", "ззз", "ЗЗЗ"]
+  - triggers: [":pp", ":зз"]
     force_clipboard: true
     replace: "{{clipboard}}"
     label: "Paste clipboard content as plain text"
