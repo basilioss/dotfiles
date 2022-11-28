@@ -35,7 +35,6 @@ sc-im
 simple-mtpfs
 timeshift
 undistract-me-git
-unityhub
 universal-android-debloater-bin
 vimv-git
 warpd-git

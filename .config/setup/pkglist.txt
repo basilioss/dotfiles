@@ -11,6 +11,7 @@ base
 bat
 bison
 bottom
+bridge-utils
 chromium
 clipmenu
 cmatrix
@@ -24,6 +25,7 @@ deluge
 deluge-gtk
 dhcpcd
 discord
+dnsmasq
 dunst
 efibootmgr
 fakeroot
@@ -33,7 +35,6 @@ ffmpegthumbnailer
 file-roller
 firefox
 firejail
-flameshot
 flex
 fzf
 gcc
@@ -59,6 +60,7 @@ jq
 jre-openjdk
 keepassxc
 kiwix-tools
+krita
 lib32-mesa
 libtool
 libva-intel-driver
@@ -72,6 +74,7 @@ lsd
 lua-language-server
 lxappearance-gtk3
 m4
+maim
 make
 man-db
 mediainfo
@@ -93,6 +96,8 @@ npm
 ntfs-3g
 obs-studio
 obsidian
+openbsd-netcat
+opendoas
 openssh
 os-prober
 pacman-contrib
@@ -109,10 +114,12 @@ python-fonttools
 python-pip
 python-slugify
 python-virtualenv
+qemu-base
 rebuild-detector
 redshift
 rofi
 rsync
+sbctl
 sdcv
 shellcheck
 slop
@@ -120,13 +127,13 @@ speedtest-cli
 sqlitebrowser
 sshfs
 starship
-sudo
 sxhkd
 sxiv
 syncthing
 telegram-desktop
 terminus-font
 tesseract
+tesseract-data-eng
 tesseract-data-rus
 tesseract-data-ukr
 texinfo
@@ -135,6 +142,7 @@ thunar
 thunar-archive-plugin
 tidy
 timidity++
+tk
 tor
 torbrowser-launcher
 translate-shell
@@ -151,8 +159,10 @@ unclutter
 unrar
 unzip
 v4l2loopback-utils
+vde2
 vi
 virt-manager
+virt-viewer
 virtualbox
 vulkan-radeon
 vulkan-tools

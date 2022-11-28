@@ -6,4 +6,4 @@ Target = *
 
 [Action]
 When = PostTransaction
-Exec = /bin/sh -c '/usr/bin/pacman -Qqem > /home/basilios/.config/pkglist/foreignpkglist.txt'
+Exec = /bin/sh -c '/usr/bin/pacman -Qqen > /home/basilios/.config/setup/pkglist.txt'
