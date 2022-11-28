@@ -39,7 +39,7 @@ alias \
 alias \
     ls='lsd --group-dirs first' \
     sl='lsd --group-dirs first' \
-    l='lsd --blocks permission,links,user,group,size,date,name -l' \
+    l='lsd --blocks permission,links,user,size,date,name --date relative -l' \
     la='ls -A' \
     lla='l -a' \
     lt='ls --tree' \
