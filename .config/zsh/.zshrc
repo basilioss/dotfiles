@@ -70,10 +70,6 @@ function vi-yank-xclip {
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
 
-# history
-bindkey "^j" down-line-or-history
-bindkey "^k" up-line-or-history
-
 # zsh parameter completion for the dotnet CLI
 _dotnet_zsh_complete()
 {
@@ -90,10 +86,18 @@ bindkey '^ ' autosuggest-accept
 # Select and edit configs with Alt + Enter (requires dotbare)
 bindkey -s '^[^M' "dotbare fedit"^M
 
+# history search
+bindkey '^k' history-substring-search-up
+bindkey '^j' history-substring-search-down
+# history search in vi mode
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
 # Plugins
 source /usr/share/zsh/plugins/fzf-tab-git/fzf-tab.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /etc/profile.d/undistract-me.sh
 
 # Fix comment highlight

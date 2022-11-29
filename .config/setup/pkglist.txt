@@ -197,4 +197,5 @@ zoxide
 zram-generator
 zsh
 zsh-autosuggestions
+zsh-history-substring-search
 zsh-syntax-highlighting
