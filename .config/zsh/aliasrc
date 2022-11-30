@@ -41,7 +41,7 @@ alias \
     sl='lsd --group-dirs first' \
     l='lsd --blocks permission,links,user,size,date,name --date relative -l' \
     la='ls -A' \
-    lla='l -a' \
+    lla='l -A' \
     lt='ls --tree' \
 
 # z / cd

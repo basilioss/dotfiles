@@ -1,5 +1,4 @@
 include "%L"
-# test
 
 # Find keyname:
 # xev | fgrep "keysym"
