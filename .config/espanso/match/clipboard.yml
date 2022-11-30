@@ -1,11 +1,14 @@
-description: "Convert clipboard content to lower case or UPPER case. (UNIX only)"
-name: "lower-upper.yml"
-version: 0.1.0
-homepage: "https://github.com/anthonygraignic/espanso-package-lower-upper"
-
 matches:
 
-  - trigger: ":low:"
+  - triggers: [":pp", ":зз"]
+    force_clipboard: true
+    replace: "{{clipboard}}"
+    label: "Paste clipboard content as plain text"
+    vars:
+      - name: "clipboard"
+        type: "clipboard"
+
+  - trigger: ":pl"
     replace: "{{output}}"
     label: "Conver clipboard content to lowercase"
     vars:
@@ -16,7 +19,7 @@ matches:
         params:
           cmd: "echo $ESPANSO_CLIPBOARD | tr '[:upper:]' '[:lower:]'"
 
-  - trigger: ":up:"
+  - trigger: ":pu"
     replace: "{{output}}"
     label: "Convert clipboard content to uppercase"
     vars:

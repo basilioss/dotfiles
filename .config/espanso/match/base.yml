@@ -31,11 +31,3 @@ matches:
 
   - trigger: ":shrug"
     replace: "¯\\_(ツ)_/¯"
-
-  - triggers: [":pp", ":зз"]
-    force_clipboard: true
-    replace: "{{clipboard}}"
-    label: "Paste clipboard content as plain text"
-    vars:
-      - name: "clipboard"
-        type: "clipboard"
