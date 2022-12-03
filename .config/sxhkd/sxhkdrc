@@ -1,9 +1,15 @@
 # Launch apps
-super + o ; {t,o,f,k,m,n}
-        {telegram-desktop,ocr,firefox,keepmenu,deadbeef,networkmanager_dmenu}
+super + o ; {t,f,m,k,n}
+    {telegram-desktop,firefox,deadbeef,keepmenu,networkmanager_dmenu}
+
+super + o ; {o,c,w}
+    {ocr,callendar-notify,restart-warp}
 
 super + o ; shift + {t,o}
     {thunar,obs}
+
+super + {shift+p,grave,x,shift+x}
+    {dmenu-powermenu,emoji-menu,dmenu-kill,xkill}
 
 alt + space
     dmenu-recent-aliases
@@ -13,9 +19,6 @@ super + o ; d
 
 super + o ; e
     espanso cmd search
-
-super + o ; w
-    restart-warp
 
 # st with tabs
 super + o ; Return
@@ -41,6 +44,18 @@ Print
 super + v
     clipmenu -i && xdotool key shift+Insert
 
+# Lock
+super + l
+    betterlockscreen -l
+
+# Close all notifications
+super + BackSpace
+    dunstctl close-all 
+
+# Show previous notification
+super + shift + BackSpace
+    dunstctl history-pop
+
 # Layout
 super + space
     xkblayout-state set +1 && dunstify -r 2593 "$(xkblayout-state print "Current layout: %n")"
@@ -64,19 +79,3 @@ XF86MonBrightness{Up,Down}
 # Audio player
 XF86Audio{Next,Prev,Stop,Play}
 	deadbeef {--next,--prev,--stop,--play-pause}
-
-# Dmenu
-super + {shift+p,grave,x,shift+x}
-    {dmenu-powermenu,dmenu-unicode,dmenu-kill,xkill}
-
-# Lock
-super + l
-    betterlockscreen -l
-
-# Close all notifications
-super + BackSpace
-    dunstctl close-all 
-
-# Show previous notification
-super + shift + BackSpace
-    dunstctl history-pop

@@ -19,7 +19,6 @@ alias \
     v='$EDITOR' \
     s='sxiv' \
     f='fuck' \
-    date='date -I' \
     wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"' \
     webcam='st mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
     nerdicons='emoji-menu -f "$HOME/.local/share/nerd-icons"'
@@ -50,12 +49,6 @@ alias \
     ...='cd ../..' \
     ....='cd ../../..' \
     fz='cd "$(find -type d | fzf)"' \
-
-# sudo
-alias \
-    sudo=doas \
-    pls=doas \
-    please=doas
 
 # trash-cli
 alias \
