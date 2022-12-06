@@ -3,8 +3,8 @@
 local M = {}
 
 M.ui = {
-  theme = "nightfox",
-  hl_override = require("custom.highlights").overriden_hlgroups,
+  theme = "purify",
+  -- nightfox tokyonight palenight 
 }
 
 M.plugins = require "custom.plugins"
