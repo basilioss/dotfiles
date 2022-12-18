@@ -1,0 +1,4 @@
+style:
+   selected-row:
+       text-color: purple
+       background-color: black
