@@ -78,4 +78,20 @@ M.mason = {
   },
 }
 
+M.statusline = {
+  statusline = {
+    separator_style = "block",
+    overriden_modules = function ()
+      local st_modules = require "nvchad_ui.statusline.modules"
+      return {
+        cursor_position = function()
+          local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+          local cp = st_modules.cursor_position()
+          return cp .. (col + 1) .. " "
+        end,
+      }
+    end
+  }
+}
+
 return M

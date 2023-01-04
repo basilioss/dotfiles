@@ -24,14 +24,7 @@ return {
   ["nvim-treesitter/nvim-treesitter"] = { override_options = overrides.treesitter },
   ["lukas-reineke/indent-blankline.nvim"] = { override_options = overrides.blankline },
   ["williamboman/mason.nvim"] = { override_options = overrides.mason },
-
-  ["NvChad/ui"] = {
-    override_options = {
-      statusline = {
-        separator_style = "block", -- default/round/block/arrow
-      },
-    },
-  },
+  ["NvChad/ui"] = { override_options = overrides.statusline },
 
   --------------------- custom plugins ---------------------
 
