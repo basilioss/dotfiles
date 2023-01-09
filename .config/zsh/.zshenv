@@ -8,6 +8,10 @@ export TERMINAL=st
 export BROWSER=firefox
 export READER=zathura
 
+# Default directories
+export ZK_NOTEBOOK_DIR="$HOME/main/notepad"
+export SCREENSHOTS="$HOME/main/library/pictures/screenshots"
+
 # $HOME cleanup (https://github.com/b3nj5m1n/xdg-ninja)
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -63,5 +67,3 @@ export WINEPREFIX="$XDG_DATA_HOME"/wine
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 # JAVA
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
-# ZK
-export ZK_NOTEBOOK_DIR="$HOME/main/notepad"

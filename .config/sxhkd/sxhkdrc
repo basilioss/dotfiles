@@ -32,13 +32,21 @@ super + o ; v
 super + o ; shift + f
     farge --notify --expire-time 5000
 
-# Screenshot
+# Full screenshot
 Print
-    screenshot
+    maim -u "$SCREENSHOTS/$(date +%Y%m%d_%H%M%S).png" && notify-send "Screenshot taken"
 
-# Select area, copy to clipboard, edit last screenshot
-{alt,shift,super} + Print
-    screenshot {-s,-c,-e}
+# Select area
+alt + Print
+    maim -u -s "$SCREENSHOTS/$(date +%Y%m%d_%H%M%S).png" && notify-send "Screenshot taken"
+
+# Select area and copy to clipboard
+shift + Print
+    maim -u -s | xclip -selection clipboard -t image/png && notify-send "Copied to clipboard"
+
+# Edit last screenshot
+super + Print
+    cd "$SCREENSHOTS" ; krita "$(ls -t | head -n1)"
 
 # Clipboard
 super + v
