@@ -103,21 +103,6 @@ source /etc/profile.d/undistract-me.sh
 # Fix comment highlight
 ZSH_HIGHLIGHT_STYLES[comment]=fg=#476072
 
-# Open new st tab in tabbed with specified title
-# Example: stt dwm config
-function stt () {
-    title="$@"
-    #st -t "$title" -w $XEMBED & disown
-    nohup st -t "$title" -w $XEMBED &
-}
-
-# Dictionary
-function dic() {
-	sdcv -n --color "$@" 2>&1 | \
-	fold --width=$(tput cols) | \
-	less --quit-if-one-screen -RX
-}
-
 # Starhship prompt
 eval "$(starship init zsh)"
 
