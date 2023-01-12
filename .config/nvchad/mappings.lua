@@ -30,6 +30,9 @@ M.general = {
     ["<leader>a}"] = { "mzA}<Esc>`z", "append }" },
     ["<C-/>"] = { "set formatoptions-=c formatoptions-=r formatoptions-=o" },
   },
+  i = {
+    ["<C-A>"] = { "<Esc>ggVG", "select all" },
+  }
 }
 
 M.treesitter = {
