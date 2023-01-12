@@ -46,7 +46,7 @@ shift + Print
 
 # Edit last screenshot
 super + Print
-    cd "$SCREENSHOTS" ; krita "$(ls -t | head -n1)"
+    cd "$SCREENSHOTS" && krita "$(ls -t | head -n1)"
 
 # Clipboard
 super + v

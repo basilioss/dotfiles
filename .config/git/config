@@ -4,6 +4,7 @@
 [alias]
     i = init
     a = add
+    r = reset
     c = commit
     s = status -sb
     p = push
@@ -11,7 +12,6 @@
     d = diff
     b = branch
     co = checkout
-    unstage = reset HEAD --
     save = !git add -A && git commit -m
     undo = reset HEAD~1
     # diff for one file

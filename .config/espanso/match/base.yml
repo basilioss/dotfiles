@@ -15,13 +15,13 @@ global_vars:
 
 matches:
 
-  - trigger: ":date"
+  - triggers: [":date", ":Date"]
     replace: "{{date}}"
 
   - trigger: ":time"
     replace: "{{time}}"
 
-  - trigger: ":stamp"
+  - triggers: [":stamp", ":Stamp"]
     replace: "{{stampdate}}"
     vars:
       - name: stampdate

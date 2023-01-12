@@ -26,6 +26,11 @@ return {
   ["williamboman/mason.nvim"] = { override_options = overrides.mason },
   ["NvChad/ui"] = { override_options = overrides.statusline },
 
+  -- new packer version has a bug with lazy loading
+  ["wbthomason/packer.nvim"] = {
+    commit = "dcd2f38",
+  },
+
   --------------------- custom plugins ---------------------
 
   -- format & linting
@@ -76,15 +81,14 @@ return {
 
   -- notes
   ["vimwiki/vimwiki"] = {
+    commit = "40f0229",
     ft = {'markdown', 'vimwiki'},
   },
 
   ["mickael-menu/zk-nvim"] = {
-    --disable = true,
     config = function ()
       require("zk").setup({
         picker = "telescope",
-
         lsp = {
           config = {
             cmd = { "zk", "lsp" },
@@ -101,11 +105,12 @@ return {
 
   ["iamcco/markdown-preview.nvim"] = {
     disable = true,
-     cmd = {
-       "MarkdownPreview",
-       "MarkdownPreviewStop",
-       "MarkdownPreviewToggle",
-     },
+    ft = { "vimwiki", "markdown" },
+    cmd = {
+      "MarkdownPreview",
+      "MarkdownPreviewStop",
+      "MarkdownPreviewToggle",
+    },
     run = "cd app && npm install",
     setup = function()
       vim.g.mkdp_filetypes = { "markdown", "vimwiki" }

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Prefix sudo automatically
-for command in mount umount pacman timeshift ; do
+for command in mount umount pacman timeshift powertop; do
 	alias $command="sudo $command"
 done; unset command
 
@@ -49,13 +49,6 @@ alias \
     ...='cd ../..' \
     ....='cd ../../..' \
     fz='cd "$(find -type d | fzf)"' \
-
-# trash-cli
-alias \
-    tp='trash-put' \
-    te='trash-empty' \
-    tl='trash-list' \
-    tr='trash-restore'
 
 # Office
 alias \

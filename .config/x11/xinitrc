@@ -16,9 +16,8 @@ wallpapers="$HOME/main/library/pictures/wallpapers/"
 picture="$(find "$wallpapers" -maxdepth 1 -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -type f | shuf -n 1)"
 xwallpaper --zoom "$picture" &
 
-(sleep 2; xmodmap "$HOME/.config/xmodmap/Xmodmap") &
 xrdb -merge "$HOME/.config/x11/xresources" &
-setxkbmap us,ru -option "compose:ralt" &
+setxkbmap us,ru -option grp:alt_shift_toggle -option "compose:ralt" &
 slstatus &
 clipmenud &
 sxhkd &

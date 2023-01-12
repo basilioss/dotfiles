@@ -80,7 +80,7 @@ M.mason = {
 
 M.statusline = {
   statusline = {
-    separator_style = "block",
+    -- separator_style = "block",
     overriden_modules = function ()
       local st_modules = require "nvchad_ui.statusline.modules"
       return {
