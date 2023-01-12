@@ -12,6 +12,12 @@ autocmd("BufWritePost", {
   command = "!pkill -USR1 sxhkd"
 })
 
+-- merge xresources on save
+autocmd("BufWritePost", {
+  pattern = "xresources",
+  command = "!xrdb -merge ~/.config/x11/xresources"
+})
+
 -- disable auto comment
 autocmd("FileType", {
   command = "set formatoptions-=cro",
