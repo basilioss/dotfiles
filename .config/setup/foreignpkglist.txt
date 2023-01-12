@@ -1,9 +1,7 @@
 auto-cpufreq
-bash-pipes
 betterlockscreen
 bottles
 cbonsai
-cht.sh-git
 cloudflare-warp-bin
 dashbinsh
 deadbeef
@@ -35,7 +33,6 @@ sc-im
 simple-mtpfs
 timeshift
 undistract-me-git
-universal-android-debloater-bin
 vimv-git
 warpd-git
 xdg-ninja-git

@@ -5,6 +5,7 @@ android-file-transfer
 arandr
 aria2
 aspnet-runtime
+aspnet-runtime-6.0
 autoconf
 automake
 base
@@ -24,8 +25,11 @@ dash
 deluge
 deluge-gtk
 dhcpcd
-discord
 dnsmasq
+docker
+dotnet-runtime-6.0
+dotnet-sdk
+dotnet-sdk-6.0
 dunst
 efibootmgr
 fakeroot
@@ -52,9 +56,9 @@ grub
 gvfs
 gvfs-smb
 handbrake
-htop
 intel-media-driver
 intel-ucode
+iptables-nft
 jdk-openjdk
 jq
 jre-openjdk
@@ -84,10 +88,11 @@ mono-msbuild
 mono-msbuild-sdkresolver
 mpd
 mpv
-ncdu
 neofetch
 neovim
+net-tools
 networkmanager
+newsboat
 nodejs-lts-gallium
 noto-fonts
 noto-fonts-cjk
@@ -97,7 +102,6 @@ ntfs-3g
 obs-studio
 obsidian
 openbsd-netcat
-opendoas
 openssh
 os-prober
 pacman-contrib
@@ -105,8 +109,10 @@ pamixer
 pandoc
 patch
 pavucontrol
+perl-image-exiftool
 picom
 pkgconf
+powertop
 pulseaudio
 pulseaudio-alsa
 pulseaudio-jack
@@ -114,7 +120,7 @@ python-fonttools
 python-pip
 python-slugify
 python-virtualenv
-qemu-base
+qemu-desktop
 rebuild-detector
 redshift
 rofi
@@ -126,6 +132,7 @@ slop
 sqlitebrowser
 sshfs
 starship
+sudo
 sxhkd
 sxiv
 syncthing
@@ -151,7 +158,6 @@ trash-cli
 tree
 ttf-dejavu
 ttf-jetbrains-mono
-ttf-joypixels
 tumbler
 ueberzug
 unclutter
