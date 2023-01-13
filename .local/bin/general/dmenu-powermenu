@@ -13,23 +13,23 @@ actions="ﰇ Reboot\n襤 Shutdown\n⏾ Sleep\n Lock\n Logout\nﴹ Display 
 action=$(echo -e "$actions" | dmenu -i)
 
 case "$action" in
-    "ﰇ Reboot")
-        [ "$(echo -e "No\nYes" | dmenu -i -p "Are you sure?")" == "Yes" ] && $ctl reboot -i
-        ;;
-    "襤 Shutdown")
-        [ "$(echo -e "No\nYes" | dmenu -i -p "Are you sure?")" == "Yes" ] && $ctl poweroff -i
-        ;;
-    "⏾ Sleep")
-        $ctl suspend -i
-        ;;
-    " Lock")
-        betterlockscreen -l
-        ;;
-    " Logout")
-        pkill -15 Xorg
-        ;;
-    'ﴹ Display off') xset dpms force off
-        ;;
-    *) exit 1
-        ;;
+  "ﰇ Reboot")
+    [ "$(echo -e "No\nYes" | dmenu -i -p "Are you sure?")" == "Yes" ] && $ctl reboot -i
+    ;;
+  "襤 Shutdown")
+    [ "$(echo -e "No\nYes" | dmenu -i -p "Are you sure?")" == "Yes" ] && $ctl poweroff -i
+    ;;
+  "⏾ Sleep")
+    $ctl suspend -i
+    ;;
+  " Lock")
+    betterlockscreen -l
+    ;;
+  " Logout")
+    pkill -15 Xorg
+    ;;
+  'ﴹ Display off') xset dpms force off
+    ;;
+  *) exit 1
+    ;;
 esac

@@ -20,10 +20,10 @@ cd "$HOME/wal-$filename" || exit
 
 # Color schames to lowercase
 for colorpalette in "${colorpalettes[@]}"; do
-    colorpalettes[$count]="$(printf "$colorpalette" | tr [:upper:] [:lower:])"
-    count=$((count + 1))
+  colorpalettes[$count]="$(printf "$colorpalette" | tr [:upper:] [:lower:])"
+  count=$((count + 1))
 done
 
 for colorpalette in "${colorpalettes[@]}"; do
-    python "$image_go_nerd"/src/cli.py --"$colorpalette" -i="$1" -o="$filename-$colorpalette"
+  python "$image_go_nerd"/src/cli.py --"$colorpalette" -i="$1" -o="$filename-$colorpalette"
 done

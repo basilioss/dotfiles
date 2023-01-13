@@ -29,8 +29,8 @@ ext="${1##*.}"
 escbook="$(echo "$author"-"$booktitle" | slugify --stdin)"
 
 ! mkdir -p "$escbook" &&
-    echo "Do you have write access in this directory?" &&
-    exit 1
+  echo "Do you have write access in this directory?" &&
+  exit 1
 
 # Get the total number of tracks from the number of lines.
 total="$(wc -l < "$2")"
@@ -39,15 +39,15 @@ cmd="ffmpeg -i \"$inputaudio\" -nostdin -y"
 
 while read -r x;
 do
-    end="$(echo "$x" | cut -d' ' -f1)"
-    file="$escbook/$(printf "%.2d" "$track")-$esctitle.$ext"
-    if [ -n "$start" ]; then
-	cmd="$cmd -metadata artist=\"$author\" -metadata title=\"$title\" -metadata album=\"$booktitle\" -metadata year=\"$year\" -metadata track=\"$track\" -metadata total=\"$total\" -ss \"$start\" -to \"$end\" -vn -c:a copy \"$file\" "
-    fi
-    title="$(echo "$x" | cut -d' ' -f2-)"
-    esctitle="$(echo "$title" | slugify --stdin)"
-    track="$((track+1))"
-    start="$end"
+  end="$(echo "$x" | cut -d' ' -f1)"
+  file="$escbook/$(printf "%.2d" "$track")-$esctitle.$ext"
+  if [ -n "$start" ]; then
+    cmd="$cmd -metadata artist=\"$author\" -metadata title=\"$title\" -metadata album=\"$booktitle\" -metadata year=\"$year\" -metadata track=\"$track\" -metadata total=\"$total\" -ss \"$start\" -to \"$end\" -vn -c:a copy \"$file\" "
+  fi
+  title="$(echo "$x" | cut -d' ' -f2-)"
+  esctitle="$(echo "$title" | slugify --stdin)"
+  track="$((track+1))"
+  start="$end"
 done < "$2"
 
 # Last track must be added out of the loop.

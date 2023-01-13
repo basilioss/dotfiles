@@ -7,17 +7,17 @@ process_name="$(ps -u "$USER" -o pid,%cpu,%mem,comm | sort -b -k3 -r | sed -n '1
 isKill=false
 
 if [ -n "$process_name" ]; then
-    [ "$(echo -e "No\nYes" | dmenu -i -p "Are you sure?")" == "Yes" ] && isKill=true
+  [ "$(echo -e "No\nYes" | dmenu -i -p "Are you sure?")" == "Yes" ] && isKill=true
 fi
 
 if $isKill; then
-    for process in $(pgrep "$process_name$");
-    do
-        if [ -n "$process" ]; then
-            kill -9 "$process"
-        fi
-    done
-    if [ -z "$(pgrep "$process_name$")" ]; then
-        notify-send "$process_name killed"
+  for process in $(pgrep "$process_name$");
+  do
+    if [ -n "$process" ]; then
+      kill -9 "$process"
     fi
+  done
+  if [ -z "$(pgrep "$process_name$")" ]; then
+    notify-send "$process_name killed"
+  fi
 fi

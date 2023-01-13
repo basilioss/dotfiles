@@ -3,80 +3,80 @@
 # Description: Convert filenames into a web/system friendly format
 # Name: slug
 # Usage: 
-#     slug <file>
-#     ls | fzf -m | slug
+#   slug <file>
+#   ls | fzf -m | slug
 # Dependencies: python-slugify (https://github.com/un33k/python-slugify)
 # Homepage: https://github.com/basilioss/dotfiles
 
 slugify_string() {
-    source="$1"
+  source="$1"
 
-    # Verify if source exists
-    if [ ! -e "$source" ]; then
-      echo "not found: $source"
-      exit
-    fi
+  # Verify if source exists
+  if [ ! -e "$source" ]; then
+    echo "not found: $source"
+    exit
+  fi
 
-    isHidden=false
-    isSpecial=false
+  isHidden=false
+  isSpecial=false
 
-    # Check if source is hidden
-    if [[ "$source" == .* ]] ; then
-        # Remove first dot
-        source="${source/.}"
-        isHidden=true
-    fi
+  # Check if source is hidden
+  if [[ "$source" == .* ]] ; then
+    # Remove first dot
+    source="${source/.}"
+    isHidden=true
+  fi
 
-    # Check if source starts with _
-    if [[ "$source" == _* ]] ; then
-        # Remove first _
-        source="${source/_}"
-        isSpecial=true
-    fi
+  # Check if source starts with _
+  if [[ "$source" == _* ]] ; then
+    # Remove first _
+    source="${source/_}"
+    isSpecial=true
+  fi
 
-    # Get parent folder
-    folder=$(dirname "$source")
+  # Get parent folder
+  folder=$(dirname "$source")
 
-    # Remove leading directory portions from path
-    source=$(basename -- "$source")
+  # Remove leading directory portions from path
+  source=$(basename -- "$source")
 
-    ext=".${source##*.}"
-    source="${source%.*}"
+  ext=".${source##*.}"
+  source="${source%.*}"
 
-    # Check if there is no extension
-    if [[ "$ext" == ".$source" ]] ; then
-        ext=""
-    fi
+  # Check if there is no extension
+  if [[ "$ext" == ".$source" ]] ; then
+    ext=""
+  fi
 
-    # Slugify
-    target="$(echo "$source" | slugify --stdin)"
+  # Slugify
+  target="$(echo "$source" | slugify --stdin)"
 
-    # Fix file-tar.gz to file.tar.gz
-    if [[ "$target" =~ .*"-tar"$ ]] ; then
-        target="$(echo "$target" | sed 's/-tar$/.tar/')"
-    fi
+  # Fix file-tar.gz to file.tar.gz
+  if [[ "$target" =~ .*"-tar"$ ]] ; then
+    target="$(echo "$target" | sed 's/-tar$/.tar/')"
+  fi
 
-    # Rename
-    if [[ $isHidden == true && ".$source" != ".$target" ]] ; then
-        mv -v "$folder/.$source$ext" "$folder/.$target$ext"
-    elif [[ $isSpecial == true && "_$source" != "_$target" ]] ; then
-        mv -v "$folder/_$source$ext" "$folder/_$target$ext"
-    elif [[ "$source" != "$target" ]] ; then
-        mv -v "$folder/$source$ext" "$folder/$target$ext"
-    else
-        echo "ignore: $folder/$source$ext"
-    fi
+  # Rename
+  if [[ $isHidden == true && ".$source" != ".$target" ]] ; then
+    mv -v "$folder/.$source$ext" "$folder/.$target$ext"
+  elif [[ $isSpecial == true && "_$source" != "_$target" ]] ; then
+    mv -v "$folder/_$source$ext" "$folder/_$target$ext"
+  elif [[ "$source" != "$target" ]] ; then
+    mv -v "$folder/$source$ext" "$folder/$target$ext"
+  else
+    echo "ignore: $folder/$source$ext"
+  fi
 }
 
 # Check to see if a pipe exists on stdin
 if [ -p /dev/stdin ]; then
-    # If we want to read the input line by line
-    while IFS= read source; do
-        slugify_string "$source"
-    done
+  # If we want to read the input line by line
+  while IFS= read source; do
+    slugify_string "$source"
+  done
 else
-    # For each file, directory, or glob
-    for source in "$@" ; do
-        slugify_string "$source"
-    done
+  # For each file, directory, or glob
+  for source in "$@" ; do
+    slugify_string "$source"
+  done
 fi

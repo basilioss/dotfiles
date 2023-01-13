@@ -6,7 +6,7 @@ matches:
   - triggers: [":shebang", "#!"]
     label: "SHELL: shabang line and metadata"
     replace: |
-      #!/usr/bin/env bash
+      #!/bin/sh
       #
       # Description:
       # Name:
@@ -32,8 +32,8 @@ matches:
       end=50
 
       while [ "$start" -le "$end" ]; do
-          printf '%s\n' "$start"
-          start=$((start+1))
+        printf '%s\n' "$start"
+        start=$((start+1))
       done
     force_clipboard: true
 
@@ -50,7 +50,7 @@ matches:
   - label: "SHELL: loop over the contents of a file"
     replace: |
       while read -r line; do
-          printf '%s\n' "$line"
+        printf '%s\n' "$line"
       done < "file"
     force_clipboard: true
 
@@ -58,16 +58,11 @@ matches:
     label: "SHELL: case statement"
     replace: |
       case $var in
-          a)
-              # Do stuff
+        a)
           ;;
-
-          *sub_string_b*)
-              # If string contains a sub-string, do stuff
+        *sub_string*)
           ;;
-
-          *)
-              # Else
+        *)
           ;;
       esac
     force_clipboard: true
@@ -83,101 +78,101 @@ matches:
   - label: "SHELL: trim leading and trailing white-space from string"
     replace: |
       trim_string() {
-          # Usage: trim_string "   example   string    "
+        # Usage: trim_string "   example   string    "
 
-          # Remove all leading white-space.
-          # '${1%%[![:space:]]*}': Strip everything but leading white-space.
-          # '${1#${XXX}}': Remove the white-space from the start of the string.
-          trim=${1#${1%%[![:space:]]*}}
+        # Remove all leading white-space.
+        # '${1%%[![:space:]]*}': Strip everything but leading white-space.
+        # '${1#${XXX}}': Remove the white-space from the start of the string.
+        trim=${1#${1%%[![:space:]]*}}
 
-          # Remove all trailing white-space.
-          # '${trim##*[![:space:]]}': Strip everything but trailing white-space.
-          # '${trim%${XXX}}': Remove the white-space from the end of the string.
-          trim=${trim%${trim##*[![:space:]]}}
+        # Remove all trailing white-space.
+        # '${trim##*[![:space:]]}': Strip everything but trailing white-space.
+        # '${trim%${XXX}}': Remove the white-space from the end of the string.
+        trim=${trim%${trim##*[![:space:]]}}
 
-          printf '%s\n' "$trim"
+        printf '%s\n' "$trim"
       }
     force_clipboard: true
 
   - label: "SHELL: trim all white-space from string and truncate spaces"
     replace: |
       trim_all() {
-          # Usage: trim_all "   example   string    "
+        # Usage: trim_all "   example   string    "
 
-          # Disable globbing to make the word-splitting below safe.
-          set -f
+        # Disable globbing to make the word-splitting below safe.
+        set -f
 
-          # Set the argument list to the word-splitted string.
-          # This removes all leading/trailing white-space and reduces
-          # all instances of multiple spaces to a single ("  " -> " ").
-          set -- $*
+        # Set the argument list to the word-splitted string.
+        # This removes all leading/trailing white-space and reduces
+        # all instances of multiple spaces to a single ("  " -> " ").
+        set -- $*
 
-          # Print the argument list as a string.
-          printf '%s\n' "$*"
+        # Print the argument list as a string.
+        printf '%s\n' "$*"
 
-          # Re-enable globbing.
-          set +f
+        # Re-enable globbing.
+        set +f
       }
     force_clipboard: true
 
   - label: "SHELL: trim quotes from a string"
     replace: |
       trim_quotes() {
-          # Usage: trim_quotes "string"
+        # Usage: trim_quotes "string"
 
-          # Disable globbing.
-          # This makes the word-splitting below safe.
-          set -f
+        # Disable globbing.
+        # This makes the word-splitting below safe.
+        set -f
 
-          # Store the current value of 'IFS' so we
-          # can restore it later.
-          old_ifs=$IFS
+        # Store the current value of 'IFS' so we
+        # can restore it later.
+        old_ifs=$IFS
 
-          # Set 'IFS' to ["'].
-          IFS=\"\'
+        # Set 'IFS' to ["'].
+        IFS=\"\'
 
-          # Create an argument list, splitting the
-          # string at ["'].
-          #
-          # Disable this shellcheck error as it only
-          # warns about word-splitting which we expect.
-          # shellcheck disable=2086
-          set -- $1
+        # Create an argument list, splitting the
+        # string at ["'].
+        #
+        # Disable this shellcheck error as it only
+        # warns about word-splitting which we expect.
+        # shellcheck disable=2086
+        set -- $1
 
-          # Set 'IFS' to blank to remove spaces left
-          # by the removal of ["'].
-          IFS=
+        # Set 'IFS' to blank to remove spaces left
+        # by the removal of ["'].
+        IFS=
 
-          # Print the quote-less string.
-          printf '%s\n' "$*"
+        # Print the quote-less string.
+        printf '%s\n' "$*"
 
-          # Restore the value of 'IFS'.
-          IFS=$old_ifs
+        # Restore the value of 'IFS'.
+        IFS=$old_ifs
 
-          # Re-enable globbing.
-          set +f
+        # Re-enable globbing.
+        set +f
       }
     force_clipboard: true
 
   - label: "SHELL: check if a number is a float"
     replace: |
       is_float() {
-          # Usage: is_float "number"
-          # Example: is_float 1.1 && echo true
+        # Usage: is_float "number"
+        # Example: is_float 1.1 && echo true
 
-          # The test checks to see that the input contains
-          # a '.'. This filters out whole numbers.
-          [ -z "${1##*.*}" ] &&
-              printf %f "$1" >/dev/null 2>&1
+        # The test checks to see that the input contains
+        # a '.'. This filters out whole numbers.
+        [ -z "${1##*.*}" ] &&
+          printf %f "$1" >/dev/null 2>&1
       }
     force_clipboard: true
 
   - label: "SHELL: check if a number is an integer"
     replace: |
       is_int() {
-          # Usage: is_int "number"
-          # Example: is_int 1 && echo true
-          printf %d "$1" >/dev/null 2>&1
+        # Usage: is_int "number"
+        # Example: is_int 1 && echo true
+        printf %d "$1" >/dev/null 2>&1
       }
     force_clipboard: true
 
@@ -186,22 +181,22 @@ matches:
   - label: "SHELL: reverse an array"
     replace: |
       reverse_array() {
-          # Usage: reverse_array "array"
-          # $ arr=(red blue green)
-          # $ reverse_array "${arr[@]}"
-          local Buffer=("$@")
-          for (( Index = $# - 1; Index >= 0; Index-- )); {
-              printf '%s\n' "${Buffer[Index]}"
-          }
+        # Usage: reverse_array "array"
+        # $ arr=(red blue green)
+        # $ reverse_array "${arr[@]}"
+        local Buffer=("$@")
+        for (( Index = $# - 1; Index >= 0; Index-- )); {
+          printf '%s\n' "${Buffer[Index]}"
+        }
       }
     force_clipboard: true
 
   - label: "SHELL: random array element"
     replace: |
       random_array_element() {
-          # Usage: random_array_element "array"
-          local arr=("$@")
-          printf '%s\n' "${arr[RANDOM % $#]}"
+        # Usage: random_array_element "array"
+        local arr=("$@")
+        printf '%s\n' "${arr[RANDOM % $#]}"
       }
     force_clipboard: true
 
@@ -210,11 +205,11 @@ matches:
       arr=(a b c d)
 
       cycle() {
-          # Each time the printf is called, the next array element is printed.
-          # When the print hits the last array element it starts from the
-          # first element again.
-          printf '%s ' "${arr[${i:=0}]}"
-          ((i=i>=${#arr[@]}-1?0:++i))
+        # Each time the printf is called, the next array element is printed.
+        # When the print hits the last array element it starts from the
+        # first element again.
+        printf '%s ' "${arr[${i:=0}]}"
+        ((i=i>=${#arr[@]}-1?0:++i))
       }
     force_clipboard: true
 
@@ -222,14 +217,14 @@ matches:
   - label: "SHELL: remove duplicate array elements"
     replace: |
       remove_array_dups() {
-          # Usage: remove_array_dups "array"
-          declare -A Aseen
-          Aunique=()
-          for i in "$@"; do
-              [[ ${Aseen[$i]} ]] && continue
-              Aunique+=("$i")
-              Aseen[$i]=x
-          done
-          printf '%s\n' "${Aunique[@]}"
+        # Usage: remove_array_dups "array"
+        declare -A Aseen
+        Aunique=()
+        for i in "$@"; do
+          [[ ${Aseen[$i]} ]] && continue
+          Aunique+=("$i")
+          Aseen[$i]=x
+        done
+        printf '%s\n' "${Aunique[@]}"
       }
     force_clipboard: true

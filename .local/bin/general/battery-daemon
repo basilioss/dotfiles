@@ -12,14 +12,14 @@ while true; do
 
 	if [ "$capacity" -lt 30 ] && [ "$status" = "Discharging" ]
 	then
-        icon="/usr/share/icons/Qogir/24/panel/battery-caution.svg"
+    icon="/usr/share/icons/Qogir/24/panel/battery-caution.svg"
 		notify-send "Charge your battery!" -i $icon
 		sleep 60s
 	fi
 
     if [ "$capacity" -gt 90 ] && [ "$status" = "Charging" ] || [ "$status" = "Full" ]
 	then
-        icon="/usr/share/icons/Qogir/24/panel/battery-full-charged.svg"
+    icon="/usr/share/icons/Qogir/24/panel/battery-full-charged.svg"
 		notify-send "Turn off battery charger!" -i $icon
 		sleep 60s
 	fi
