@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# Notify if there are any sync conficts with syncthing
+# To resolve use: https://github.com/dschrempf/syncthing-resolve-conflicts
+# https://github.com/basilioss/dotfiles
+
+folders="$(grep -P 'folder id=".+" label' "$HOME/.config/syncthing/config.xml" | cut -d'"' -f 6 | sed "s/\/$//g")"
+check_interval=30m
+
+while true; do
+  for f in $folders; do
+    conflicts="$(find "$f" -name "*sync-conflict*" -print -quit)"
+    if [ -n "$conflicts" ]; then
+      notify-send "Resolve sync conflicts"
+      sleep "$check_interval"
+    fi
+  done
+  sleep 1m
+done &
