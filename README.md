@@ -10,7 +10,7 @@
 - PDF viewer: [zathura](https://pwmt.org/projects/zathura/)
 - Music player: [DeaDBeeF](https://deadbeef.sourceforge.io/)
 - Video player: [mpv](https://mpv.io/)
-- Image viewer: sxiv
+- Image viewer: [nsxiv](https://nsxiv.codeberg.page/)
 - Dotfiles manager: [dotbare](https://github.com/kazhala/dotbare) around [git bare repo](https://linuxkamarada.com/en/2020/06/05/manage-your-dotfiles-with-git/)
 - Wallpaper: [source](https://dribbble.com/shots/3713646-Small-Memory) / [download](https://www.dropbox.com/s/q47oa5rac0zszkw/Wallpaper_Mikael_Gustafsson.png)
 

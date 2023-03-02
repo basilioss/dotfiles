@@ -17,7 +17,7 @@ alias \
     g='git' \
     p='paru' \
     v='$EDITOR' \
-    s='sxiv' \
+    s='nsxiv-rifle' \
     f='fuck' \
     wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"' \
     webcam='st mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \

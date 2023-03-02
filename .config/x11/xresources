@@ -1,7 +1,5 @@
 ! Image viewer
-Sxiv.background: #151f29
-Sxiv.foreground: #E8E8E8
-Sxiv.font: JetBrainsMono Nerd:size=10
+Nsxiv.bar.font: JetBrainsMono Nerd:size=10
 
 ! HiDPI scaling for 1920x1080 resolution
 Xft.dpi: 125
