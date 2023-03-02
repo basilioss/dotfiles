@@ -7,6 +7,7 @@
 
 icon_full="/usr/share/icons/Qogir/24/panel/battery-full-charged.svg"
 icon_low="/usr/share/icons/Qogir/24/panel/battery-caution.svg"
+sleep_time=3m
 
 while true; do
   battery="/sys/class/power_supply/BAT1"
@@ -16,13 +17,13 @@ while true; do
   if [ "${capacity}" -lt 30 ] && [ "${status}" = "Discharging" ]
   then
     notify-send "Charge your battery!" -i "${icon_low}"
-    sleep 60s
+    sleep "${sleep_time}"
   fi
 
   if [ "${capacity}" -gt 90 ] && [ "${status}" = "Charging" ] || [ "${status}" = "Full" ]
   then
     notify-send "Turn off battery charger!" -i "${icon_full}"
-    sleep 60s
+    sleep "${sleep_time}"
   fi
 
   sleep 5s
