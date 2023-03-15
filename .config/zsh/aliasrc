@@ -7,21 +7,16 @@ done; unset command
 
 # General
 alias \
-    cp='cp -iv' \
-    mv='mv -iv' \
-    rm='rm -vI' \
-    bc='bc -ql' \
-    mkd='mkdir -pv' \
-    df='df -h' \
-    free='free -h' \
     g='git' \
     p='paru' \
     v='$EDITOR' \
     s='nsxiv-rifle' \
     f='fuck' \
+    bc='bc -ql' \
+    free='free -h' \
     wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"' \
     webcam='st mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
-    nerdicons='emoji-menu -f "$HOME/.local/share/nerd-icons"'
+    nerdicons='emoji-menu -f "$HOME/.local/share/nerd-icons"' \
 
 # Colorize commands
 alias \
@@ -32,7 +27,18 @@ alias \
     cal='cal -m --color=auto' \
     pacman='pacman --color=auto' \
     paru='paru --color=auto' \
-    tldr='tldr --theme ocean'
+
+# File manager
+alias \
+    cp='cp -iv' \
+    mv='mv -iv' \
+    rm='rm -vI' \
+    df='df -h' \
+    unmount='udiskie-umount -d' \
+    mkd='mkdir -pv'
+
+# Create a file and parent directories if they don't exist
+mkf() { mkdir -p "$(dirname "$*")" && touch "$*"; }
 
 # ls
 alias \
@@ -42,13 +48,18 @@ alias \
     la='ls -A' \
     lla='l -A' \
     lt='ls --tree' \
+    ld='(setopt +o nomatch ; lsd --directory-only */ 2> /dev/null)'
 
 # z / cd
 alias \
-    zz='z -' \
-    ...='cd ../..' \
-    ....='cd ../../..' \
-    fz='cd "$(find -type d | fzf)"' \
+  zz='cd - 1> /dev/null && ld' \
+  ..='cd .. && ld' \
+  ...='cd ../.. && ld' \
+  ....='cd ../../.. && ld' \
+  fz='cd "$(find -type d | fzf)" && ld' \
+
+z() { __zoxide_z "$@" && ld ; }
+zi() { __zoxide_zi "$@" && ld ; }
 
 # Office
 alias \
@@ -63,19 +74,11 @@ alias dot=dotbare
 # Fuzzy select and copy command from history
 alias h='history 1 | cut -c 8- | uniq | fzf -0 --tac | xclip -r -sel -c' 
 
-# Open files with dmenu
-alias open='xdg-open "$(find -type f -not -path "*/.*" | dmenu -F -i -l 10)"'
-alias opendl='xdg-open "$(find "$HOME/main/downloads" | dmenu -F -i -l 10)"'
-alias openzk='xdg-open "$(find "$HOME/main/notepad/pages" | dmenu -F -i -l 10)"'
-
 # Download music from youtube
 alias ytm-dlp='yt-dlp -x --audio-format mp3 --audio-quality 0 --embed-metadata --embed-thumbnail'
 
 # Neofetch ascii art
 alias neofetch='neofetch --ascii "$(tput setaf 4; cat $HOME/.config/neofetch/ascii-arch)"'
-
-# Open zathura with tabs
-alias zathura='tabbed -r 2 -c zathura -e -w'
 
 # Empty cache (mostly useful for benchmarking)
 # https://unix.stackexchange.com/questions/87908/how-do-you-empty-the-buffers-and-cache-on-a-linux-system
@@ -87,17 +90,14 @@ alias getip='curl -s https://ipinfo.io/json | jq'
 # Check Internet Speed
 alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 
-# warp-cli
-# Fix no Internet connection after warp-cli disconnect
-# https://github.com/l4tt/warp-cli-fix
-alias warp-fix='sudo cp -v /etc/resolv.conf.bak /etc/resolv.conf'
-
-# Upload file or command output to 0x0.st
+# Upload file/command output, shorten url
 fshare() { curl -s -F "file=@$1" https://0x0.st | xclip -r -sel c ; }
 oshare() { curl -s -F "file=@-" https://0x0.st | xclip -r -sel c ; }
+lshare() { curl "https://is.gd/create.php?format=simple&url=$(xclip -o \
+  -sel clip)" | xclip -i -sel clip ; }
 
 # Change terminal title
-name() { printf "%b" "\e]2;$*\a" ; }
+title() { printf "%b" "\e]2;$*\a" ; }
 
 # Dictionary
 dic() {
@@ -105,3 +105,10 @@ dic() {
 	fold --width="$(tput cols)" | \
 	less --quit-if-one-screen -RX
 }
+
+# Translate
+alias tren='trans'
+alias trru='trans :ru'
+
+# Lama cleaner
+alias lama-cleaner="lama-cleaner --model=lama --device=cpu --port=8080"
