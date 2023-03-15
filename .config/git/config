@@ -10,16 +10,25 @@
     p = push
     pl = pull
     d = diff
-    b = branch
+    b = branch -a
     co = checkout
     save = !git add -A && git commit -m
     undo = reset HEAD~1
+    cleanup = !git branch --merged | grep -v '*' | xargs git branch -d
     # diff for one file
     df = log --patch --follow
     # Clone a repository including all submodules
     cln = clone --recursive
     # prettier log
     l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset' --abbrev-commit --date=relative
+    summary = !which onefetch 1> /dev/null && onefetch
 [help]
     # Automatically correct and execute mistyped commands
     autocorrect = 1
+[core]
+    # Configure Git to ensure line endings in files you checkout are correct for Linux
+    autocrlf = input
+[color]
+    ui = 1
+[init]
+    defaultBranch = main
