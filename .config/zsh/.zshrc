@@ -71,14 +71,22 @@ zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
 
 # zsh parameter completion for the dotnet CLI
-_dotnet_zsh_complete()
+_dotnet_zsh_complete() 
 {
   local completions=("$(dotnet complete "$words")")
 
-  reply=( "${(ps:\n:)completions}" )
+  # If the completion list is empty, just continue with filename selection
+  if [ -z "$completions" ]
+  then
+    _arguments '*::arguments: _normal'
+    return
+  fi
+
+  # This is not a variable assignment, don't remove spaces!
+  _values = "${(ps:\n:)completions}"
 }
 
-compctl -K _dotnet_zsh_complete dotnet
+compdef _dotnet_zsh_complete dotnet
 
 # Accept autosuggestion with Ctrl + Space
 bindkey '^ ' autosuggest-accept
@@ -110,7 +118,7 @@ eval "$(starship init zsh)"
 eval $(thefuck --alias)
 
 # Zoxide
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --no-cmd)"
 
 # Navi
 eval "$(navi widget zsh)"
