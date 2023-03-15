@@ -9,8 +9,22 @@ export BROWSER=firefox
 export READER=zathura
 
 # Default directories
-export ZK_NOTEBOOK_DIR="$HOME/main/notepad"
-export SCREENSHOTS="$HOME/main/library/pictures/screenshots"
+export SCREENSHOTS="$HOME/main/pix/screenshots"
+export WALLPAPERS="$HOME/main/lib/pix/wallpapers"
+export ZK_NOTEBOOK_DIR="$HOME/main/notes"
+export MDT_DIR="${ZK_NOTEBOOK_DIR}/pages"
+export STARDICT_DATA_DIR="$HOME/main/lib/other/dictionaries"
+
+# Environment
+export DOTBARE_DIR="$HOME/.dotfiles"
+export DOTBARE_TREE="$HOME"
+export MDT_INBOX="${ZK_NOTEBOOK_DIR}/pages/$(date -I).md"
+export MDT_EDITOR='nvim -c "set nonumber"'
+export BAT_THEME="base16"
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export QT_STYLE_OVERRIDE=gtk2
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export FZF_DEFAULT_OPTS="-m --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all --color='gutter:#262c39,bg+:#262c39,pointer:1,border:8,separator:8'"
 
 # $HOME cleanup (https://github.com/b3nj5m1n/xdg-ninja)
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -45,22 +59,10 @@ export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 # ~/.python_history (require ~/.config/python/pythonrc)
 export PYTHONSTARTUP="/etc/python/pythonrc"
-# starship
+# Starship
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
-# Dotbare
-export DOTBARE_DIR="$HOME/.dotfiles"
-export DOTBARE_TREE="$HOME"
 # Dotnet
 export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
-export QT_AUTO_SCREEN_SCALE_FACTOR=1
-# Dotnet: disable telemetry
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-# Qt theme
-export QT_STYLE_OVERRIDE=gtk2
-# Dictionary
-export STARDICT_DATA_DIR=$HOME/main/library/other/dictionaries
-# Fzf
-export FZF_DEFAULT_OPTS="-m --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all"
 # Wine
 export WINEPREFIX="$XDG_DATA_HOME"/wine
 # parallel
