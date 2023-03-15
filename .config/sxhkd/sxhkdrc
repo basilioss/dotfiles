@@ -1,12 +1,12 @@
 # Launch apps
 super + o ; {t,f,m,k,n}
-    {telegram-desktop,firefox,deadbeef,keepmenu,networkmanager_dmenu}
+    {telegram-desktop,firefox,tauon,keepmenu,networkmanager_dmenu}
 
 super + o ; {o,c,w}
     {ocr,callendar-notify,restart-warp}
 
-super + o ; shift + {t,o}
-    {thunar,obs}
+super + o ; shift + {t,o,c}
+    {thunar,obs,code}
 
 super + {shift+p,grave,x,shift+x}
     {dmenu-powermenu,emoji-menu,dmenu-kill,xkill}
@@ -86,4 +86,7 @@ XF86MonBrightness{Up,Down}
 
 # Audio player
 XF86Audio{Next,Prev,Stop,Play}
-	deadbeef {--next,--prev,--stop,--play-pause}
+    playerctl {next,previous,stop,play-pause} && \
+    dunstify -r 2593 "$(playerctl metadata title)" \
+    "$(playerctl metadata artist)" \
+    -i "$(playerctl metadata mpris:artUrl)"
