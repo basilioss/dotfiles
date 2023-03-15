@@ -19,9 +19,10 @@ sxhkd &
 remaps &
 unclutter &
 picom &
+udiskie &
 redshift -l 50:30 &
-battery-daemon &
-syncthing-check &
+notify-battery &
+notify-syncthing &
 (sleep 2; warpd) &
 
 exec dwm

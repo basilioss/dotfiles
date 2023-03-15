@@ -2,8 +2,8 @@
 #
 # Description: Configure brightness level and show notification using dunst
 # Usage:
-#     Increase brightness: ./brightness-control.sh up
-#     Decrease brightness: ./brightness-control.sh down
+#     Increase brightness: ./control-brightness.sh up
+#     Decrease brightness: ./control-brightness.sh down
 # Github: https://github.com/basilioss/dotfiles
 
 #icon="display-brightness"

@@ -2,8 +2,8 @@
 super + o ; {t,f,m,k,n}
     {telegram-desktop,firefox,tauon,keepmenu,networkmanager_dmenu}
 
-super + o ; {o,c,w}
-    {ocr,callendar-notify,restart-warp}
+super + o ; {c,w}
+    {notify-callendar,restart-warp}
 
 super + o ; shift + {t,o,c}
     {thunar,obs,code}
@@ -78,11 +78,11 @@ XF86ScreenSaver
 
 # Volume control
 XF86Audio{Mute,LowerVolume,RaiseVolume}
-    volume-control {mute,down,up}
+    control-volume {mute,down,up}
 
 # Brightness
 XF86MonBrightness{Up,Down}
-    brightness-control {up,down}
+    control-brightness {up,down}
 
 # Audio player
 XF86Audio{Next,Prev,Stop,Play}

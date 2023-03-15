@@ -1,7 +1,6 @@
 #!/bin/sh
 #
 # Description: Notify if battery capacity is less than 30 or more than 90
-# Name: battery-daemon
 # Usage: Put it in autostart (xinitrc)
 # Homepage: https://github.com/basilioss/dotfiles
 

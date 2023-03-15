@@ -2,9 +2,9 @@
 #
 # Description: Configure volume level and show notification using dunst
 # Usage:
-#     ./volume-control.sh up
-#     ./volume-control.sh down
-#     ./volume-control.sh mute
+#     ./control-volume.sh up
+#     ./control-volume.sh down
+#     ./control-volume.sh mute
 # Dependencies: pamixer, dunst
 # Github: https://gist.github.com/basilioss/baa36bf5d4b91b50da81313281dbc887
 
