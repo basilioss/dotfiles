@@ -8,7 +8,7 @@
 - Color scheme: [purify](https://github.com/kyoz/purify)
 - Editor: [NvChad](https://github.com/NvChad/NvChad)
 - PDF viewer: [zathura](https://pwmt.org/projects/zathura/)
-- Music player: [DeaDBeeF](https://deadbeef.sourceforge.io/)
+- Music player: [Tauon Music Box](https://github.com/Taiko2k/TauonMusicBox)
 - Video player: [mpv](https://mpv.io/)
 - Image viewer: [nsxiv](https://nsxiv.codeberg.page/)
 - Dotfiles manager: [dotbare](https://github.com/kazhala/dotbare) around [git bare repo](https://linuxkamarada.com/en/2020/06/05/manage-your-dotfiles-with-git/)
