@@ -15,13 +15,13 @@ while true; do
 
   if [ "${capacity}" -lt 30 ] && [ "${status}" = "Discharging" ]
   then
-    notify-send "Charge your battery!" -i "${icon_low}"
+    notify-send "Charge your battery (${capacity}% left)" -i "${icon_low}"
     sleep "${sleep_time}"
   fi
 
   if [ "${capacity}" -gt 90 ] && [ "${status}" = "Charging" ] || [ "${status}" = "Full" ]
   then
-    notify-send "Turn off battery charger!" -i "${icon_full}"
+    notify-send "Turn off battery charger" -i "${icon_full}"
     sleep "${sleep_time}"
   fi
 
