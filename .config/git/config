@@ -12,6 +12,7 @@
     d = diff
     b = branch -a
     co = checkout
+    co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
     save = !git add -A && git commit -m
     undo = reset HEAD~1
     cleanup = !git branch --merged | grep -v '*' | xargs git branch -d
