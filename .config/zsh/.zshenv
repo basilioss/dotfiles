@@ -11,20 +11,22 @@ export READER=zathura
 # Default directories
 export SCREENSHOTS="$HOME/main/pix/screenshots"
 export WALLPAPERS="$HOME/main/lib/pix/wallpapers"
-export ZK_NOTEBOOK_DIR="$HOME/main/notes"
-export MDT_DIR="${ZK_NOTEBOOK_DIR}/pages"
+export MUSIC_DIR="$HOME/main/lib/music"
+export NOTES_DIR="$ZK_NOTEBOOK_DIR/pages"
 export STARDICT_DATA_DIR="$HOME/main/lib/other/dictionaries"
 
 # Environment
 export DOTBARE_DIR="$HOME/.dotfiles"
+export ZK_NOTEBOOK_DIR="$HOME/main/notes"
 export DOTBARE_TREE="$HOME"
-export MDT_INBOX="${ZK_NOTEBOOK_DIR}/pages/$(date -I).md"
 export MDT_EDITOR='nvim -c "set nonumber"'
-export BAT_THEME="base16"
-export QT_AUTO_SCREEN_SCALE_FACTOR=1
-export QT_STYLE_OVERRIDE=gtk2
+export MDT_ITEM_WIDTH=0
+export BAT_THEME="base16" export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export FZF_DEFAULT_OPTS="-m --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all --color='gutter:#262c39,bg+:#262c39,pointer:1,border:8,separator:8'"
+export FZF_DEFAULT_OPTS="-m --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all --color='bg+:#24283b,pointer:1,border:8,separator:8'"
+
+# Use GTK3 theme for Qt apps
+export QT_QPA_PLATFORMTHEME=gtk3
 
 # $HOME cleanup (https://github.com/b3nj5m1n/xdg-ninja)
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -69,3 +71,5 @@ export WINEPREFIX="$XDG_DATA_HOME"/wine
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 # JAVA
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+# Rust
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
