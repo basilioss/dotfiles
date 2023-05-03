@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 #
-# Work in progress
-#
-# Arch Linux post installation script
-# Intended to be used after minimal Arch installation (manually or with archintall)
+# Arch Linux post installation script.
+# Not intended for public use.
 
 # Update system
 sudo pacman -Syu
@@ -44,16 +42,16 @@ git clone git@github.com:basilioss/dmenu.git ~/.local/src/dmenu
 sudo make -C ~/.local/src/dmenu install
 
 # st: Terminal
-git clone git@github.com:basilioss/st.git ~/.local/src/st
-sudo make -C ~/.local/src/st install
+# git clone git@github.com:basilioss/st.git ~/.local/src/st
+# sudo make -C ~/.local/src/st install
 
 # slstatus: Status bar for dwm
-git clone git@github.com:basilioss/slstatus.git ~/.local/src/slstatus
-sudo make -C ~/.local/src/slstatus install
+# git clone git@github.com:basilioss/slstatus.git ~/.local/src/slstatus
+# sudo make -C ~/.local/src/slstatus install
 
 # tabbed: tabs for st
-git clone git@github.com:basilioss/tabbed.git ~/.local/src/tabbed
-sudo make -C ~/.local/src/tabbed install
+# git clone git@github.com:basilioss/tabbed.git ~/.local/src/tabbed
+# sudo make -C ~/.local/src/tabbed install
 
 # Make zsh the default shell
 sudo echo "export ZDOTDIR="$HOME"/.config/zsh" >> /etc/zsh/zshenv
@@ -78,26 +76,22 @@ sudo systemctl enable --now cronie
 
 # Espanso: text expander
 espanso service register
-espanso_pkgs=("brand-names" "lorem" "misspell-en-us" "misspell-en" "contractions-en")
+espanso_pkgs=("lorem" "misspell-en-us" "misspell-en" "contractions-en")
 for i in "${espanso_pkgs[@]}" ; do espanso install "$i" ; done
 
 # Automatic CPU speed & power optimizer
 systemctl enable auto-cpufreq
 
 # Lock screen
-lockscreenWallpaper=$HOME/main/library/pictures/wallpapers/Louis-Coyle_Lakeside_2019_midnight.png
-betterlockscreen -u "$lockscreenWallpaper"
+wallpaper=$WALLPAPERS/trail.jpeg
+betterlockscreen -u "$wallpaper"
 
 # Smooth scrolling + MacOS/Windows like touchpad pinch-to-zoom in Firefox
 # https://www.reddit.com/r/linux/comments/72mfv8/psa_for_firefox_users_set_moz_use_xinput21_to/
 # https://www.reddit.com/r/linux/comments/rmuh0o/finally_macoswindows_like_touchpad_zoom_gesture/
 echo export MOZ_USE_XINPUT2=1 | sudo tee /etc/profile.d/use-xinput2.sh
 
-# Python packages
+# Python packages #############################
 
 # Remove background from images
 pip install rembg
-
-# ImageGoNord
-git clone https://github.com/Schrodinger-Hat/ImageGoNord ~/.local/src/image-go-nord
-pip install -r ~/.local/src/image-go-nord/requirements.txt
