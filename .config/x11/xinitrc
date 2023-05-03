@@ -9,20 +9,31 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 # Set random wallpaper
-xwallpaper --zoom "$(find "$WALLPAPERS" -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -type f | shuf -n 1)" &
+feh --no-fehbg --bg-fill "$(find "$WALLPAPERS" -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -type f | shuf -n 1)" &
+
+# dwm bar
+while true; do
+  xprop -root -set WM_NAME "$(date '+%a %b %d %H:%M ')"
+  sleep 2
+done &
 
 xrdb -merge "$HOME/.config/x11/xresources"
-setxkbmap us,ru -option grp:alt_shift_toggle -option "compose:ralt" &
-slstatus &
+setxkbmap us,ua -option grp:alt_shift_toggle,caps:super,altwin:menu_win,compose:ralt &
 clipmenud &
 sxhkd &
 remaps &
 unclutter &
 picom &
+playerctld daemon &
 udiskie &
 redshift -l 50:30 &
+(sleep 2; warpd) &
 notify-battery &
 notify-syncthing &
-(sleep 2; warpd) &
+git-backup &
+volumeicon &
+(sleep 1; cbatticon -n -l 30 -x dmenu-powermenu) &
+(sleep 2; nm-applet) &
+(sleep 3; telegram-desktop -startintray) &
 
 exec dwm
