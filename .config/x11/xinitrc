@@ -18,7 +18,7 @@ while true; do
 done &
 
 xrdb -merge "$HOME/.config/x11/xresources"
-setxkbmap us,ua -option grp:alt_shift_toggle,caps:super,altwin:menu_win,compose:ralt &
+setxkbmap us,ua -option grp:alt_shift_toggle,compose:ralt &
 clipmenud &
 sxhkd &
 remaps &

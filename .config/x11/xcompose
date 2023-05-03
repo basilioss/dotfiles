@@ -17,14 +17,24 @@ include "%L"
 <Multi_key> <Cyrillic_YU> : "»"
 
 # Ukrainian letters
-<Multi_key> None <Cyrillic_hardsign> : "ї"
-<Multi_key> <Cyrillic_HARDSIGN> : "Ї"
-<Multi_key> None <Cyrillic_yeru> : "і"
-<Multi_key> <Cyrillic_YERU> : "І"
+# <Multi_key> None <Cyrillic_hardsign> : "ї"
+# <Multi_key> <Cyrillic_HARDSIGN> : "Ї"
+# <Multi_key> None <Cyrillic_yeru> : "і"
+# <Multi_key> <Cyrillic_YERU> : "І"
 <Multi_key> None <Cyrillic_ghe> : "ґ"
 <Multi_key> <Cyrillic_GHE> : "Ґ"
-<Multi_key> None <Cyrillic_e> : "є"
-<Multi_key> <Cyrillic_E> : "Є"
+# <Multi_key> None <Cyrillic_e> : "є"
+# <Multi_key> <Cyrillic_E> : "Є"
+
+# Russian letters
+<Multi_key> None <Cyrillic_hardsign> : "ъ"
+<Multi_key> <Cyrillic_HARDSIGN> : "Ъ"
+<Multi_key> None <Cyrillic_yeru> : "ы"
+<Multi_key> <Cyrillic_YERU> : "Ы"
+<Multi_key> None <Cyrillic_e> : "э"
+<Multi_key> <Cyrillic_E> : "Э"
+<Multi_key> <Cyrillic_io> : "ё"
+<Multi_key> <Cyrillic_IO> : "Ё"
 
 # Special characters
 <Multi_key> None <minus> : "—"

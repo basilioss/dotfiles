@@ -109,7 +109,7 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 source /etc/profile.d/undistract-me.sh
 
 # Fix comment highlight
-ZSH_HIGHLIGHT_STYLES[comment]=fg=#476072
+ZSH_HIGHLIGHT_STYLES[comment]=fg=#414868
 
 # Starhship prompt
 eval "$(starship init zsh)"
@@ -119,6 +119,3 @@ eval $(thefuck --alias)
 
 # Zoxide
 eval "$(zoxide init zsh --no-cmd)"
-
-# Navi
-eval "$(navi widget zsh)"

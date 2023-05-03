@@ -85,3 +85,5 @@ undo_backspace: false
 # (by creating an app-specific config).
 # App-Specific: Yes
 # enable: false
+enable_passive: true
+passive_key: CTRL
