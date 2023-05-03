@@ -1,32 +1,19 @@
 # Launch apps
-super + o ; {t,f,m,k,n}
-    {telegram-desktop,firefox,tauon,keepmenu,networkmanager_dmenu}
+super + o ; {t,f,m,k,o,c,w}
+    {telegram-desktop,firefox,tauon,keepmenu,ocr,notify-callendar,restart-warp}
 
-super + o ; {c,w}
-    {notify-callendar,restart-warp}
+super + o ; shift + {t,c}
+    {thunar,code}
 
-super + o ; shift + {t,o,c}
-    {thunar,obs,code}
-
-super + {shift+p,grave,x,shift+x}
+super + {p,grave,x,shift+x}
     {dmenu-powermenu,emoji-menu,dmenu-kill,xkill}
-
-alt + space
-    dmenu-recent-aliases
-
-super + o ; d
-    $BROWSER https://discord.com/login
 
 super + o ; e
     espanso cmd search
 
-# st with tabs
-super + o ; Return
-    tabbed -c -r 2 st -w ""
-
 # Open link with mpv
 super + o ; v
-    st mpv $(xclip -o -sel clip)
+    alacritty -e mpv $(xclip -o -sel clip)
 
 # Colorpicker
 super + o ; shift + f
@@ -34,15 +21,19 @@ super + o ; shift + f
 
 # Full screenshot
 Print
-    maim -u "$SCREENSHOTS/$(date +%Y%m%d_%H%M%S).png" && notify-send "Screenshot taken"
-
-# Select area
-alt + Print
-    maim -u -s "$SCREENSHOTS/$(date +%Y%m%d_%H%M%S).png" && notify-send "Screenshot taken"
+    maim --hidecursor "$SCREENSHOTS/$(date +%Y%m%d_%H%M%S).png" \
+    | xclip -selection clipboard -t image/png \
+    && notify-send "Screenshot taken"
 
 # Select area and copy to clipboard
 shift + Print
-    maim -u -s | xclip -selection clipboard -t image/png && notify-send "Copied to clipboard"
+    maim --capturebackground --padding=20 --hidecursor --nodrag -s \
+    | xclip -selection clipboard -t image/png
+
+# Select area (clipboard and file)
+alt + Print
+    maim -u -D -s | tee "$SCREENSHOTS/$(date +%Y%m%d_%H%M%S).png" \
+    | xclip -selection clipboard -t image/png
 
 # Edit last screenshot
 super + Print
@@ -50,7 +41,7 @@ super + Print
 
 # Clipboard
 super + v
-    clipmenu -i && xdotool key shift+Insert
+    clipmenu -i -l 6 && xdotool key shift+Insert
 
 # Lock
 super + l
@@ -66,7 +57,7 @@ super + shift + BackSpace
 
 # Layout
 super + space
-    xkblayout-state set +1 && dunstify -r 2593 "$(xkblayout-state print "Current layout: %n")"
+    xkblayout-state set +1 && dunstify -r 2593 "$(xkblayout-state print 'Current layout: %n')"
 
 # Toggle blue light
 alt + KP_End
@@ -75,10 +66,6 @@ alt + KP_End
 # Turn off screen
 XF86ScreenSaver
     xset dpms force off
-
-# Volume control
-XF86Audio{Mute,LowerVolume,RaiseVolume}
-    control-volume {mute,down,up}
 
 # Brightness
 XF86MonBrightness{Up,Down}
