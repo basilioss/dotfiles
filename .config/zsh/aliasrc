@@ -7,48 +7,51 @@ done; unset command
 
 # General
 alias \
-    g='git' \
-    p='paru' \
-    v='$EDITOR' \
-    s='nsxiv-rifle' \
-    f='fuck' \
-    bc='bc -ql' \
-    free='free -h' \
-    wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"' \
-    webcam='st mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
-    nerdicons='emoji-menu -f "$HOME/.local/share/nerd-icons"' \
+  g='git' \
+  p='paru' \
+  v='$EDITOR' \
+  s='nsxiv-rifle' \
+  f='fuck' \
+  help='halp --no-version' \
+  bc='bc -ql' \
+  free='free -h' \
+  wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"' \
+  webcam='st mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
+  nerdicons='emoji-menu -f "$HOME/.local/share/nerd-icons"' \
+  calendar='cal -m --color=always $(date +%Y) | less -r' \
 
 # Colorize commands
 alias \
-    grep='grep --color=auto' \
-    diff='diff --color=auto' \
-    egrep='egrep --color=auto' \
-    fgrep='fgrep --color=auto' \
-    cal='cal -m --color=auto' \
-    pacman='pacman --color=auto' \
-    paru='paru --color=auto' \
+  grep='grep --color=auto' \
+  diff='diff --color=auto' \
+  egrep='egrep --color=auto' \
+  fgrep='fgrep --color=auto' \
+  cal='cal -m --color=auto' \
+  pacman='pacman --color=auto' \
+  paru='paru --color=auto' \
 
 # File manager
 alias \
-    cp='cp -iv' \
-    mv='mv -iv' \
-    rm='rm -vI' \
-    df='df -h' \
-    unmount='udiskie-umount -d' \
-    mkd='mkdir -pv'
+  cp='cp -iv' \
+  mv='mv -iv' \
+  rm='rm -vI' \
+  df='df -h' \
+  unmount='udiskie-umount -d' \
+  mkd='mkdir -pv'
 
 # Create a file and parent directories if they don't exist
 mkf() { mkdir -p "$(dirname "$*")" && touch "$*"; }
 
 # ls
 alias \
-    ls='lsd --group-dirs first' \
-    sl='lsd --group-dirs first' \
-    l='lsd --blocks permission,links,user,size,date,name --date relative -l' \
-    la='ls -A' \
-    lla='l -A' \
-    lt='ls --tree' \
-    ld='(setopt +o nomatch ; lsd --directory-only */ 2> /dev/null)'
+  ls='lsd --group-dirs first' \
+  sl='lsd --group-dirs first' \
+  l='lsd --blocks permission,links,user,size,date,name --date relative -l' \
+  la='ls -A' \
+  lla='l -A' \
+  ld='(setopt +o nomatch ; lsd --directory-only */ 2> /dev/null)' \
+  lt='ls --tree' \
+  ltd='(setopt +o nomatch ; lsd --tree --directory-only */ 2> /dev/null)' \
 
 # z / cd
 alias \
@@ -61,11 +64,11 @@ alias \
 z() { __zoxide_z "$@" && ld ; }
 zi() { __zoxide_zi "$@" && ld ; }
 
-# Office
-alias \
-    excel='onlyoffice-desktopeditors --system-title-bar --new=cell' \
-    word='onlyoffice-desktopeditors --system-title-bar --new=doc' \
-    powerpoint='onlyoffice-desktopeditors --system-title-bar --new=slide'
+# Only Office
+office() { onlyoffice-desktopeditors --view="$(readlink -f "$*")" ; }
+word() { [ "$*" = "" ] && onlyoffice-desktopeditors --new=doc || office "$*" ; }
+excel() { [ "$*" = "" ] && onlyoffice-desktopeditors --new=cell || office "$*" ; }
+powerpoint() { [ "$*" = "" ] && onlyoffice-desktopeditors --new=slide || office "$*" ; }
 
 # Dotfiles
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
@@ -75,10 +78,11 @@ alias dot=dotbare
 alias h='history 1 | cut -c 8- | uniq | fzf -0 --tac | xclip -r -sel -c' 
 
 # Download music from youtube
-alias ytm-dlp='yt-dlp -x --audio-format mp3 --audio-quality 0 --embed-metadata --embed-thumbnail'
+alias ytm-dlp='yt-dlp -x --audio-quality 0 --embed-metadata --embed-thumbnail'
 
 # Neofetch ascii art
-alias neofetch='neofetch --ascii "$(tput setaf 4; cat $HOME/.config/neofetch/ascii-arch)"'
+# alias neofetch='neofetch --ascii "$(tput setaf 4; cat $HOME/.config/neofetch/ascii-arch)"'
+alias neofetch='neofetch --ascii "$(tput setaf 4; cat $HOME/.config/neofetch/ascii-arch-smaller)"'
 
 # Empty cache (mostly useful for benchmarking)
 # https://unix.stackexchange.com/questions/87908/how-do-you-empty-the-buffers-and-cache-on-a-linux-system
@@ -90,14 +94,11 @@ alias getip='curl -s https://ipinfo.io/json | jq'
 # Check Internet Speed
 alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 
-# Upload file/command output, shorten url
+# Upload file, command output, shorten url
 fshare() { curl -s -F "file=@$1" https://0x0.st | xclip -r -sel c ; }
 oshare() { curl -s -F "file=@-" https://0x0.st | xclip -r -sel c ; }
-lshare() { curl "https://is.gd/create.php?format=simple&url=$(xclip -o \
-  -sel clip)" | xclip -i -sel clip ; }
-
-# Change terminal title
-title() { printf "%b" "\e]2;$*\a" ; }
+lshare() { curl -s "tinyurl.com/api-create.php?url=$(xclip -o -sel clip)" \
+  | xclip -i -sel clip ; }
 
 # Dictionary
 dic() {
@@ -112,3 +113,25 @@ alias trru='trans :ru'
 
 # Lama cleaner
 alias lama-cleaner="lama-cleaner --model=lama --device=cpu --port=8080"
+
+# Pomodoro (https://github.com/caarlos0/timer)
+work(){
+  timer "${1:-60m}" && notify-send 'Pomodoro' 'Work Timer is up! Take a Break.'
+}
+
+rest() {
+  timer "${1:-10m}" && notify-send 'Pomodoro' 'Break is over! Get back to work.'
+}
+
+# Task manager
+alias t='mdt -d $NOTES_DIR -i $NOTES_DIR/$(date -I).md'
+
+# Task overview
+alias to='(cd $NOTES_DIR \
+  && rg --no-line-number --heading "[-*+] \[ ] " \
+  | sed "/\.md$/ s/^/# /" \
+  | glow)'
+
+# Syncthing CLI
+alias stc='stc-386-linux --homedir ~/.config/syncthing' \
+alias stcw='watch -t stc-386-linux --homedir ~/.config/syncthing'
