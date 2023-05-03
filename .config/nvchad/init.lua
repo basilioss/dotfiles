@@ -1,3 +1,3 @@
 require "custom.autocmds"
 require "custom.options"
-require "custom.plugins.vimwiki"
+require "custom.configs.vimwiki"

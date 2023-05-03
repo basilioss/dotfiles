@@ -6,7 +6,7 @@ local M = {}
 M.base_30 = {
   white = "#FAFAFA",
   darker_black = "#121C29",
-  black = "#151F29", -- nvim bg
+  black = "#141a21", -- nvim bg
   black2 = "#202A37",
   one_bg = "#24283B",
   one_bg2 = "#252F3C",
@@ -37,7 +37,7 @@ M.base_30 = {
 }
 
 M.base_16 = {
-  base00 = "#151F29",
+  base00 = "#141a21",
   base01 = "#252F3C",
   base02 = "#313B48",
   base03 = "#3D4754",
@@ -55,6 +55,6 @@ M.base_16 = {
   base0F = "#FF6059",
 }
 
-vim.opt.bg = "dark"
+M.type = "dark"
 
 return M
