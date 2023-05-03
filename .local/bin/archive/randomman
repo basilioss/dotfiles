@@ -1,7 +1,0 @@
-#!/bin/sh
-#
-# Description: Open random man page
-# Github: https://github.com/basilioss/dotfiles
-
-manual=$(find /usr/share/man/man1 -type f | shuf | cut -d'/' -f6 | sed 's/.gz//g' | head -1)
-man $manual
