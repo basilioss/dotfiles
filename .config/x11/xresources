@@ -14,44 +14,66 @@ Xft.rgba: rgb
 st.font: JetBrainsMono Nerd Font:style:medium:pixelsize=22
 
 ! st: window padding
-st.borderpx: 10
+st.borderpx: 20
 
 ! st: transparency (0.1 to 1.0)
 st.alpha: 1.0
 
-! st: colors
-*background: #151f29
-*foreground: #ffffff
-*cursorColor: #ffffff
+! TokyoNight
+*background: #1a1b26
+*foreground: #c0caf5
 
-! st: Black + DarkGrey
-*color0:  #151f29
-*color8:  #476072
+*color0: #15161e
+*color1: #f7768e
+*color2: #9ece6a
+*color3: #e0af68
+*color4: #7aa2f7
+*color5: #bb9af7
+*color6: #7dcfff
+*color7: #a9b1d6
 
-! st: DarkRed + Red
-*color1:  #FF6059
-*color9:  #FF6059
+*color8: #414868
+*color9: #f7768e
+*color10: #9ece6a
+*color11: #e0af68
+*color12: #7aa2f7
+*color13: #bb9af7
+*color14: #7dcfff
+*color15: #c0caf5
 
-! st: DarkGreen + Green
-*color2:  #5FFF87
-*color10: #5FFF87
-
-! st: DarkYellow + Yellow
-*color3:  #FFFF87
-*color11: #FFFF87
-
-! st: DarkBlue + Blue
-*color4:  #5FAFFF
-*color12: #5FAFFF
-
-! st: DarkMagenta + Magenta
-*color5:  #AF87FF
-*color13: #AF87FF
-
-! st: DarkCyan + Cyan
-*color6:  #5FAFFF
-*color14: #5FAFFF
-
-! st: LightGrey + White
-*color7:  #FAFAFA
-*color15: #FAFAFA
+! Purify
+! *background: #151f29
+! *foreground: #ffffff
+! *cursorColor: #ffffff
+!
+! ! st: Black + DarkGrey
+! *color0:  #151f29
+! *color8:  #476072
+!
+! ! st: DarkRed + Red
+! *color1:  #FF6059
+! *color9:  #ff7e77
+!
+! ! st: DarkGreen + Green
+! *color2:  #5FFF87
+! *color10: #7dffa5
+!
+! ! st: DarkYellow + Yellow
+! *color3:  #FFFF87
+! *color11: #ffffa5
+!
+! ! st: DarkBlue + Blue
+! *color4:  #5FAFFF
+! *color12: #7dcdff
+!
+! ! st: DarkMagenta + Magenta
+! *color5:  #AF87FF
+! *color13: #cda5ff
+!
+! ! st: DarkCyan + Cyan
+! *color6:  #5FAFFF
+! *color14: #7dcdff
+!
+! ! st: LightGrey + White
+! *color7:  #FAFAFA
+! *color15: #ffffff
