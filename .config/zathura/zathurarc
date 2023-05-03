@@ -3,28 +3,73 @@ set selection-clipboard clipboard
 
 # Dark mode by default
 set recolor
+
+### Tokyo Night theme #########################
+
 # Dark colors
-set recolor-lightcolor "#151f29"
+set recolor-lightcolor          "#16161e"
+set recolor-darkcolor           "#a9b1d6"
 # Background color
-set default-bg "#151f29"
+set default-bg                  "#1a1b26"
+set default-fg                  "#a9b1d6"
 
 # Statusbar colors
-set statusbar-bg "#151f29"
-set inputbar-bg "#2B3D4F"
-set inputbar-fg "#FFFFFF"
+set inputbar-bg                 "#1a1b26"
+set inputbar-fg                 "#73daca"
+set statusbar-bg                "#24283b"
+set statusbar-fg                "#a9b1d6"
 
 # Index mode colors (tab)
-set index-bg "#151f29"
-set index-fg "#FFFFFF"
-set index-active-bg "#2B3D4F"
-set index-active-fg "#FFFFFF"
+set index-bg                    "#1a1b26"
+set index-fg                    "#FFFFFF"
+set index-active-bg             "#24283b"
+set index-active-fg             "#FFFFFF"
 
 # Selection, follow links colors
-set highlight-color "#5fafff"
-set highlight-fg "#ff6059"
+set highlight-fg                "#f7768e"
+set highlight-color             "#e0af68"
+set highlight-active-color      "#9aa5ce"
 
 # Completition
-set completion-bg "#151f29"
-set completion-group-bg "#2B3D4F"
-set completion-highlight-bg "#415976"
-set completion-highlight-fg "#DEDEDE"
+set completion-bg "#1a1b26"
+set completion-group-bg "#24283b"
+set completion-highlight-bg "#343b58"
+set completion-highlight-fg "#9aa5ce"
+
+# Notifications
+set notification-bg             "#1a1b26"
+set notification-fg             "#73daca"
+
+set notification-error-bg       "#1a1b26"
+set notification-error-fg       "#f7768e"
+
+set notification-warning-bg     "#1a1b26"
+set notification-warning-fg     "#f7768e"
+
+### Purify theme ###########################
+
+# # Dark colors
+# set recolor-lightcolor "#151f29"
+# # Background color
+# set default-bg "#151f29"
+#
+# # Statusbar colors
+# set statusbar-bg "#151f29"
+# set inputbar-bg "#2B3D4F"
+# set inputbar-fg "#FFFFFF"
+#
+# # Index mode colors (tab)
+# set index-bg "#151f29"
+# set index-fg "#FFFFFF"
+# set index-active-bg "#2B3D4F"
+# set index-active-fg "#FFFFFF"
+#
+# # Selection, follow links colors
+# set highlight-color "#5fafff"
+# set highlight-fg "#ff6059"
+#
+# # Completition
+# set completion-bg "#151f29"
+# set completion-group-bg "#2B3D4F"
+# set completion-highlight-bg "#415976"
+# set completion-highlight-fg "#DEDEDE"
