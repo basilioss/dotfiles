@@ -1,42 +1,40 @@
-#!/bin/bash
+#!/bin/sh
 #
-# Description: Select text on screen to copy it to the clipboard
-# Dependencies: dmenu, xclip, imagemagick, tesseract, tesseract-data-ukr, tesseract-data-rus, tesseract-data-eng
-# Github: https://github.com/basilioss/dotfiles
+# Select text on screen to copy it to the clipboard
+# https://github.com/basilioss/dotfiles
 
-#menu="fzf"
 menu="dmenu -i"
-language=$(echo -e "Ukrainian\nRussian\nEnglish" | $menu)
-dir="$HOME/.cache"
-date="$(date +%s)"
-img="$dir/img-$date.png"
-output="$dir/out-$date"
+# screenshot="magick import"
+screenshot="maim --hidecursor --nodrag -s"
 
-function ocr() {
-    # Wait till the menu animation is finished (by picom)
-    sleep 0.3
-    # Show pointer if it was hidden (by unclutter)
-    xdotool mousemove_relative 1 0
-    # Take screenshot
-	magick import "$img"
-    # Screenshot to txt
-	tesseract "$img" "$output" -l "$1"
-    # Txt to clipboard
-    cat "$output".txt | tr -d '\n' | xclip -selection clipboard
-    # Remove screenshot and txt
-	rm "$img" "$output".txt
+ocr() {
+  # Declare variables
+  dir="$HOME/.cache"
+  date="$(date +%s)"
+  img="${dir}/img-${date}.png"
+  output="${dir}/out-${date}"
+  # Wait till the menu animation is finished (by picom)
+  sleep 0.3
+  # Show pointer if it was hidden (by unclutter)
+  xdotool mousemove_relative 1 0
+  # Take screenshot
+  eval "${screenshot}" "${img}"
+  # Screenshot to txt
+  tesseract "${img}" "${output}" -l "$1"
+  # Txt to clipboard
+  tr "\n" " " < "${output}.txt" | xclip -selection clipboard
+  # Remove screenshot and txt
+  rm "${img}" "${output}.txt"
 }
 
-case "$language" in
-  Ukrainian)
-    ocr ukr
-    ;;
+main() {
+  language="$(printf "%b" "Ukrainian\nEnglish\nRussian" | ${menu})"
 
-  Russian)
-    ocr rus
-    ;;
+  case "${language}" in
+    Ukrainian) ocr ukr ;;
+    English) ocr eng ;;
+    Russian) ocr rus ;;
+  esac
+}
 
-  English)
-    ocr eng
-    ;;
-esac
+main "$@"
