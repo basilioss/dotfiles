@@ -5,32 +5,25 @@
 
 menu="dmenu -i"
 # screenshot="magick import"
-screenshot="maim --hidecursor --nodrag -s"
+screenshot="maim --hidecursor --nodrag --select"
 
 ocr() {
-  # Declare variables
-  dir="$HOME/.cache"
-  date="$(date +%s)"
-  img="${dir}/img-${date}.png"
-  output="${dir}/out-${date}"
   # Wait till the menu animation is finished (by picom)
   sleep 0.3
+
   # Show pointer if it was hidden (by unclutter)
   xdotool mousemove_relative 1 0
-  # Take screenshot
-  eval "${screenshot}" "${img}"
-  # Screenshot to txt
-  tesseract "${img}" "${output}" -l "$1"
-  # Txt to clipboard
-  tr "\n" " " < "${output}.txt" | xclip -selection clipboard
-  # Remove screenshot and txt
-  rm "${img}" "${output}.txt"
+
+  text="$(eval "${screenshot}" | tesseract -l "$1" stdin stdout)"
+  text_without_newlines="$(printf "%s" "${text}" | tr "\n" " ")"
+  printf "%s" "${text_without_newlines}" | xclip -selection clipboard
 }
 
 main() {
-  language="$(printf "%b" "Ukrainian\nEnglish\nRussian" | ${menu})"
+  language="$(printf "%b" "Auto\nUkrainian\nEnglish\nRussian" | ${menu})"
 
   case "${language}" in
+    Auto) ocr ukr+eng+rus ;;
     Ukrainian) ocr ukr ;;
     English) ocr eng ;;
     Russian) ocr rus ;;
