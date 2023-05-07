@@ -36,11 +36,8 @@ alias \
   mv='mv -iv' \
   rm='rm -vI' \
   df='df -h' \
+  dl='trash-put' \
   unmount='udiskie-umount -d' \
-  mkd='mkdir -pv'
-
-# Create a file and parent directories if they don't exist
-mkf() { mkdir -p "$(dirname "$*")" && touch "$*"; }
 
 # ls
 alias \
@@ -49,7 +46,7 @@ alias \
   l='lsd --blocks permission,links,user,size,date,name --date relative -l' \
   la='ls -A' \
   lla='l -A' \
-  ld='(setopt +o nomatch ; lsd --directory-only */ 2> /dev/null)' \
+  ld='(setopt +o nomatch ; lsd --directory-only */ 2> /dev/null ; true)' \
   lt='ls --tree' \
   ltd='(setopt +o nomatch ; lsd --tree --directory-only */ 2> /dev/null)' \
 

@@ -91,7 +91,10 @@ betterlockscreen -u "$wallpaper"
 # https://www.reddit.com/r/linux/comments/rmuh0o/finally_macoswindows_like_touchpad_zoom_gesture/
 echo export MOZ_USE_XINPUT2=1 | sudo tee /etc/profile.d/use-xinput2.sh
 
-# Python packages #############################
+# Other packages #############################
 
 # Remove background from images
 pip install rembg
+
+# Touch alternative with a sprinkle of mkdir written in rust
+sudo curl -L https://github.com/elliot40404/bonk/releases/latest/download/bonk_linux_x64 -o /usr/local/bin/bonk && sudo chmod +x /usr/local/bin/bonk
