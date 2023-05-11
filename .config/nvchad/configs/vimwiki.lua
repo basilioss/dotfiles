@@ -28,3 +28,5 @@ vim.g.vimwiki_toc_link_format = 1
 vim.g.vimwiki_url_maxsave = 0
 -- Disable some key mappings
 vim.g.vimwiki_key_mappings = { global = 0, html = 0 }
+-- Disable markdown syntax shortening
+vim.g.vimwiki_conceallevel = 0
