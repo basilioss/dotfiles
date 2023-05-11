@@ -23,6 +23,9 @@ setopt HIST_SAVE_NO_DUPS
 # Load aliases
 source "$XDG_CONFIG_HOME/zsh/aliasrc"
 
+# Ls whenever the current working directory is changed.
+chpwd_ls() { ld }
+
 # Basic auto/tab complete:
 autoload -Uz compinit
 zstyle ':completion:*' menu select
