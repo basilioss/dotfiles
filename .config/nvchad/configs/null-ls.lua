@@ -16,7 +16,7 @@ local sources = {
   b.formatting.stylua,
 
   -- Shell
-  b.formatting.shfmt,
+  b.formatting.shfmt.with { extra_args = { "-i", "2", "-ci", "-sr" } },
   b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
 
   -- cpp
