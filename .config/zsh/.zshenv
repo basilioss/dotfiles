@@ -16,6 +16,7 @@ export NOTES_DIR="$ZK_NOTEBOOK_DIR/pages"
 export STARDICT_DATA_DIR="$HOME/main/lib/other/dictionaries"
 
 # Environment
+export LS_COLORS="$(dircolors)"
 export DOTBARE_DIR="$HOME/.dotfiles"
 export ZK_NOTEBOOK_DIR="$HOME/main/notes"
 export DOTBARE_TREE="$HOME"
