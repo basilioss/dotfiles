@@ -1,0 +1,17 @@
+#!/bin/sh
+
+while true; do
+  time="$(date '+%a %b %d %H:%M ')"
+  xprop -root -set WM_NAME "$time"
+  sleep 2
+done &
+
+volumeicon &
+
+(sleep 1; cbatticon \
+  --low-level 45 \
+  --critical-level 30 \
+  --hide-notification \
+  --command-left-click dmenu-powermenu) &
+
+(sleep 2; nm-applet) &
