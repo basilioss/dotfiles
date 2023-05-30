@@ -1,0 +1,18 @@
+#!/bin/sh
+
+clipboard="$(xclip -o -sel clip)"
+host="https://0x0.st"
+url_shortener="tinyurl.com/api-create.php?url=$clipboard"
+
+if [ -f "$1" ]; then
+  # Share file: share /path/to/file
+  curl -s -F "file=@$1" "$host" | xclip -r -sel clip
+elif [ -p /dev/stdin ]; then
+  # Share command output: ls | share
+  cat | curl -s -F "file=@-" "$host" | xclip -r -sel clip
+elif printf "%s" "$clipboard" | grep --quiet --no-messages "^http.*"; then
+  # Share copied url
+  curl -s "$url_shortener" | xclip -r -sel clip
+else
+  notify-send "Nothing to share"
+fi

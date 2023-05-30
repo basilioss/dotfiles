@@ -91,12 +91,6 @@ alias getip='curl -s https://ipinfo.io/json | jq'
 # Check Internet Speed
 alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 
-# Upload file, command output, shorten url
-fshare() { curl -s -F "file=@$1" https://0x0.st | xclip -r -sel c ; }
-oshare() { curl -s -F "file=@-" https://0x0.st | xclip -r -sel c ; }
-lshare() { curl -s "tinyurl.com/api-create.php?url=$(xclip -o -sel clip)" \
-  | xclip -i -sel clip ; }
-
 # Dictionary
 dic() {
 	sdcv -n --color "$@" 2>&1 | \
