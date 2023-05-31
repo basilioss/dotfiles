@@ -5,6 +5,12 @@ for command in mount umount pacman timeshift powertop; do
 	alias $command="sudo $command"
 done; unset command
 
+# Global aliases (to be used at the end, mostly)
+alias -g H="--help"
+alias -g G="| grep --ignore-case --color"
+alias -g X='| xclip -selection clipboard'
+alias -g N="| wc -l"
+
 # General
 alias \
   g='git' \
