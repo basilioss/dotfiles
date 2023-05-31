@@ -16,6 +16,7 @@ Y: copy filename
 c: copy to clipboard
 d: delete
 e: open in the editor
+s: share
 "
 }
 
@@ -51,5 +52,9 @@ while read -r file; do
       [ "$choice" = "Yes" ] && trash-put "$file" && notify-send "$filename deleted."
       ;;
     "e") setsid -f gimp "$file" ;;
+    "s")
+      share "$file"
+      notify-send "$filename shared to $(xclip -o -sel clip)"
+      ;;
   esac
 done
