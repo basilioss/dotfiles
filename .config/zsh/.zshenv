@@ -39,7 +39,7 @@ export MDT_EDITOR='nvim -c "set nonumber"'
 export MDT_ITEM_WIDTH=0
 export BAT_THEME="base16" export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export FZF_DEFAULT_OPTS="-m --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all --color='bg+:#24283b,pointer:1,border:8,separator:#24283b'"
+export FZF_DEFAULT_OPTS="-m --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all --color='bg+:#24283b,pointer:1,border:8,separator:8'"
 
 # Use GTK3 theme for Qt apps
 # export GTK2_RC_FILES="$XDG_DATA_HOME/themes/tokyonight/gtk-2.0/gtkrc"
@@ -75,4 +75,5 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 # Android specific environment
 if [[ "$TERMUX_VERSION" != "" ]]; then
   export ZK_NOTEBOOK_DIR="$HOME/storage/shared/Documents/notes"
+  export FZF_DEFAULT_OPTS="-m --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all --color=16"
 fi
