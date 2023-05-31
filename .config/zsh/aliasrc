@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Prefix sudo automatically
-for command in mount umount pacman timeshift powertop; do
+for command in mount umount updatedb timeshift powertop; do
 	alias $command="sudo $command"
 done; unset command
 
@@ -21,10 +21,11 @@ alias \
   help='halp --no-version' \
   bc='bc -ql' \
   free='free -h' \
+  curl="curl -sL" \
   wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"' \
-  webcam='st mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
-  nerdicons='emoji-menu -f "$HOME/.local/share/nerd-icons"' \
   calendar='cal -m --color=always $(date +%Y) | less -r' \
+  webcam='$TERMINAL mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
+  nerdicons='emoji-menu -f "$XDG_DATA_HOME/nerd-icons"' \
 
 # Colorize commands
 alias \
@@ -33,7 +34,7 @@ alias \
   egrep='egrep --color=auto' \
   fgrep='fgrep --color=auto' \
   cal='cal -m --color=auto' \
-  pacman='pacman --color=auto' \
+  pacman='sudo pacman --color=auto' \
   paru='paru --color=auto' \
 
 # File manager
@@ -78,7 +79,7 @@ alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias dot=dotbare
 
 # Fuzzy select and copy command from history
-alias h='history 1 | cut -c 8- | uniq | fzf -0 --tac | xclip -r -sel -c' 
+alias h='history 1 | cut -c 8- | uniq | fzf -0 --tac | xclip -r -sel -c'
 
 # Download music from youtube
 alias ytm-dlp='yt-dlp -x --audio-quality 0 --embed-metadata --embed-thumbnail'
@@ -132,3 +133,6 @@ alias to='(cd $NOTES_DIR \
 # Syncthing CLI
 alias stc='stc-386-linux --homedir ~/.config/syncthing' \
 alias stcw='watch -t stc-386-linux --homedir ~/.config/syncthing'
+
+# AI
+alias mods="OPENAI_API_KEY=$(pass show openai.com/api-key 2>/dev/null) mods -m gpt-3.5-turbo"

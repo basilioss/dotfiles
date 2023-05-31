@@ -1,39 +1,61 @@
-# Enable colors and change prompt:
-autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
 # Automatically cd into typed directory
 setopt autocd
 
+# Ls whenever the current working directory is changed.
+chpwd_ls() { ld }
+
 # Activate comments
 setopt interactivecomments
-
-# History
-HISTFILE=~/.config/zsh/history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt APPEND_HISTORY
-# Write to the history file immediately, not when the shell exits
-setopt INC_APPEND_HISTORY
-# No duplicates
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_FIND_NO_DUPS
-setopt HIST_SAVE_NO_DUPS
 
 # Load aliases
 source "$XDG_CONFIG_HOME/zsh/aliasrc"
 
-# Ls whenever the current working directory is changed.
-chpwd_ls() { ld }
+### History ###################################################################
 
-# Basic auto/tab complete:
+HISTFILE=~/.config/zsh/history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt APPEND_HISTORY
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS # Ignore duplicated commands in history list.
+setopt HIST_SAVE_NO_DUPS # Do not save duplicates in history file.
+setopt INC_APPEND_HISTORY # Write to $HISTFILE immediately, not when the shell exits.
+setopt INC_APPEND_HISTORY # Add commands to $HISTFILE in order of execution.
+setopt HIST_IGNORE_SPACE # Ignore commands that start with a space.
+
+### Completion ################################################################
+
+# Basic auto/tab completion
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit -i
 _comp_options+=(globdots)		# Include hidden files.
 
-# Vi mode
+# Completion for dotnet CLI
+_dotnet_zsh_complete() 
+{
+  local completions=("$(dotnet complete "$words")")
+
+  # If the completion list is empty, just continue with filename selection
+  if [ -z "$completions" ]
+  then
+    _arguments '*::arguments: _normal'
+    return
+  fi
+
+  # This is not a variable assignment, don't remove spaces!
+  _values = "${(ps:\n:)completions}"
+}
+
+compdef _dotnet_zsh_complete dotnet
+
+### Vi mode ###################################################################
+
+# Enable vi mode
 bindkey -v
 export KEYTIMEOUT=1
 
@@ -73,52 +95,46 @@ function vi-yank-xclip {
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
 
-# zsh parameter completion for the dotnet CLI
-_dotnet_zsh_complete() 
-{
-  local completions=("$(dotnet complete "$words")")
+### Keybindings ###############################################################
 
-  # If the completion list is empty, just continue with filename selection
-  if [ -z "$completions" ]
-  then
-    _arguments '*::arguments: _normal'
-    return
-  fi
-
-  # This is not a variable assignment, don't remove spaces!
-  _values = "${(ps:\n:)completions}"
-}
-
-compdef _dotnet_zsh_complete dotnet
-
-# Accept autosuggestion with Ctrl + Space
-bindkey '^ ' autosuggest-accept
-
-# Select and edit configs with Alt + Enter (requires dotbare)
+# Select and edit configs with Alt + Enter (dotbare)
 bindkey -s '^[^M' "dotbare fedit"^M
-
-# history search
+# Accept autosuggestion with Ctrl + Space (autosuggestions plugin)
+bindkey '^ ' autosuggest-accept
+# History search
 bindkey '^k' history-substring-search-up
 bindkey '^j' history-substring-search-down
-# history search in vi mode
+# History search in vi mode
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
-# Plugins
-source /usr/share/zsh/plugins/fzf-tab-git/fzf-tab.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-source /etc/profile.d/undistract-me.sh
+### Plugins ###################################################################
+
+if [ -z "$TERMUX_VERSION" ]; then
+  plugins_dir="/usr/share/zsh/plugins"
+else
+  plugins_dir="$XDG_CONFIG_HOME/zsh/plugins"
+fi
+
+source $plugins_dir/fzf-tab-git/fzf-tab.zsh 2>/dev/null
+source $plugins_dir/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+# source $plugins_dir/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source $plugins_dir/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
+source $plugins_dir/zsh-history-substring-search/zsh-history-substring-search.zsh 2>/dev/null
+source /etc/profile.d/undistract-me.sh 2>/dev/null
 
 # Fix comment highlight
-ZSH_HIGHLIGHT_STYLES[comment]=fg=#414868
+# ZSH_HIGHLIGHT_STYLES[comment]=fg=#414868
 
-# Starhship prompt
-eval "$(starship init zsh)"
+is_installed() {
+  command -v "$1" > /dev/null 
+}
 
-# The fuck
-eval $(thefuck --alias)
+# Prompt
+is_installed starship && eval "$(starship init zsh)"
 
-# Zoxide
-eval "$(zoxide init zsh --no-cmd)"
+# Quick cd/jump
+is_installed zoxide && eval "$(zoxide init zsh --no-cmd)"
+
+# App which corrects previous console commands
+is_installed thefuck && eval "$(thefuck --alias)"
