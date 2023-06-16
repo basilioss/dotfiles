@@ -4,3 +4,6 @@
 [submodule ".local/src/dmenu"]
 	path = .local/src/dmenu
 	url = https://github.com/basilioss/dmenu
+[submodule ".config/nvim"]
+	path = .config/nvim
+	url = https://github.com/NvChad/NvChad
