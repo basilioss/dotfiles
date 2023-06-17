@@ -1,11 +1,12 @@
 format = """
-$username\
 $hostname\
 $directory\
 $git_branch\
 $git_state\
 $cmd_duration\
+$linebreak\
 $jobs\
+$battery\
 $character"""
 
 add_newline = false

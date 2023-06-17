@@ -30,7 +30,6 @@ export NOTES_DIR="$ZK_NOTEBOOK_DIR/pages"
 export ZK_NOTEBOOK_DIR="$HOME/main/notes"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 export DOTBARE_DIR="$HOME/.dotfiles"
-export DOTBARE_TREE="$HOME"
 export STARDICT_DATA_DIR="$HOME/main/lib/other/dictionaries"
 
 # Environment
@@ -43,7 +42,8 @@ export FZF_DEFAULT_OPTS="-m --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:
 
 # Use GTK3 theme for Qt apps
 # export GTK2_RC_FILES="$XDG_DATA_HOME/themes/tokyonight/gtk-2.0/gtkrc"
-export QT_QPA_PLATFORMTHEME=gtk3
+# export QT_QPA_PLATFORMTHEME=gtk3
+export GTK_THEME=tokyonight
 
 # $HOME Cleanup (https://github.com/b3nj5m1n/xdg-ninja)
 export HISTFILE="${XDG_STATE_HOME}"/bash/history
