@@ -5,6 +5,8 @@ require "custom.mappings-cyrillic"
 
 M.general = {
   n = {
+    ["ZS"] = { "<cmd>wqall<CR>", "Save and close all" },
+    ["ZX"] = { "<cmd>qall!<CR>", "Close all" },
     [";"] = { ":", "command mode", opts = { nowait = true } },
     ["<leader>s"] = { "<cmd> setlocal spell! spelllang=en_us,ru,uk<CR>", "toggle spelling" },
     ["Y"] = { "y$", "yank without newline"},
@@ -29,12 +31,6 @@ M.telescope = {
   }
 }
 
-M.clipboardimage = {
-  n = {
-    ["<leader>i"] = { "<cmd>PasteImg<CR>", "paste image" },
-  }
-}
-
 M.undotree = {
   n = {
     ["<F5>"] = { "<cmd>UndotreeToggle<CR>", "toggle undotree" }
@@ -53,23 +49,23 @@ M.zenmode = {
   }
 }
 
-vim.cmd [[ nmap <Nop> <Plug>VimwikiGoto ]]
-vim.cmd [[ nmap <C-Tab> <Plug>VimwikiNextLink ]]
-vim.cmd [[ nmap <C-S-Tab> <Plug>VimwikiPrevLink ]]
--- M.vimwiki = {
---   n = {
---     ["<Nop>"] = { "<Plug>VimwikiGoto" },
---     ["<C-Tab>"] = { "<Plug>VimwikiNextLink", "next link" },
---     ["<leader>lp"] = { "<Plug>VimwikiPrevLink", "previous link" },
---   }
--- }
+local opts = { noremap = true, silent = false }
 
+-- Notes
 M.zk = {
   n = {
-    ["<leader>wb"] = { "<Cmd>ZkBacklinks<CR>", "backlinks", opts = { noremap = true, silent = false } },
-    -- Preview a linked note
-    ["<leader>wp"] = { "<Cmd>lua vim.lsp.buf.hover()<CR>", opts = { noremap = true, silent = false } },
-    -- ["<A-CR>"] = { "<Cmd>lua vim.lsp.buf.hover()<CR>", opts = { noremap = true, silent = false } },
+    ["<leader>wb"] = { "<Cmd>ZkBacklinks<CR>", "backlinks", opts },
+    ["<leader>wn"] = { "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", "backlinks", opts },
+    ["<A-CR>"] = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "preview link", opts },
+
+    ["<CR>"] = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "open link", opts },
+    ["<BS>"] = { ":edit #<CR>", opts = { silent = true } },
+    ["<C-p>"] = { "<Plug>MarkdownPreviewToggle" },
+    ["<leader>i"] = { "<cmd>PasteImg<CR>", "paste image" },
+  },
+
+  v = {
+    ["<CR>"] = { ":'<,'>ZkInsertLinkAtSelection<CR>", "insert link", opts },
   }
 }
 

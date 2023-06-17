@@ -1,9 +1,6 @@
 local overrides = require("custom.configs.overrides")
 
----@type NvPluginSpec[]
 local plugins = {
-
-  -- Override plugin definition options
 
   {
     "neovim/nvim-lspconfig",
@@ -22,7 +19,6 @@ local plugins = {
     end, -- Override to setup mason-lspconfig
   },
 
-  -- override plugin configs
   {
     "williamboman/mason.nvim",
     opts = overrides.mason
@@ -109,21 +105,16 @@ local plugins = {
 
   -- notes
   {
-    "vimwiki/vimwiki",
-    ft = { 'markdown', 'vimwiki' },
-  },
-
-  {
     "mickael-menu/zk-nvim",
-    ft = {'markdown', 'vimwiki'},
+    ft = {'markdown'},
     config = function ()
       require("zk").setup({
         picker = "telescope",
         lsp = {
-        --   config = {
-        --     cmd = { "zk", "lsp" },
-        --     name = "zk",
-        --   },
+          config = {
+            cmd = { "zk", "lsp" },
+            name = "zk",
+          },
           auto_attach = {
             enabled = true,
             filetypes = { "markdown" },
@@ -134,68 +125,51 @@ local plugins = {
   },
 
   -- MarkdownPreview
+  -- {
+  --   'toppair/peek.nvim',
+  --   build = 'deno task --quiet build:fast',
+  --   ft = {'markdown'},
+  --   config = function()
+  --     require('peek').setup({
+  --       app = 'firefox',
+  --       filetype = { 'markdown' },
+  --       })
+  --   end,
+  --   init = function()
+  --     vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+  --     vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+  --   end,
+  -- },
+
   {
-    'toppair/peek.nvim',
-    build = 'deno task --quiet build:fast',
-    ft = {'markdown', 'vimwiki'},
-    config = function()
-      require('peek').setup({
-        app = 'firefox',
-        filetype = { 'markdown', 'vimwiki' },
-        })
-    end,
+    "iamcco/markdown-preview.nvim",
+    -- enabled = false,
+    ft = { "markdown" },
+    build = "cd app && npm install",
+    cmd = {
+      "MarkdownPreview",
+      "MarkdownPreviewStop",
+      "MarkdownPreviewToggle",
+    },
     init = function()
-      vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
-      vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+      vim.g.mkdp_filetypes = { "markdown" }
+      vim.g.mkdp_theme = 'dark'
     end,
   },
 
-  -- {
-  --   "iamcco/markdown-preview.nvim",
-  --   -- enabled = false,
-  --   ft = { "vimwiki", "markdown" },
-  --   build = "cd app && npm install",
-  --   cmd = {
-  --     "MarkdownPreview",
-  --     "MarkdownPreviewStop",
-  --     "MarkdownPreviewToggle",
-  --   },
-  --   init = function()
-  --     vim.g.mkdp_filetypes = { "markdown", "vimwiki" }
-  --     vim.g.mkdp_theme = 'dark'
-  --     vim.g.mkdp_browser = 'firefox'
-  --   end,
-  --   -- config = function()
-  --   --   require'markdown-preview'.setup {
-  --   --     mkdp_filetypes = { "markdown", "vimwiki" },
-  --   --     mkdp_theme = 'dark'
-  --   --   }
-  --   -- end
-  -- },
-
   -- paste image to files
   {
-    "ekickx/clipboard-image.nvim",
+    -- "ekickx/clipboard-image.nvim",
+    "postfen/clipboard-image.nvim",
     cmd = "PasteImg",
-    -- ft = {'markdown', 'vimwiki'},
     config = function ()
       require'clipboard-image'.setup {
         default = {
           img_dir = "assets",
-          img_name = function() return os.date('%Y-%m-%d-%H-%M-%S') end,
-        },
-        vimwiki = {
-          img_dir = "$ZK_NOTEBOOK_DIR/assets",
           img_dir_txt = "../assets",
-          affix = "![](%s)",
-          -- manually insert image name
-          img_name = function ()
-            vim.fn.inputsave()
-            local name = vim.fn.input('Name: ')
-            vim.fn.inputrestore()
-            return name
-          end,
-        }
+          img_name = function() return os.date('%Y%m%d%H%M%S') end,
+          -- img_name = function () return vim.fn.input('Name: ') end,
+        },
       }
     end
   },
