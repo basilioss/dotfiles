@@ -18,7 +18,7 @@ matches:
   - triggers: [":date", ":Date"]
     replace: "{{date}}"
 
-  - trigger: ":time"
+  - triggers: [":time", ":Time"]
     replace: "{{time}}"
 
   - triggers: [":stamp", ":Stamp"]
@@ -29,5 +29,11 @@ matches:
         params:
           format: "%Y%m%d%H%M%S"
 
-  - trigger: ":shrug"
+  - triggers: [":shrug", ":Shrug"]
     replace: "¯\\_(ツ)_/¯"
+
+  - triggers: [":email", ":Email"]
+    replace: "vasyl.tyshchuk.xyz@gmail.com"
+
+  - triggers: [":github", ":Github"]
+    replace: "https://github.com/basilioss"

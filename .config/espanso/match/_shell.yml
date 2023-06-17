@@ -3,6 +3,9 @@ name: "_shell.yml"
 
 matches:
 
+  - label: "SHELL: Bash shebang line"
+    replace: "#!/usr/bin/env bash"
+
   - triggers: [":shebang", "#!"]
     label: "SHELL: shabang line and metadata"
     replace: |

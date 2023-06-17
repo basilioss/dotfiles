@@ -1,5 +1,4 @@
-filter_class: Alacritty
-# filter_class: st-256color
+filter_class: "Alacritty|st-256color"
 
 extra_includes:
   - "../match/_shell.yml"

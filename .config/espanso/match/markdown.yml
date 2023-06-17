@@ -3,21 +3,21 @@ homepage: "https://github.com/basilioss/dotfiles"
 
 matches:
 
-  - trigger: "ttt"
+  - trigger: ":ttt"
     replace: "- [ ] "
     label: "Markdown task"
+
+  - trigger: ":tte"
+    replace: "- [e] "
+    label: "Markdown event"
+
+  - trigger: ":tti"
+    replace: "- [I] "
+    label: "Markdown idea"
 
   - trigger: ":ref"
     replace: "## References\n\n"
     label: "Makrdown reference heading"
-
-  - trigger: ":com"
-    replace: "<!-- $|$ -->"
-    label: "HTML comment tag"
-
-  - trigger: ":mark:"
-    replace: "<mark>$|$</mark>"
-    label: "HTML mark tag"
 
   - trigger: ":mdlink"
     replace: "[$|$]({{clipboard}})"
@@ -34,24 +34,3 @@ matches:
         type: shell
         params:
           cmd: find $HOME -type f | dmenu -i -l 20 | tr -d '\n'
-
-  # :cb;<programming_language>;
-  - regex: ":cb;(?P<lang>\\w*);"
-    force_clipboard: true
-    replace: "```{{lang}}\n{{clipboard}}\n```\n\n"
-    label: "Paste clipboard content as markdown codeblock"
-    vars:
-      - name: "clipboard"
-        type: "clipboard"
-
-  - trigger: ":cbsh"
-    replace: "```bash\n"
-    label: "Bash code block"
-
-  - trigger: ":cbpy"
-    replace: "```python\n"
-    label: "Python code block"
-
-  - trigger: ":cbdv"
-    replace: "```dataview\n"
-    label: "Dataview code block"

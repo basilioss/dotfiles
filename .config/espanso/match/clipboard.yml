@@ -1,6 +1,6 @@
 matches:
 
-  - triggers: [":pp", ":зз"]
+  - triggers: [":ppp", ":зз"]
     force_clipboard: true
     replace: "{{clipboard}}"
     label: "Paste clipboard content as plain text"
@@ -8,7 +8,7 @@ matches:
       - name: "clipboard"
         type: "clipboard"
 
-  - trigger: ":pl"
+  - triggers: [":ppl", ":ззл"]
     replace: "{{output}}"
     label: "Conver clipboard content to lowercase"
     vars:
@@ -17,9 +17,9 @@ matches:
       - name: output
         type: shell
         params:
-          cmd: "echo $ESPANSO_CLIPBOARD | tr '[:upper:]' '[:lower:]'"
+          cmd: "echo $ESPANSO_CLIPBOARD | awk '{print tolower($0)}'"
 
-  - trigger: ":pu"
+  - triggers: [":ppu", ":ззг"]
     replace: "{{output}}"
     label: "Convert clipboard content to uppercase"
     vars:
@@ -28,4 +28,4 @@ matches:
       - name: output
         type: shell
         params:
-          cmd: "echo $ESPANSO_CLIPBOARD | tr '[:lower:]' '[:upper:]'"
+          cmd: "echo $ESPANSO_CLIPBOARD | awk '{print toupper($0)}'"
