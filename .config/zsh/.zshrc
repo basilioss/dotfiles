@@ -53,6 +53,17 @@ _dotnet_zsh_complete()
 
 compdef _dotnet_zsh_complete dotnet
 
+# Shell-GPT integration ZSH v0.1
+_sgpt_zsh() {
+    _sgpt_prev_cmd=$BUFFER
+    BUFFER+="⌛"
+    zle -I && zle redisplay
+    BUFFER=$(sgpt --shell <<< "$_sgpt_prev_cmd")
+    zle end-of-line
+}
+zle -N _sgpt_zsh
+bindkey ^a _sgpt_zsh
+
 ### Vi mode ###################################################################
 
 # Enable vi mode
@@ -118,13 +129,13 @@ fi
 
 source $plugins_dir/fzf-tab-git/fzf-tab.zsh 2>/dev/null
 source $plugins_dir/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
-# source $plugins_dir/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-source $plugins_dir/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
+source $plugins_dir/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+# source $plugins_dir/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
 source $plugins_dir/zsh-history-substring-search/zsh-history-substring-search.zsh 2>/dev/null
 source /etc/profile.d/undistract-me.sh 2>/dev/null
 
 # Fix comment highlight
-# ZSH_HIGHLIGHT_STYLES[comment]=fg=#414868
+ZSH_HIGHLIGHT_STYLES[comment]=fg=#414868
 
 is_installed() {
   command -v "$1" > /dev/null 
