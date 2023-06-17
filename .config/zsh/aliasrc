@@ -23,7 +23,7 @@ alias \
   free='free -h' \
   curl="curl -sL" \
   wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"' \
-  calendar='cal -m --color=always $(date +%Y) | less -r' \
+  calendar='cal -m --color=always $(date +%Y) | bat --style=changes' \
   webcam='$TERMINAL mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
   nerdicons='emoji-menu -f "$XDG_DATA_HOME/nerd-icons"' \
 
@@ -83,6 +83,8 @@ alias h='history 1 | cut -c 8- | uniq | fzf -0 --tac | xclip -r -sel -c'
 
 # Download music from youtube
 alias ytm-dlp='yt-dlp -x --audio-quality 0 --embed-metadata --embed-thumbnail'
+# Search channel/playlist
+yts_dlp() { yt-dlp --no-warnings --get-filename -o "https://youtu.be/%(id)s: %(title)s" --match-title "$2" "$1" ; }
 
 # Neofetch ascii art
 # alias neofetch='neofetch --ascii "$(tput setaf 4; cat $HOME/.config/neofetch/ascii-arch)"'
@@ -122,7 +124,7 @@ rest() {
 }
 
 # Task manager
-alias t='mdt -d $NOTES_DIR -i $NOTES_DIR/$(date -I).md'
+alias t='mdt -d $NOTES_DIR -i $NOTES_DIR/$(date -I).md --display-titles'
 
 # Task overview
 alias to='(cd $NOTES_DIR \
@@ -135,4 +137,5 @@ alias stc='stc-386-linux --homedir ~/.config/syncthing' \
 alias stcw='watch -t stc-386-linux --homedir ~/.config/syncthing'
 
 # AI
-alias mods="OPENAI_API_KEY=$(pass show openai.com/api-key 2>/dev/null) mods -m gpt-3.5-turbo"
+alias mods="OPENAI_API_KEY=$(pass show openai.com/api-key 2>/dev/null) mods"
+alias sgpt="OPENAI_API_KEY=$(pass show openai.com/api-key 2>/dev/null) sgpt"
