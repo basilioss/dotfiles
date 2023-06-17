@@ -5,15 +5,21 @@
 local M = {}
 
 ---@type Base46HLGroupsList
-M.override = {
-  Normal = {
-    bg = "none",
-  },
-}
+-- M.override = {
+--   Normal = {
+--     bg = "none",
+--   },
+-- }
 
 ---@type HLTable
 M.add = {
   NvimTreeOpenedFolderName = { fg = "green", bold = true },
+  markdownUrl = {
+    fg = "blue",
+  },
+  markdownHeadingDelimiter = {
+    fg = "light_grey"
+  }
 }
 
 return M

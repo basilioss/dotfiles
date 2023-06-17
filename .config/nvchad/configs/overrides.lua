@@ -18,6 +18,11 @@ M.treesitter = {
     --   "python"
     -- },
   },
+  highlight = {
+    enable = true,
+    disable = { "markdown" },
+    additional_vim_regex_highlighting = { "markdown" }
+  },
 }
 
 M.mason = {
