@@ -21,14 +21,16 @@ copy() {
   cp "$from" "$to"
 }
 
-script=$(readlink -f "$0")
-script_path=$(dirname "$script")
+script_path=$(readlink -f "$0")
+script_dir=$(dirname "$script_path")
+cd "$script_dir" || exit
 files=$(find * -type f -not -name "install.sh")
 
 for file in $files; do
+  mkdir -p "/$(dirname "$file")"
   if [ "${file#boot}" != "$file" ]; then
-    copy "$script_path/${file}" "/${file}"
+    copy "$script_dir/$file" "/$file"
   else
-    link "$script_path/${file}" "/${file}"
+    link "$script_dir/$file" "/$file"
   fi
 done
