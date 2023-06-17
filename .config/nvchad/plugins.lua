@@ -39,21 +39,14 @@ local plugins = {
     opts = overrides.blankline,
   },
 
-  -- Install a plugin
-  {
-    "max397574/better-escape.nvim",
-    event = "InsertEnter",
-    config = function()
-      require("better_escape").setup()
-    end,
-  },
-
   {
     "NvChad/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup {
         user_default_options = {
           names = false, -- "Name" codes like Blue or blue
+          AARRGGBB = true, -- 0xAARRGGBB hex codes
+          rgb_fn = true, -- CSS rgb() and rgba() functions
         },
       }
     end,
@@ -66,7 +59,10 @@ local plugins = {
     config = function()
       require("zen-mode").setup {
         window = {
-          width = 90,
+          width = 85,
+        },
+        plugins = {
+          gitsigns = { enabled = true },
         },
       }
     end,
