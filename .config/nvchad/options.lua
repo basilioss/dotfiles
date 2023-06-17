@@ -15,5 +15,6 @@ opt.scrolloff = 999
 -- Soft wrap
 -- opt.linebreak = true
 
--- Maximum width of text
-opt.textwidth = 70
+-- Left-align wrapped/indented lines 
+-- Set same amount of space as the beginning of the line
+opt.breakindent = true
