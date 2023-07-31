@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#
+# Removes the note and optionally destroys markdown links to the note.
+# Depends on ripgrep.
+# Related: https://github.com/mickael-menu/zk/discussions/188
+# https://github.com/basilioss/dotfiles
+
+cd "$ZK_NOTEBOOK_DIR" || exit
+file="$(zk list --interactive --quiet --format "{{filename}}" | head -1)"
+filepath="$(find "$ZK_NOTEBOOK_DIR" -name "$file")"
+
+[ -z "$file" ] && exit
+rg "$file" && printf "\n%s" "Destroy these links and remove $file? [y/N]: " && read -r
+
+if [[ "$REPLY" =~ ^[Yy]$ ]] ; then 
+  for i in $(rg --files-with-matches "$file"); do
+    sed -i "s/\[\(.*\)\](.*$file)/\1/g" "$i"
+  done
+  rm -v "$filepath"
+else 
+  rm -v -i "$filepath"
+fi 

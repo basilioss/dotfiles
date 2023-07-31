@@ -1,0 +1,197 @@
+# Defines the default options used when generating new notes.
+[note]
+
+# This is used to generate slugs or with date formats.
+language = "en"
+
+# The default title used for new note, if no `--title` flag is provided.
+default-title = "Untitled"
+
+# Template used to generate a note's filename, without extension.
+# filename = "{{slug title}}"
+filename = "pages/{{format-date now 'timestamp'}}"
+
+# The file extension used for the notes.
+extension = "md"
+
+# Template used to generate a note's content.
+# If not an absolute path, it is relative to .zk/templates/
+template = "default.md"
+
+# Path globs ignored while indexing existing notes.
+ignore = [
+    ".git/*",
+    ".obsidian/*",
+    ".obsidian-mobile/*",
+    ".stfolder/*",
+    ".trash/*",
+    "draws/scripts/Downloaded/*",
+    "scripts/*",
+    "templates/*",
+    "assets/*",
+    "pages/index.md"
+]
+
+# Configure random ID generation.
+
+# The charset used for random IDs. You can use:
+#   * letters: only letters from a to z.
+#   * numbers: 0 to 9
+#   * alphanum: letters + numbers
+#   * hex: hexadecimal, from a to f and 0 to 9
+#   * custom string: will use any character from the provided value
+#id-charset = "alphanum"
+
+# Length of the generated IDs.
+#id-length = 4
+
+# Letter case for the random IDs, among lower, upper or mixed.
+#id-case = "lower"
+
+
+# A dictionary of variables you can use for any custom values when generating
+# new notes. They are accessible in templates with {{extra.<key>}}
+[extra]
+
+#key = "value"
+
+# GROUP OVERRIDES
+#
+# You can override global settings from [note] and [extra] for a particular
+# group of notes by declaring a [group."<name>"] section.
+#
+# Specify the list of directories which will automatically belong to the group
+# with the optional `paths` property.
+#
+# Omitting `paths` is equivalent to providing a single path equal to the name of
+# the group. This can be useful to quickly declare a group by the name of the
+# directory it applies to.
+
+[group.daily.note]
+template = "daily.md"
+filename = "{{title}}"
+
+[group.monthly.note]
+template = "monthly.md"
+filename = "{{title}}"
+
+
+# MARKDOWN SETTINGS
+[format.markdown]
+
+# Format used to generate links between notes (wiki, markdown or a custom template).
+link-format = "markdown"
+# Indicates whether a link's path will be percent-encoded.
+link-encode-path = true
+# Indicates whether a link's path file extension will be removed.
+link-drop-extension = false
+
+# Enable support for #hashtags.
+hashtags = true
+# Enable support for :colon:separated:tags:.
+colon-tags = false
+# Enable support for Bear's #multi-word tags#
+multiword-tags = false
+
+
+# EXTERNAL TOOLS
+[tool]
+
+# Default editor (open without line numbers)
+editor = 'nvim -c "set nonumber" -c "ZenMode"'
+
+# Pager used to scroll through long output. To disable, set it to an empty string "".
+pager = "less -FIRX"
+
+# Command used to preview a note during interactive fzf mode.
+# Set it to an empty string "" to disable preview.
+# bat is a great tool to render Markdown document with syntax highlighting.
+#https://github.com/sharkdp/bat
+fzf-preview = ""
+# fzf-preview = "bat -p --color always {-1}"
+
+# The template to customize the format of each fzf line
+# Search in filenames, tags and metadata
+# fzf-line = "{{style 'blue' title}}{{style 'black black-bg' (json tags)}}{{style 'black black-bg' (json metadata)}}{{style 'black black-bg' checksum}}"
+fzf-line = "{{style 'blue' title}}{{style 'black black-bg' '                                                                                                                                         '}}{{json metadata}}"
+
+# Override the default fzf options used by zk
+#fzf-options = "--exact"
+
+# See https://github.com/mickael-menu/zk/blob/main/docs/editors-integration.md
+[lsp]
+
+[lsp.diagnostics]
+# Each diagnostic can have for value: none, hint, info, warning, error
+
+# Report titles of wiki-links as hints.
+# wiki-title = "hint"
+
+# Warn for dead links between notes.
+dead-link = "warning"
+
+[lsp.completion]
+# Customize the completion pop-up of your LSP client.
+
+# Show the note title in the completion pop-up, or fallback on its path if empty.
+note-label = "{{title-or-path}}"
+
+# Filter out the completion pop-up using the note title or its path.
+# note-filter-text = "{{title}} {{path}} {{metadata}}"
+
+# Show the note filename without extension as detail.
+note-detail = ""
+
+# NAMED FILTERS
+# A named filter is a set of note filtering options used frequently together.
+[filter]
+
+# Matches the notes created in the last week (e.g. zk list recents)
+# recents = "--sort modified --modified-after 'last week'"
+
+
+# COMMAND ALIASES
+#
+#   Aliases are user commands called with `zk <alias> [<flags>] [<args>]`.
+#
+#   The alias will be executed with `$SHELL -c`, please refer to your shell's
+#   man page to see the available syntax.
+[alias]
+
+# Shortcut for list
+l= 'zk list --quiet $@'
+
+# Create new note
+n = '$XDG_CONFIG_HOME/zk/scripts/templater $@'
+
+# Edit or create interactivelly
+e = "zk edit --sort modified --interactive"
+
+# Edit the last modified note.
+el = "zk edit --limit 1 --sort modified $@"
+
+# Edit journal note
+ej = 'zk n $(date -I).md'
+
+# Edit notes
+ei = 'zk edit "pages/inbox.md"'
+et = 'zk edit "pages/todo.md"'
+etl = 'zk edit "pages/202306032200.md"'
+
+# Browse the Git history of selected notes
+log = "zk list --quiet --format path --delimiter0 $@ | xargs -0 git log --patch --"
+
+# Clean up unused attachments/assets with ripgreg and trash-cli
+clean = 'for a in assets/*; do rg --files-with-matches "$a" &> /dev/null || trash-put -i "$a"; done'
+
+# Check todo notes
+inbox = 'zk edit --interactive --match-strategy=re --match "status: (todo|doing)"'
+todo = 'zk inbox'
+
+# Remove and optionally destroy links to the note
+rm = '$XDG_CONFIG_HOME/zk/scripts/rm'
+
+# Select a note and copy the text inside code block
+snippet = "cat ./$(zk list --interactive --quiet -f path -m '# Snippet ' -M exact) | sed -n '/```/,/```/p' | grep -v '^```' | xclip -sel clip"
+
+glow = "glow $(zk list --quiet --format path --interactive)"

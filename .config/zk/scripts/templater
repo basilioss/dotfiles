@@ -1,0 +1,212 @@
+#!/bin/sh
+#
+# Automates manual tasks such as filling notes with metadata and initial content.
+# Depends on pup for parsing metadata from websites.
+# https://github.com/basilioss/dotfiles
+
+templates_dir="$XDG_CONFIG_HOME/zk/templates"
+
+# HELPER FUNCTIONS
+
+download_source() {
+  source="$(mktemp)"
+  curl -H "User-Agent: Mozilla" \
+    -H "Accept-Language: en-US, en" \
+    -s "$clipboard" > "$source"
+}
+
+parse() {
+  pup --plain --charset utf8 "$*" --file "$source" | head -1
+}
+
+parse_all() {
+  # pup --plain --charset utf8 "$*" --file "$source" | sed ':a;N;$!ba;s/\n/, /g'
+  pup --plain --charset utf8 "$*" --file "$source" |
+    sed '{:q;N;s/\n/, /g;t q}' # Separate by comma instead of newline
+}
+
+parse_json() {
+  pup 'script[type="application/ld+json"] text{}' --file "$source" | jq -r "$*"
+}
+
+escape_commas() {
+  printf "%s" "$1" |
+    sed 's/^/\\"/' |
+    sed 's/, /\\"\\, \\"/g' |
+    sed 's/$/\\"/'
+}
+
+unescape_html_entities() {
+  printf "%s" "$1" |
+    sed "s/&apos;/'/g" |
+    sed "s/&#39;/'/g" |
+    sed "s/&quot;/\"/g" |
+    sed "s/&amp;/\&/g"
+}
+
+# TEMPLATES
+
+# Create daily note and rollover incomplete tasks from previous day.
+daily_template() {
+  cd "$NOTES_DIR" || exit
+  current_day="${1%%.md}"
+  current_weekday="$(date -d "$current_day" "+%A")"
+  current_month="$(date -d "$current_day" +%Y-%m)"
+  previous_day="$(date -d "$current_day - 86400 seconds" +%Y-%m-%d)"
+  next_day="$(date -d "$current_day + 86400 seconds" +%Y-%m-%d)"
+  title="$current_day ($current_weekday)"
+  checkboxes_to_rollover=" >/"
+  max_skipped_days=3
+
+  # Find previous daily note
+  i=0
+  while [ $i -le "$max_skipped_days" ]; do
+    last_daily_note="$previous_day.md"
+    [ -f "$last_daily_note" ] && break
+    previous_day="$(date -d "$previous_day - 86400 seconds" +%Y-%m-%d)"
+    i=$((i + 1))
+  done
+
+  if [ ! -f "$last_daily_note" ]; then
+    notify-send "Couldn't find a note to rollover todos from within the past $max_skipped_days days!"
+    previous_day="$(date -d "$current_day - 86400 seconds" +%Y-%m-%d)"
+  else
+    previous_tasks="$(grep -E "\- \[[$checkboxes_to_rollover]\] " \
+      "$NOTES_DIR/$last_daily_note" |
+      sed -E "s/\- \[[$checkboxes_to_rollover]]/\- \[ ]/g")"
+  fi
+
+  printf "%s" "$previous_tasks" | zk new --interactive \
+    --group daily \
+    --extra=title="$title" \
+    --extra=previous="$previous_day" \
+    --extra=next="$next_day" \
+    --extra=month="$current_month" \
+    --title "$current_day"
+}
+
+# Create monthly note and rollover incomplete tasks from previous month.
+monthly_template() {
+  cd "$NOTES_DIR" || exit
+  current_month="${1%%.md}"
+  current_year="${1%%-*}"
+  previous_month="$(date -d "$current_month-01 - 1 month" +%Y-%m)"
+  next_month="$(date -d "$current_month-01 + 1 month" +%Y-%m)"
+  checkboxes_to_rollover=" >/"
+
+  previous_tasks="$(grep -E "\- \[[$checkboxes_to_rollover]\] " \
+    "$NOTES_DIR/$previous_month.md" |
+    sed -E "s/\- \[[$checkboxes_to_rollover]]/\- \[ ]/g")"
+
+  printf "%s" "$previous_tasks" | zk new --interactive \
+    --group=monthly \
+    --extra=previous="$previous_month" \
+    --extra=next="$next_month" \
+    --extra=year="$current_year" \
+    --title "$current_month"
+}
+
+youtube_template() {
+  url="$(parse 'link[rel="shortlinkUrl"] attr{href}')"
+  id="$(parse 'meta[itemprop="identifier"] attr{content}')"
+  channel="$(parse 'link[itemprop="name"] attr{content}')"
+  title="$(parse 'meta[property="og:title"] attr{content}' |
+    sed 's/"//g')"
+  # description="$(parse 'meta[itemprop="description"] attr{content}')"
+  # keywords="$(parse 'meta[name="keywords"] attr{content}')"
+  # duration="$(parse 'meta[itemprop="duration"] attr{content}')"
+  # publish_date="$(parse 'meta[itemprop="uploadDate"] attr{content}')"
+
+  zk new --template=youtube.md \
+    --title "Video - $channel - $title" \
+    --extra=thumbnail="https://img.youtube.com/vi/$id/maxresdefault.jpg" \
+    --extra=url="$url"
+}
+
+# May not work on the first try. Delete the note and try again.
+goodreads_template() {
+  title="$(parse '.BookPageTitleSection .Text__title1 text{}')"
+  # authors="$(parse_json '.author | values | map(.name) | join(", ")')"
+  author="$(parse_json '.author[0].name')"
+  thumbnail="$(parse_json '.image' | sed 's/\?.*$//g')" # Remove unnecessary part
+  description="$(parse '.BookPageMetadataSection__description .Formatted text{}')"
+  publish_date="$(parse 'p[data-testid="publicationInfo"] text{}' | awk '{print $NF}')"
+  genres="$(parse_all '.BookPageMetadataSection__genreButton .Button__labelItem text{}')"
+  rating="$(parse_json '.aggregateRating.ratingValue')"
+  # isbn="$(parse_json '.isbn')"
+  # pages="$(parse_json '.numberOfPages')"
+
+  printf "%s" "$description" | zk new --interactive \
+    --template=book.md \
+    --title "Book - $author - $title" \
+    --extra=thumbnail="$thumbnail" \
+    --extra=publish_date="$publish_date" \
+    --extra=genres="$(escape_commas "$genres")" \
+    --extra=rating="$rating"
+}
+
+imdb_template() {
+  title="$(unescape_html_entities "$(parse_json '.alternateName | values')")"
+  [ -z "$title" ] && title="$(unescape_html_entities "$(parse_json '.name')")"
+
+  publish_date="$(parse_json '.datePublished | values' | cut -c 1-4)"
+  [ -z "$publish_date" ] && publish_date=$(parse 'a[href*="releaseinfo"] text{}')
+
+  type="$(parse_json '.["@type"]' | sed 's/TV//')"
+  thumbnail="$(parse_json '.image | values')"
+  description="$(parse 'span[data-testid="plot-xl"] text{}')"
+  imdb_rating="$(parse_json '.aggregateRating.ratingValue | values')"
+  genres="$(parse_json '.genre | values | join(", ")')"
+  countries="$(parse_all 'a[href*="country_of_origin"] text{}')"
+  actors="$(parse_json '.actor | values | map(.name) | join(", ")')"
+  # url="$(parse_json '.url')"
+  # duration="$(parse_json '.duration | values')"
+  # content_rating="$(parse_json '.contentRating | values')"
+  # keywords="$(parse_json '.keywords' | sed 's/,/, /g')"
+
+  # sed is used instead of jq with map and join to avoid empty values
+  if [ "$type" = "Movie" ]; then
+    directors=$(parse_json '.director' |
+      jq -r '.[].name | values' |
+      sed -z 's/\n/, /g' | sed 's/, $//')
+  else
+    directors=$(parse_json '.creator' |
+      jq -r '.[].name | values' |
+      sed -z 's/\n/, /g' | sed 's/, $//')
+  fi
+
+  unescape_html_entities "$description" | zk new --interactive \
+    --template=movie.md \
+    --title "$type - $publish_date - $title" \
+    --extra=thumbnail="$thumbnail" \
+    --extra=imdb_rating="$imdb_rating" \
+    --extra=genres="$(escape_commas "$genres")" \
+    --extra=countries="$(escape_commas "$countries")" \
+    --extra=actors="$(escape_commas "$actors")" \
+    --extra=directors="$(escape_commas "$directors")"
+}
+
+################################################################################
+
+main() {
+  # If there are arquments, use them as title of the note
+  if printf "%s" "$1" | grep -Eq "^[0-9]{4}-[0-9]{2}-[0-9]{2}"; then
+    daily_template "$@"
+  elif printf "%s" "$1" | grep -Eq "^[0-9]{4}-[0-9]{2}"; then
+    monthly_template "$@"
+  elif [ $# -gt 0 ]; then
+    selected_template="$(find "$templates_dir" -name '*.md' -printf "%f\n" | fzf)"
+    [ -n "$selected_template" ] && zk new --template="$selected_template" --title "$*"
+  else
+    clipboard="$(xclip -o -selection clipboard 2> /dev/null)"
+
+    case "$clipboard" in
+      *youtube.com* | *y.com.sb*) download_source && youtube_template ;;
+      *goodreads.com*) download_source && goodreads_template ;;
+      *imdb.com*) download_source && imdb_template ;;
+      *) printf "%s\n" "No template found for copied url and no title provided." ;;
+    esac
+  fi
+}
+
+main "$@"
