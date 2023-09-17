@@ -77,3 +77,10 @@ XF86Audio{Next,Prev,Stop,Play}
     dunstify -r 2593 "$(playerctl metadata title)" \
     "$(playerctl metadata artist)" \
     -i "$(playerctl metadata mpris:artUrl)"
+
+# Window management
+super + c
+    center-resize-window
+
+super + shift + c
+    center-resize-window 50 50

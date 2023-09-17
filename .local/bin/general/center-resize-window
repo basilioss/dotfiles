@@ -1,0 +1,22 @@
+#!/bin/sh
+
+BAR_HEIGHT=30
+SCREEN_WIDTH=$(xdpyinfo | awk '/dimensions/{print $2}' | cut -d 'x' -f1)
+SCREEN_HEIGHT=$(xdpyinfo | awk '/dimensions/{print $2}' | cut -d 'x' -f2)
+WINDOW=$(xdotool getactivewindow)
+
+# Pass two arguments to set custom width/hight. By default 80x80.
+xdotool windowsize "$WINDOW" "${1:-80}%" "${2:-80}%"
+
+# Get current window WIDTH and HEIGHT
+eval "$(xdotool getwindowgeometry --shell "$WINDOW")"
+
+X_POS=$(((SCREEN_WIDTH - WIDTH) / 2))
+
+if [ -z "$BAR_HEIGHT" ]; then
+  Y_POS=$(((SCREEN_HEIGHT - HEIGHT) / 2))
+else
+  Y_POS=$(((SCREEN_HEIGHT - (HEIGHT - BAR_HEIGHT)) / 2))
+fi
+
+xdotool windowmove "$WINDOW" $X_POS $Y_POS
