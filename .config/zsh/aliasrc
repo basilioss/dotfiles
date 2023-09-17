@@ -1,4 +1,5 @@
 #!/bin/sh
+# shellcheck disable=SC2139
 
 # Prefix sudo automatically
 for command in mount umount updatedb timeshift powertop; do
@@ -18,14 +19,16 @@ alias \
   v='$EDITOR' \
   s='nsxiv-rifle' \
   f='fuck' \
+  m='mpv --shuffle --no-osc --term-osd-bar --save-position-on-quit --geometry=50%x50%' \
   help='halp --no-version' \
   bc='bc -ql' \
   free='free -h' \
   curl="curl -sL" \
   wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"' \
   calendar='cal -m --color=always $(date +%Y) | bat --style=changes' \
-  webcam='$TERMINAL mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
+  webcam='$TERMINAL -e mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
   nerdicons='emoji-menu -f "$XDG_DATA_HOME/nerd-icons"' \
+  battery='cbatticon & sleep 0.78 ; kill $!'
 
 # Colorize commands
 alias \
@@ -67,6 +70,9 @@ alias \
 
 z() { __zoxide_z "$@" && ld ; }
 zi() { __zoxide_zi "$@" && ld ; }
+
+# List all installed packages by size
+alias pkgs-size="pacman -Qi | grep -E '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nrk 2 | grep MiB"
 
 # Only Office
 office() { onlyoffice-desktopeditors --view="$(readlink -f "$*")" ; }
@@ -124,7 +130,7 @@ rest() {
 }
 
 # Task manager
-alias t='mdt -d $NOTES_DIR -i $NOTES_DIR/$(date -I).md --display-titles'
+alias t='mdt -d $NOTES_DIR -i $NOTES_DIR/$(date -I).md --display-titles --todo-filename="$(date +%Y%m%d%H%M)"'
 
 # Task overview
 alias to='(cd $NOTES_DIR \

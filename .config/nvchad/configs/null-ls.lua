@@ -19,8 +19,10 @@ local sources = {
   b.formatting.shfmt.with { extra_args = { "-i", "2", "-ci", "-sr" } },
   b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
 
-  -- cpp
-  b.formatting.clang_format,
+  -- Go
+  b.formatting.gofumpt,
+  b.formatting.goimports,
+  b.formatting.golines,
 }
 
 null_ls.setup {

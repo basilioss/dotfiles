@@ -10,7 +10,7 @@
     p = push
     pl = pull
     d = diff
-    b = branch -a
+    b = branch
     co = checkout
     co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
     save = !git add -A && git commit -m
@@ -29,7 +29,10 @@
 [core]
     # Configure Git to ensure line endings in files you checkout are correct for Linux
     autocrlf = input
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [color]
     ui = 1
 [init]
     defaultBranch = main
+[interactive]
+	diffFilter = diff-so-fancy --patch

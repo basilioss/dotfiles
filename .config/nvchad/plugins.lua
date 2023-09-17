@@ -74,13 +74,10 @@ local plugins = {
     cmd = "UndotreeToggle"
   },
 
-  -- quickly move around in visible area (better easymotion)
+  -- quickly move around in visible area
   {
-    "ggandor/leap.nvim",
-    keys = { "s", "S" },
-    config = function()
-      require('leap').set_default_keymaps()
-    end,
+    "easymotion/vim-easymotion",
+    keys = { "<leader><leader>f", "<leader><leader>F", "<leader><leader>j", "<leader><leader>k"},
   },
 
   -- add a 'cut' operation separate from 'delete' 

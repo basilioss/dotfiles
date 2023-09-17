@@ -2,26 +2,28 @@ local M = {}
 
 M.treesitter = {
   ensure_installed = {
+    -- defaults
     "vim",
     "lua",
+
+    -- web dev
     "html",
     "css",
     "javascript",
-    "c",
-    "c_sharp"
-    -- "markdown",
-    -- "markdown_inline",
+    "typescript",
+    "tsx",
+    "json",
+    "markdown_inline",
+
+    -- other
+    "go",
   },
   indent = {
     enable = true,
-    -- disable = {
-    --   "python"
-    -- },
   },
   highlight = {
     enable = true,
-    disable = { "markdown" },
-    additional_vim_regex_highlighting = { "markdown" }
+    additional_vim_regex_highlighting = { "markdown" },
   },
 }
 
@@ -42,10 +44,11 @@ M.mason = {
     "shfmt",
     "shellcheck",
 
-    -- c#
-    "netcoredbg",
-    "omnisharp",
-    "tailwindcss-language-server",
+    -- Go
+    "gopls",
+    "gofumpt",
+    "goimports",
+    "golines",
   },
 }
 
@@ -80,7 +83,7 @@ M.blankline = {
     "",
   },
   max_indent_increase = 1,
-  show_first_indent_level = true
+  show_first_indent_level = true,
 }
 
 return M

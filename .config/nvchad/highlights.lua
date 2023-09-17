@@ -11,15 +11,27 @@ local M = {}
 --   },
 -- }
 
+local markdownHeader = {
+  fg = "white",
+  bold = true
+}
+
 ---@type HLTable
 M.add = {
   NvimTreeOpenedFolderName = { fg = "green", bold = true },
-  markdownUrl = {
-    fg = "blue",
-  },
-  markdownHeadingDelimiter = {
-    fg = "light_grey"
-  }
+  markdownCodeDelimiter = { fg = "purple" },
+  markdownUrlDelimiter = { fg = "light_grey" },
+  markdownUrl = { fg = "blue" },
+  markdownLinkText = { fg = "blue", underline = false },
+  markdownHeadingDelimiter = { fg = "light_grey" },
+  markdownListMarker = { fg = "light_grey" },
+  markdownOrderedListMarker = { fg = "light_grey" },
+  markdownH1 = markdownHeader,
+  markdownH2 = markdownHeader,
+  markdownH3 = markdownHeader,
+  markdownH4 = markdownHeader,
+  markdownH5 = markdownHeader,
+  markdownH6 = markdownHeader,
 }
 
 return M

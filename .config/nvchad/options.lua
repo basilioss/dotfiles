@@ -13,7 +13,7 @@ opt.foldlevel = 99
 opt.scrolloff = 999
 
 -- Soft wrap
--- opt.linebreak = true
+opt.linebreak = true
 
 -- Left-align wrapped/indented lines 
 -- Set same amount of space as the beginning of the line

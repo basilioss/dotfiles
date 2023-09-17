@@ -5,14 +5,15 @@ export XDG_BIN_HOME="$HOME/.local/bin"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_LIB_HOME="${HOME}/.local/lib"
+export GTK_THEME=tokyonight
 
 # Recursively add $XDG_BIN_HOME to $PATH
 export PATH="$PATH:${$(find $XDG_BIN_HOME -type d -printf %p:)%%:}"
-export PATH="$PATH:$HOME/.dotnet/tools"
+export PATH="$PATH:$HOME/.dotnet/tools:$GOPATH/bin"
 
 if command -v systemctl > /dev/null; then
   systemctl --user import-environment XDG_CONFIG_HOME XDG_DATA_HOME \
-    XDG_BIN_HOME XDG_CACHE_HOME XDG_STATE_HOME XDG_LIB_HOME PATH
+    XDG_BIN_HOME XDG_CACHE_HOME XDG_STATE_HOME XDG_LIB_HOME PATH GTK_THEME
 fi
 
 # Apps
@@ -34,16 +35,18 @@ export STARDICT_DATA_DIR="$HOME/main/lib/other/dictionaries"
 
 # Environment
 export LS_COLORS="$(dircolors)"
+export COLORTERM=truecolor
 export MDT_EDITOR='nvim -c "set nonumber"'
 export MDT_ITEM_WIDTH=0
-export BAT_THEME="base16" export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export BAT_THEME="base16"
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export FZF_DEFAULT_OPTS="-m --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all --color='bg+:#24283b,pointer:1,border:8,separator:8'"
+export QT_QPA_PLATFORMTHEME=gtk3
 
-# Use GTK3 theme for Qt apps
-# export GTK2_RC_FILES="$XDG_DATA_HOME/themes/tokyonight/gtk-2.0/gtkrc"
-# export QT_QPA_PLATFORMTHEME=gtk3
-export GTK_THEME=tokyonight
+# pfetch
+export PF_INFO="ascii title host kernel pkgs shell wm memory"
+export HOSTNAME="$(cat /etc/hostname)"
 
 # $HOME Cleanup (https://github.com/b3nj5m1n/xdg-ninja)
 export HISTFILE="${XDG_STATE_HOME}"/bash/history

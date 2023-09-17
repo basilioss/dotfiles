@@ -13,6 +13,7 @@ M.ui = {
 
   -- Add column number
   statusline = {
+    separator_style = "round",
     overriden_modules = function ()
       local st_modules = require "nvchad_ui.statusline.default"
       return {

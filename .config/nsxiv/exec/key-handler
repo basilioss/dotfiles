@@ -28,7 +28,7 @@ while read -r file; do
       notify-send "Key handler" "$(print_help)"
       ;;
     "w")
-      feh --no-fehgb --bg-fill "$file" ;;
+      feh --no-fehbg --bg-fill "$file" ;;
     "r")
       convert -rotate 90 "$file" "$file" ;;
     "R")
@@ -50,6 +50,7 @@ while read -r file; do
     "d")
       choice="$(printf "No\\nYes" | dmenu -i -p "Really delete $filename?")"
       [ "$choice" = "Yes" ] && trash-put "$file" && notify-send "$filename deleted."
+      # trash-put "$file" && notify-send "$filename deleted."
       ;;
     "e") setsid -f gimp "$file" ;;
     "s")
