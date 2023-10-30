@@ -28,9 +28,9 @@ files=$(find * -type f -not -name "install.sh")
 
 for file in $files; do
   mkdir -p "/$(dirname "$file")"
-  if [ "${file#boot}" != "$file" ]; then
-    copy "$script_dir/$file" "/$file"
-  else
-    link "$script_dir/$file" "/$file"
-  fi
+
+  case "$file" in
+    boot*) copy "$script_dir/$file" "/$file" ;;
+    *) link "$script_dir/$file" "/$file" ;;
+  esac
 done
