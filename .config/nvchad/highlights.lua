@@ -4,19 +4,17 @@
 
 local M = {}
 
----@type Base46HLGroupsList
--- M.override = {
---   Normal = {
---     bg = "none",
---   },
--- }
+M.override = {
+  Normal = {
+    bg = "none",
+  },
+}
 
 local markdownHeader = {
   fg = "white",
   bold = true
 }
 
----@type HLTable
 M.add = {
   NvimTreeOpenedFolderName = { fg = "green", bold = true },
   markdownCodeDelimiter = { fg = "purple" },
