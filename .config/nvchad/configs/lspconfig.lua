@@ -23,3 +23,6 @@ lspconfig.gopls.setup({
     },
   },
 })
+
+-- Disable inline error display of the LSP
+vim.diagnostic.config({ virtual_text = false })
