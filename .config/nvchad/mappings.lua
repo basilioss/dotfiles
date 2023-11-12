@@ -8,7 +8,7 @@ M.general = {
     ["ZS"] = { "<cmd>wqall<CR>", "Save and close all" },
     ["ZX"] = { "<cmd>qall!<CR>", "Close all" },
     [";"] = { ":", "command mode", opts = { nowait = true } },
-    ["<leader>s"] = { "<cmd> setlocal spell! spelllang=en_us,ru,uk<CR>", "toggle spelling" },
+    ["<leader>s"] = { "<cmd> setlocal spell! spelllang=en_us<CR>", "toggle spelling" },
     ["Y"] = { "y$", "yank without newline"},
     ["<leader>w"] = { "<cmd>%s/\\s\\+$//e<CR>", "remove trailing whitespace" },
     -- ["<leader><Tab>"] = { '<cmd><Esc>/<++><Enter>"_c4l', "jump to <++>" },
