@@ -92,10 +92,6 @@ alias ytm-dlp='yt-dlp -x --audio-quality 0 --embed-metadata --embed-thumbnail'
 # Search channel/playlist
 yts_dlp() { yt-dlp --no-warnings --get-filename -o "https://youtu.be/%(id)s: %(title)s" --match-title "$2" "$1" ; }
 
-# Neofetch ascii art
-# alias neofetch='neofetch --ascii "$(tput setaf 4; cat $HOME/.config/neofetch/ascii-arch)"'
-alias neofetch='neofetch --ascii "$(tput setaf 4; cat $HOME/.config/neofetch/ascii-arch-smaller)"'
-
 # Empty cache (mostly useful for benchmarking)
 # https://unix.stackexchange.com/questions/87908/how-do-you-empty-the-buffers-and-cache-on-a-linux-system
 alias dropcache='free && sync && sudo sh -c "echo 3 > /proc/sys/vm/drop_caches" && free'
