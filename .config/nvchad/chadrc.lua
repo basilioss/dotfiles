@@ -15,7 +15,7 @@ M.ui = {
   statusline = {
     separator_style = "round",
     overriden_modules = function(modules)
-      table.insert(modules, "%l:%c")
+      table.insert(modules, "%lL %cC ")
     end,
   },
 }
