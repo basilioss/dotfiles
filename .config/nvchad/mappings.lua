@@ -1,8 +1,6 @@
 ---@type MappingsTable
 local M = {}
 
-require "custom.mappings-cyrillic"
-
 M.general = {
   n = {
     ["ZS"] = { "<cmd>wqall<CR>", "Save and close all" },

@@ -52,6 +52,16 @@ local plugins = {
     end,
   },
 
+  -- Non-English input methods support
+  {
+    "Wansmer/langmapper.nvim",
+    lazy = false,
+    priority = 1, -- High priority is needed if you will use `autoremap()`
+    config = function()
+      require('langmapper').setup({--[[ your config ]]})
+    end,
+  },
+
   -- distraction free modes
   {
     "folke/zen-mode.nvim",
