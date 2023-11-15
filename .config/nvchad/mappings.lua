@@ -4,18 +4,15 @@ local M = {}
 M.general = {
   n = {
     ["ZS"] = { "<cmd>wqall<CR>", "Save and close all" },
-    ["ZX"] = { "<cmd>qall!<CR>", "Close all" },
-    [";"] = { ":", "command mode", opts = { nowait = true } },
-    ["<leader>s"] = { "<cmd> setlocal spell! spelllang=en_us<CR>", "toggle spelling" },
     ["Y"] = { "y$", "yank without newline"},
+    ["U"] = { "<C-r>", "undo" },
+    ["<leader>s"] = { "<cmd> setlocal spell! spelllang=en_us<CR>", "toggle spelling" },
     ["<leader>w"] = { "<cmd>%s/\\s\\+$//e<CR>", "remove trailing whitespace" },
     -- ["<leader><Tab>"] = { '<cmd><Esc>/<++><Enter>"_c4l', "jump to <++>" },
-    ["U"] = { "<C-r>", "undo" },
     ["<C-k>"] = { "O<Esc>", "insert empty line before" },
     ["<C-j>"] = { "o<Esc>", "insert empty line after" },
     ["<C-l>"] = { "a<space><Esc>", "insert blank space before" },
     ["<C-h>"] = { "i<space><Esc>", "insert blank space after" },
-    -- ["<C-/>"] = { "set formatoptions-=c formatoptions-=r formatoptions-=o" },
   },
 
   i = {
@@ -26,12 +23,6 @@ M.general = {
 M.telescope = {
   n = {
     ["<leader>fs"] = { "<cmd> Telescope spell_suggest<CR>", "spelling suggestions" },
-  }
-}
-
-M.undotree = {
-  n = {
-    ["<F5>"] = { "<cmd>UndotreeToggle<CR>", "toggle undotree" }
   }
 }
 
