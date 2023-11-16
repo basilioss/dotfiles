@@ -52,7 +52,9 @@ local plugins = {
     end,
   },
 
-  -- Non-English input methods support
+  --------------------------------------------- custom plugins ----------------------------------------------
+
+  -- non-English input methods support
   {
     "Wansmer/langmapper.nvim",
     lazy = false,
@@ -67,17 +69,7 @@ local plugins = {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
     config = function()
-      require("zen-mode").setup {
-        window = {
-          width = 85,
-        },
-        plugins = {
-          options = {
-            laststatus = 0,
-          },
-          gitsigns = { enabled = true },
-        },
-      }
+      require "custom.configs.zen-mode"
     end,
   },
 
