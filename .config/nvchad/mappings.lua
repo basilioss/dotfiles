@@ -8,7 +8,6 @@ M.general = {
     ["U"] = { "<C-r>", "undo" },
     ["<leader>s"] = { "<cmd> setlocal spell! spelllang=en_us<CR>", "toggle spelling" },
     ["<leader>w"] = { "<cmd>%s/\\s\\+$//e<CR>", "remove trailing whitespace" },
-    -- ["<leader><Tab>"] = { '<cmd><Esc>/<++><Enter>"_c4l', "jump to <++>" },
     ["<C-k>"] = { "O<Esc>", "insert empty line before" },
     ["<C-j>"] = { "o<Esc>", "insert empty line after" },
     ["<C-l>"] = { "a<space><Esc>", "insert blank space before" },

@@ -1,6 +1,8 @@
 local overrides = require("custom.configs.overrides")
 
-local plugins = {
+return {
+
+  ----------------------------------------- default plugins -----------------------------------------
 
   {
     "neovim/nvim-lspconfig",
@@ -85,17 +87,6 @@ local plugins = {
     keys = { "<leader><leader>f", "<leader><leader>F", "<leader><leader>j", "<leader><leader>k"},
   },
 
-  -- add a 'cut' operation separate from 'delete' 
-  {
-    "gbprod/cutlass.nvim",
-    event = "BufEnter",
-    config = function()
-      require("cutlass").setup({
-        cut_key = "x",
-      })
-    end
-  },
-
   {
     "github/copilot.vim",
     event = "InsertEnter",
@@ -110,33 +101,11 @@ local plugins = {
     end
   },
 
-  -- MarkdownPreview
-  -- {
-  --   'toppair/peek.nvim',
-  --   build = 'deno task --quiet build:fast',
-  --   ft = {'markdown'},
-  --   config = function()
-  --     require('peek').setup({
-  --       app = 'firefox',
-  --       filetype = { 'markdown' },
-  --       })
-  --   end,
-  --   init = function()
-  --     vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
-  --     vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
-  --   end,
-  -- },
-
   {
     "iamcco/markdown-preview.nvim",
-    -- enabled = false,
     ft = { "markdown" },
     build = "cd app && npm install",
-    cmd = {
-      "MarkdownPreview",
-      "MarkdownPreviewStop",
-      "MarkdownPreviewToggle",
-    },
+    cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
       vim.g.mkdp_theme = 'dark'
@@ -160,5 +129,3 @@ local plugins = {
     end
   },
 }
-
-return plugins
