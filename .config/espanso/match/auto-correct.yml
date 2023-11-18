@@ -1,6 +1,4 @@
 description: "Replace commonly misspelled english words. Additional packages: misspell-en, misspell-en-us and contractions-en"
-name: "auto-correct.yml"
-homepage: "https://github.com/basilioss/dotfiles"
 
 matches:
 

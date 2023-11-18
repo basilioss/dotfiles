@@ -1,25 +1,22 @@
-description: "Global variables and different matches"
-name: "base.yml"
-homepage: "https://github.com/basilioss/dotfiles"
-
-global_vars:
-
-  - name: date
-    type: date
-    params:
-      format: "%Y-%m-%d"
-  - name: time
-    type: date
-    params:
-      format: "%H:%M"
-
 matches:
+
+  # General
 
   - triggers: [":date", ":Date"]
     replace: "{{date}}"
+    vars:
+      - name: date
+        type: date
+        params:
+          format: "%Y-%m-%d"
 
   - triggers: [":time", ":Time"]
     replace: "{{time}}"
+    vars:
+      - name: time
+        type: date
+        params:
+          format: "%H:%M"
 
   - triggers: [":stamp", ":Stamp"]
     replace: "{{stampdate}}"
@@ -37,3 +34,34 @@ matches:
 
   - triggers: [":github", ":Github"]
     replace: "https://github.com/basilioss"
+
+  # Markdown
+
+  - triggers: [":ttt", ":Ttt"]
+    replace: "- [ ] "
+
+  - triggers: [":mdlink", ":Mdlink"]
+    replace: "[$|$]({{clipboard}})"
+    vars:
+      - name: "clipboard"
+        type: "clipboard"
+
+  # Shell
+
+  - triggers: [":sed", ":Sed"]
+    replace: "| sed 's/$|$//g' "
+
+  - triggers: [":foreach", ":Foreach"]
+    replace: "for i in $|$; do ; done"
+
+  - triggers: [":bak", ":Bak"]
+    label: "Create a backup (cp file.txt{,.bak})"
+    replace: "{,.bak}"
+
+  - triggers: [":null", ":Null"]
+    label: "Redirect errors to /dev/null"
+    replace: "2> /dev/null"
+
+  - triggers: [":nohup", ":Nohup"]
+    label: "Run a command in the background even after the terminal is terminated"
+    replace: "nohup $|$ &>/dev/null &"
