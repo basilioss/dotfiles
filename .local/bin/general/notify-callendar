@@ -1,6 +1,0 @@
-#!/bin/sh
-
-TODAY=$(date '+%-d')
-HEAD=$(cal | head -n1)
-BODY=$(cal -m | tail -n7 | sed -z "s|$TODAY|<b><span foreground='#5faefe'>$TODAY</span></b>|1")
-notify-send "$HEAD" "$BODY"
