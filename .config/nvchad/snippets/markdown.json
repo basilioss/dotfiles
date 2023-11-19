@@ -1,0 +1,10 @@
+{
+    "task_i": {
+        "prefix": "task_i",
+        "body": "- [I] "
+    },
+    "task_e": {
+        "prefix": "task_e",
+        "body": "- [e] "
+    }
+}

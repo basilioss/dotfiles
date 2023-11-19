@@ -1,0 +1,14 @@
+{
+    "contributes": {
+        "snippets": [
+            {
+                "language": ["markdown", "rmd"],
+                "path": "./markdown.json"
+            },
+            {
+                "language": ["shellscript", "shell", "sh", "zsh"],
+                "path": "./shell.json"
+            }
+        ]
+    }
+}

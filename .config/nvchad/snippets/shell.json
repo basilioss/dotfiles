@@ -1,0 +1,60 @@
+{
+    "bash_shebang": {
+        "prefix": ["#!/usr/bin/env bash", "shebang_bash"],
+        "body": "#!/usr/bin/env bash\n$0"
+    },
+    "sh_shebang": {
+        "prefix": ["#!/bin/sh", "shebang_sh"],
+        "body": "#!/bin/sh\n$0"
+    },
+    "for_posix": {
+        "prefix": "for_posix",
+        "body": [
+            "start=0",
+            "end=10\n",
+            "while [ \"\\$start\" -le \"\\$end\" ]; do",
+            "  printf '%s\\n' \"\\$start\"",
+            "  start=$((start + 1))",
+            "done\n\n"
+        ],
+        "description": "POSIX sh for loop"
+    },
+    "while_read": {
+        "prefix": "while_read",
+        "body": [
+            "while IFS= read -r line; do",
+            "  printf '%s\\n' \"\\$line\"",
+            "done < \"${1:\\$file}\"$0"
+        ],
+        "description": "While loop over the contents of a file"
+    },
+    "trim": {
+        "prefix": "trim",
+        "body": [
+            "trim_string() {",
+            "  # Usage: trim_string \"   example   string    \"",
+            "  # Credit: https://github.com/dylanaraps/pure-sh-bible\n",
+            "  # Remove all leading white-space.",
+            "  trim=\\${1#\\${1%%[![:space:]]*}}\n",
+            "  # Remove all trailing white-space.",
+            "  trim=\\${trim%\\${trim##*[![:space:]]}}\n",
+            "  printf '%s\\n' \"\\$trim\"",
+            "}\n\n"
+        ],
+        "description": "Trim leading and trailing white-space from string"
+    },
+    "trim_all": {
+        "prefix": "trim_all",
+        "body": [
+            "trim_all() {",
+            "  # Usage: trim_all \"   example   string    \"",
+            "  # Credit: https://github.com/dylanaraps/pure-sh-bible\n",
+            "  set -f",
+            "  set -- \\$*",
+            "  printf '%s\\n' \"\\$*\"",
+            "  set +f",
+            "}\n\n"
+        ],
+        "description": "Trim all white-space from string and truncate spaces"
+    }
+}
