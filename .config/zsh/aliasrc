@@ -59,7 +59,7 @@ zi() { __zoxide_zi "$@" && ld ; }
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # Fuzzy select and copy command from history
-alias h='history 1 | cut -c 8- | uniq | fzf -0 --tac | xclip -r -sel -c'
+alias h='history 1 | cut -c 8- | uniq | fzf -0 --tac | clip.exe'
 
 # Cheat (e.g tldr wget)
 tldr() { curl "cheat.sh/$1" ; }
