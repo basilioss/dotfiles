@@ -13,6 +13,7 @@ alias \
   f='fuck' \
   bc='bc -ql' \
   curl="curl -sL" \
+  nix-shell="nix-shell --command zsh" \
   wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"' \
   calendar='cal -m --color=always $(date +%Y) | bat --style=changes' \
 
