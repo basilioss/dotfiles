@@ -7,7 +7,7 @@
         aria2
         bat
         dash # Fast, POSIX-compliant shell (/bin/sh)
-        diff-so-fancy
+        delta
         fd
         ffmpeg
         fzf

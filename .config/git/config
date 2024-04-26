@@ -26,13 +26,25 @@
 [help]
     # Automatically correct and execute mistyped commands
     autocorrect = 1
+[init]
+    defaultBranch = main
+[color]
+    ui = 1
 [core]
     # Configure Git to ensure line endings in files you checkout are correct for Linux
     autocrlf = input
-	pager = diff-so-fancy | less --tabs=4 -RFX
-[color]
-    ui = 1
-[init]
-    defaultBranch = main
+    # diff view
+    pager = delta
 [interactive]
-	diffFilter = diff-so-fancy --patch
+    diffFilter = delta --color-only
+[delta]
+    navigate = true # use n and N to move between diff sections
+    features = chameleon # theme
+    file-decoration-style = none
+    file-style = "#434C5E" ul
+[merge]
+    conflictstyle = diff3 # delta
+[diff]
+    colorMoved = default # delta
+[include]
+    path = themes.gitconfig # delta
