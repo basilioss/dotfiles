@@ -25,7 +25,6 @@
         ripgrep
         shellcheck
         starship
-        thefuck
         tmux
         trash-cli
         tree

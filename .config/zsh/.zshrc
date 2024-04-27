@@ -103,6 +103,3 @@ is_installed starship && eval "$(starship init zsh)" || true
 
 # Quick cd/jump
 is_installed zoxide && eval "$(zoxide init zsh --no-cmd)" || true
-
-# App which corrects previous console commands
-is_installed thefuck && eval "$(thefuck --alias)" || true

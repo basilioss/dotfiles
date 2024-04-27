@@ -10,7 +10,6 @@ done; unset command
 alias \
   g='git' \
   v='$EDITOR' \
-  f='fuck' \
   bc='bc -ql' \
   curl="curl -sL" \
   nix-shell="nix-shell --command zsh" \
