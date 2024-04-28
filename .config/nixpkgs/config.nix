@@ -1,5 +1,6 @@
 {
   # https://nixos.org/manual/nixpkgs/stable/#sec-declarative-package-management
+  allowUnfree = true;
   packageOverrides = pkgs: with pkgs; {
     myPackages = pkgs.buildEnv {
       name = "my-packages";
@@ -16,6 +17,7 @@
         gdu
         glow
         gum
+        helix
         jq
         lsd # better ls
         neovim
@@ -29,7 +31,9 @@
         trash-cli
         tree
         vimv
+        wslu
         xdg-ninja
+        xdg-utils
         zk # notes
         zoxide
         zsh

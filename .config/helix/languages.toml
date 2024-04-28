@@ -1,0 +1,8 @@
+[language-server.zk-lsp]
+command = "zk"
+args = ["lsp"]
+
+[[language]]
+name = "markdown"
+roots = [".zk"]
+language-servers = [ "zk-lsp" ]

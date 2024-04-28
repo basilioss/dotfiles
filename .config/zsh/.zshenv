@@ -13,8 +13,8 @@ export XDG_LIB_HOME="${HOME}/.local/lib"
 export PATH="$PATH:${$(find $XDG_BIN_HOME -type d -printf %p:)%%:}"
 
 # Apps
-export EDITOR=nvim
-export VISUAL=nvim
+export EDITOR=hx
+export VISUAL=hx
 
 # Directories
 export ZK_NOTEBOOK_DIR="/mnt/d/notes"
