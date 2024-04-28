@@ -49,13 +49,14 @@ alias \
   ..='cd .. && ld' \
   ...='cd ../.. && ld' \
   ....='cd ../../.. && ld' \
-  fz='cd "$(find -type d | fzf)" && ld' \
+  zf='cd "$(find -type d | fzf)" && ld' \
 
 z() { __zoxide_z "$@" && ld ; }
 zi() { __zoxide_zi "$@" && ld ; }
 
 # Dotfiles
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias vf='(cd $HOME && dot ls-files | fzf | xargs -r $EDITOR)'
 
 # Fuzzy select and copy command from history
 alias h='history 1 | cut -c 8- | uniq | fzf -0 --tac | clip.exe'
