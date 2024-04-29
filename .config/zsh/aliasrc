@@ -61,6 +61,9 @@ alias vf='(cd $HOME && dot ls-files | fzf | xargs -r $EDITOR)'
 # Open temporary file scratch pad and copy saved content to clipboard on exit
 alias tmpv='FILE=$(mktemp /tmp/tmp.XXXXX.md) && $EDITOR $FILE && clip.exe < $FILE && "rm" $FILE'
 
+# Open shell in a temporary dir
+alias tmpsh='(DIR=$(mktemp -d) && cd $DIR && $SHELL && "rm" -rf $DIR)'
+
 # Fuzzy select and copy command from history
 alias h='history 1 | cut -c 8- | uniq | fzf -0 --tac | clip.exe'
 
