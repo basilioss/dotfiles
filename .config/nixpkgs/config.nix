@@ -7,21 +7,19 @@
       paths = [
         aria2
         bat
-        dash # Fast, POSIX-compliant shell (/bin/sh)
+        dash
         delta
         fd
         ffmpeg
         fzf
         gallery-dl
-        gcc
         gdu
         glow
         gum
         helix
         jq
-        lsd # better ls
-        neovim
-        nodePackages_latest.bash-language-server # nvim bash lsp
+        lsd
+        nodePackages_latest.bash-language-server
         p7zip
         pup
         ripgrep
@@ -34,7 +32,7 @@
         wslu
         xdg-ninja
         xdg-utils
-        zk # notes
+        zk
         zoxide
         zsh
         zsh-autosuggestions
