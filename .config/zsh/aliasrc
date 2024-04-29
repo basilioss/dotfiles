@@ -58,6 +58,9 @@ zi() { __zoxide_zi "$@" && ld ; }
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias vf='(cd $HOME && dot ls-files | fzf | xargs -r $EDITOR)'
 
+# Open temporary file scratch pad and copy saved content to clipboard on exit
+alias tmpv='FILE=$(mktemp /tmp/tmp.XXXXX.md) && $EDITOR $FILE && clip.exe < $FILE && "rm" $FILE'
+
 # Fuzzy select and copy command from history
 alias h='history 1 | cut -c 8- | uniq | fzf -0 --tac | clip.exe'
 
