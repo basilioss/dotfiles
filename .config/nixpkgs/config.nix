@@ -24,6 +24,7 @@
         pup
         ripgrep
         shellcheck
+        shfmt
         starship
         tmux
         trash-cli
