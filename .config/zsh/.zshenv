@@ -1,6 +1,3 @@
-# zsh config directory
-ZDOTDIR=$HOME/.config/zsh
-
 # XDG directories
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -17,20 +14,20 @@ export EDITOR=hx
 export VISUAL=hx
 
 # Directories
-export ZK_NOTEBOOK_DIR="/mnt/d/notes"
+export ZK_NOTEBOOK_DIR="$HOME/notes"
 export NOTES_DIR="$ZK_NOTEBOOK_DIR/pages"
 
 # Environment
 #export LS_COLORS="$(dircolors)"
 export COLORTERM=truecolor
-export MDT_EDITOR='nvim -c "set nonumber"'
-export MDT_ITEM_WIDTH=0
 export BAT_THEME="base16"
-export FZF_DEFAULT_OPTS="-m --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all --color='bg+:#24283b,pointer:1,border:8,separator:8'"
+export FZF_DEFAULT_OPTS=" \
+-m --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all \
+--color=bg+:#24283b,pointer:1,border:8,separator:8"
 
 # $HOME Cleanup (https://github.com/b3nj5m1n/xdg-ninja)
-export HISTFILE="${XDG_STATE_HOME}"/bash/history
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
+export HISTFILE="${XDG_STATE_HOME}"/bash/history
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
