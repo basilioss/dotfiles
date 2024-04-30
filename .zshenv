@@ -1,1 +1,1 @@
-/home/basilioss/.config/zsh/.zshenv
+.config/zsh/.zshenv
