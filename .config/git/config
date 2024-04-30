@@ -48,3 +48,5 @@
     colorMoved = default # delta
 [include]
     path = themes.gitconfig # delta
+[commit]
+	template = ~/.config/git/.git-commit-template.txt
