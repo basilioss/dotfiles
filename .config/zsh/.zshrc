@@ -77,7 +77,7 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 ### Plugins ###################################################################
 
-plugins_dir="/home/basilioss/.nix-profile/share"
+plugins_dir="$HOME/.nix-profile/share"
 
 source $plugins_dir/fzf-tab/fzf-tab.zsh 2>/dev/null
 source $plugins_dir/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
