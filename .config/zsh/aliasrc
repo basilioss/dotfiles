@@ -2,27 +2,25 @@
 # shellcheck disable=SC2139
 
 # Prefix sudo automatically
-for command in mount umount updatedb timeshift powertop; do
-	alias $command="sudo $command"
-done; unset command
+for command in apt mount umount updatedb timeshift powertop; do
+  alias $command="sudo $command"
+done
+unset command
 
 # General
 alias \
   g='git' \
   v='$EDITOR' \
-  bc='bc -ql' \
   curl="curl -sL" \
   nix-shell="nix-shell --command zsh" \
   wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"' \
-  calendar='cal -m --color=always $(date +%Y) | bat --style=changes' \
+  calendar='cal -m --color=always $(date +%Y) | bat --style=changes'
 
 # Colorize commands
 alias \
   grep='grep --color=auto' \
   diff='diff --color=auto' \
-  egrep='egrep --color=auto' \
-  fgrep='fgrep --color=auto' \
-  cal='cal -m --color=auto' \
+  cal='cal -m --color=auto'
 
 # File manager
 alias \
@@ -30,7 +28,7 @@ alias \
   mv='mv -iv' \
   rm='rm -vI' \
   df='df -h' \
-  dl='trash-put' \
+  dl='trash-put'
 
 # ls
 alias \
@@ -41,7 +39,7 @@ alias \
   lla='l -A' \
   ld='(setopt +o nomatch ; lsd --directory-only */ 2> /dev/null ; true)' \
   lt='ls --tree' \
-  ltd='(setopt +o nomatch ; lsd --tree --directory-only */ 2> /dev/null)' \
+  ltd='(setopt +o nomatch ; lsd --tree --directory-only */ 2> /dev/null)'
 
 # z / cd
 alias \
@@ -49,10 +47,10 @@ alias \
   ..='cd .. && ld' \
   ...='cd ../.. && ld' \
   ....='cd ../../.. && ld' \
-  zf='cd "$(find -type d | fzf)" && ld' \
+  zf='cd "$(find -type d | fzf)" && ld'
 
-z() { __zoxide_z "$@" && ld ; }
-zi() { __zoxide_zi "$@" && ld ; }
+z() { __zoxide_z "$@" && ld; }
+zi() { __zoxide_zi "$@" && ld; }
 
 # Dotfiles
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
@@ -67,16 +65,21 @@ alias tmpsh='(DIR=$(mktemp -d) && cd $DIR && $SHELL && "rm" -rf $DIR)'
 # Fuzzy select and copy command from history
 alias h='history 1 | cut -c 8- | uniq | fzf -0 --tac | clip.exe'
 
-# Cheat (e.g tldr wget)
-tldr() { curl "cheat.sh/$1" ; }
+# https://cheat.sh (e.g tldr wget)
+tldr() { curl "cheat.sh/$1"; }
 
 # Download music from youtube
-alias ytm-dlp='yt-dlp -x --audio-quality 0 --embed-metadata --embed-thumbnail'
+alias ytm-dlp='yt-dlp -x --embed-metadata --embed-thumbnail'
+
 # Search channel/playlist
-yts_dlp() { yt-dlp --no-warnings --get-filename -o "https://youtu.be/%(id)s: %(title)s" --match-title "$2" "$1" ; }
+yts_dlp() {
+  yt-dlp --no-warnings \
+    --get-filename -o "https://youtu.be/%(id)s: %(title)s" \
+    --match-title "$2" "$1"
+}
 
 # Task manager
-alias t='mdt -d $NOTES_DIR -i $NOTES_DIR/$(date -I).md --display-titles --todo-filename="$(date +%Y%m%d%H%M)"'
+# alias t='mdt -d $NOTES_DIR -i $NOTES_DIR/$(date -I).md --display-titles --todo-filename="$(date +%Y%m%d%H%M)"'
 
 # AI
 #alias mods="OPENAI_API_KEY=$(pass show openai.com/api-key 2>/dev/null) mods"
