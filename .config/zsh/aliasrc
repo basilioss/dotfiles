@@ -52,6 +52,12 @@ alias \
 z() { __zoxide_z "$@" && ld; }
 zi() { __zoxide_zi "$@" && ld; }
 
+# https://unix.stackexchange.com/questions/83191/how-to-make-sudo-preserve-path
+# env PATH=$PATH: Preserve the path to be able to run nix-managed software as root
+# https://wiki.archlinux.org/title/sudo#Passing_aliases
+# space at the end: Expand aliases when running the sudo command
+alias sudo='sudo env PATH=$PATH '
+
 # Dotfiles
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias vf='(cd $HOME && dot ls-files | fzf | xargs -r $EDITOR)'
