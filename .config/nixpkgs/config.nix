@@ -2,8 +2,8 @@
   # https://nixos.org/manual/nixpkgs/stable/#sec-declarative-package-management
   allowUnfree = true;
   packageOverrides = pkgs: with pkgs; {
-    basicPackages = pkgs.buildEnv {
-      name = "basic-packages";
+    basePackages = pkgs.buildEnv {
+      name = "base-packages";
       paths = [
         delta # A syntax-highlighting pager for git, diff, and grep output
         fzf # A command-line fuzzy finder
