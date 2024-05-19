@@ -1,3 +1,5 @@
+plugins_dir="$HOME/.nix-profile/share"
+
 # Ls whenever the current working directory is changed.
 chpwd_ls() { ld }
 
@@ -11,7 +13,7 @@ source "$XDG_CONFIG_HOME/zsh/aliasrc"
 
 HISTFILE=~/.config/zsh/history
 HISTSIZE=10000
-SAVEHIST=10000
+SAVEHIST=$HISTSIZE
 setopt APPEND_HISTORY
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS # Ignore duplicated commands in history list.
@@ -22,10 +24,10 @@ setopt HIST_IGNORE_SPACE # Ignore commands that start with a space.
 
 ### Completion ################################################################
 
-# Basic auto/tab completion
+# https://github.com/zsh-users/zsh-completions
+fpath=($plugins_dir/zsh/site-functions $fpath)
+
 autoload -Uz compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
 compinit -i
 _comp_options+=(globdots)		# Include hidden files.
 
@@ -76,8 +78,6 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
 ### Plugins ###################################################################
-
-plugins_dir="$HOME/.nix-profile/share"
 
 source $plugins_dir/fzf-tab/fzf-tab.zsh 2>/dev/null
 source $plugins_dir/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null

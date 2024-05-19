@@ -16,6 +16,7 @@
         zoxide # Better cd
         zsh
         zsh-autosuggestions # Fish-like autosuggestions for zsh
+        zsh-completions # Additional completion definitions
         zsh-fzf-tab # Replace zsh's default completion selection menu with fzf
         zsh-history-substring-search # ZSH port of Fish history search (up arrow)
         zsh-syntax-highlighting # Fish shell like syntax highlighting for Zsh
