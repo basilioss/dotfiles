@@ -1,0 +1,34 @@
+theme = "adwaita-dark"
+
+[editor]
+scrolloff = 999
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.soft-wrap]
+enable = true
+wrap-indicator = ""
+
+[editor.indent-guides]
+render = true
+
+[editor.statusline]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+right = ["diagnostics", "selections", "spacer", "position-percentage","spacer", "position", "file-encoding"]
+
+[keys.normal]
+x = "extend_line" # select below or above based on selection cursor/anchor (Alt-;)
+esc = ["collapse_selection", "keep_primary_selection"] # deselect all; keep primary cursor only
+G = "goto_file_end"
+Z = { Q = ":quit!", Z = ":write-quit!" }
+"C-s" = ":w"
+
+[keys.select]
+x = "extend_line"
+esc = ["collapse_selection", "keep_primary_selection", "normal_mode"]
+
+[keys.insert]
+"C-s" = ":w"
