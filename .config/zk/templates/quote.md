@@ -1,6 +1,0 @@
----
-status: todo
-aliases: 
-rating: 
----
-
