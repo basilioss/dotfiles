@@ -2,9 +2,7 @@
     email = vasyl.tyshchuk.xyz@gmail.com
     name = Basilios
 [alias]
-    i = init
     a = add
-    r = reset
     c = commit
     s = status -sb
     p = push
@@ -15,24 +13,38 @@
     co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
     save = !git add -A && git commit -m
     undo = reset HEAD~1
+    # Delete merged branches
     cleanup = !git branch --merged | grep -v '*' | xargs git branch -d
-    # diff for one file
+    # Diff for one file
     df = log --patch --follow
     # Clone a repository including all submodules
     cln = clone --recursive
-    # prettier log
+    # Prettier log
     l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset' --abbrev-commit --date=relative
-    summary = !which onefetch 1> /dev/null && onefetch
 [help]
     # Automatically correct and execute mistyped commands
     autocorrect = 1
+[init]
+    defaultBranch = main
+[color]
+    ui = 1
+[commit]
+	template = ~/.config/git/.git-commit-template.txt
 [core]
     # Configure Git to ensure line endings in files you checkout are correct for Linux
     autocrlf = input
-	pager = diff-so-fancy | less --tabs=4 -RFX
-[color]
-    ui = 1
-[init]
-    defaultBranch = main
+    # diff view
+    pager = delta
 [interactive]
-	diffFilter = diff-so-fancy --patch
+    diffFilter = delta --color-only
+[delta]
+    navigate = true # use n and N to move between diff sections
+    features = chameleon # theme
+    file-decoration-style = none
+    file-style = "#434C5E" ul
+[merge]
+    conflictstyle = diff3 # delta
+[diff]
+    colorMoved = default # delta
+[include]
+    path = themes.gitconfig # delta
