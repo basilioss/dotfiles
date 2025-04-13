@@ -6,36 +6,21 @@ for command in mount umount updatedb timeshift powertop; do
 	alias $command="sudo $command"
 done; unset command
 
-# Global aliases (to be used at the end, mostly)
-alias -g H="--help"
-alias -g G="| grep --ignore-case --color"
-alias -g X='| xclip -selection clipboard'
-alias -g N="| wc -l"
-
 # General
 alias \
   g='git' \
   p='paru' \
   v='$EDITOR' \
-  s='nsxiv-rifle' \
-  f='fuck' \
+  n='$EDITOR $NOTES_DIR/notes.md' \
   m='mpv --shuffle --no-osc --term-osd-bar --save-position-on-quit --geometry=50%x50%' \
-  help='halp --no-version' \
-  bc='bc -ql' \
   free='free -h' \
   curl="curl -sL" \
   wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"' \
-  calendar='cal -m --color=always $(date +%Y) | bat --style=changes' \
-  webcam='$TERMINAL -e mpv av://v4l2:/dev/video0 --profile=low-latency --untimed' \
-  nerdicons='emoji-menu -f "$XDG_DATA_HOME/nerd-icons"' \
-  battery='cbatticon & sleep 0.78 ; kill $!'
 
 # Colorize commands
 alias \
   grep='grep --color=auto' \
   diff='diff --color=auto' \
-  egrep='egrep --color=auto' \
-  fgrep='fgrep --color=auto' \
   cal='cal -m --color=auto' \
   pacman='sudo pacman --color=auto' \
   paru='paru --color=auto' \
@@ -84,60 +69,31 @@ powerpoint() { [ "$*" = "" ] && onlyoffice-desktopeditors --new=slide || office 
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias dot=dotbare
 
+# Open temporary file scratch pad and copy saved content to clipboard on exit
+alias tmpv='FILE=$(mktemp /tmp/tmp.XXXXX.md) && $EDITOR $FILE && clip.exe < $FILE && "rm" $FILE'
+
+# Open shell in a temporary dir
+alias tmpsh='(DIR=$(mktemp -d) && cd $DIR && $SHELL && "rm" -rf $DIR)'
+
 # Fuzzy select and copy command from history
 alias h='history 1 | cut -c 8- | uniq | fzf -0 --tac | xclip -r -sel -c'
 
 # Download music from youtube
 alias ytm-dlp='yt-dlp -x --audio-quality 0 --embed-metadata --embed-thumbnail'
-# Search channel/playlist
-yts_dlp() { yt-dlp --no-warnings --get-filename -o "https://youtu.be/%(id)s: %(title)s" --match-title "$2" "$1" ; }
 
-# Empty cache (mostly useful for benchmarking)
-# https://unix.stackexchange.com/questions/87908/how-do-you-empty-the-buffers-and-cache-on-a-linux-system
-alias dropcache='free && sync && sudo sh -c "echo 3 > /proc/sys/vm/drop_caches" && free'
+# Search channel/playlist
+yts_dlp() {
+  yt-dlp --no-warnings \
+    --get-filename -o "https://youtu.be/%(id)s: %(title)s" \
+    --match-title "$2" "$1"
+}
+
+# cheat.sh
+tldr() { curl "cheat.sh/$1" ; }
 
 # Get External IP
 alias getip='curl -s https://ipinfo.io/json | jq'
 
-# Check Internet Speed
-alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
-
-# Dictionary
-dic() {
-	sdcv -n --color "$@" 2>&1 | \
-	fold --width="$(tput cols)" | \
-	less --quit-if-one-screen -RX
-}
-
-# Translate
-alias tren='trans'
-alias trru='trans :ru'
-
-# Lama cleaner
-alias lama-cleaner="lama-cleaner --model=lama --device=cpu --port=8080"
-
-# Pomodoro (https://github.com/caarlos0/timer)
-work(){
-  timer "${1:-60m}" && notify-send 'Pomodoro' 'Work Timer is up! Take a Break.'
-}
-
-rest() {
-  timer "${1:-10m}" && notify-send 'Pomodoro' 'Break is over! Get back to work.'
-}
-
-# Task manager
-alias t='mdt -d $NOTES_DIR -i $NOTES_DIR/$(date -I).md --display-titles --todo-filename="$(date +%Y%m%d%H%M)"'
-
-# Task overview
-alias to='(cd $NOTES_DIR \
-  && rg --no-line-number --heading "[-*+] \[ ] " \
-  | sed "/\.md$/ s/^/# /" \
-  | glow)'
-
-# Syncthing CLI
-alias stc='stc-386-linux --homedir ~/.config/syncthing' \
-alias stcw='watch -t stc-386-linux --homedir ~/.config/syncthing'
-
 # AI
-alias mods="OPENAI_API_KEY=$(pass show openai.com/api-key 2>/dev/null) mods"
-alias sgpt="OPENAI_API_KEY=$(pass show openai.com/api-key 2>/dev/null) sgpt"
+# alias mods="OPENAI_API_KEY=$(kpass show-password "OpenAI API") mods"
+# alias sgpt="OPENAI_API_KEY=$(kpass show-password "OpenAI API") sgpt"
