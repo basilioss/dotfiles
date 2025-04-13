@@ -1,9 +1,3 @@
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
-# Automatically cd into typed directory
-setopt autocd
-
 # Ls whenever the current working directory is changed.
 chpwd_ls() { ld }
 
@@ -53,17 +47,6 @@ _dotnet_zsh_complete()
 
 compdef _dotnet_zsh_complete dotnet
 
-# Shell-GPT integration ZSH v0.1
-_sgpt_zsh() {
-    _sgpt_prev_cmd=$BUFFER
-    BUFFER+="⌛"
-    zle -I && zle redisplay
-    BUFFER=$(sgpt --shell <<< "$_sgpt_prev_cmd")
-    zle end-of-line
-}
-zle -N _sgpt_zsh
-bindkey ^a _sgpt_zsh
-
 ### Vi mode ###################################################################
 
 # Enable vi mode
@@ -73,13 +56,6 @@ export KEYTIMEOUT=1
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
-
-# Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
 
 # Change cursor shape for different vi modes
 function zle-keymap-select () {
@@ -121,18 +97,14 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 ### Plugins ###################################################################
 
-if [ -z "$TERMUX_VERSION" ]; then
-  plugins_dir="/usr/share/zsh/plugins"
-else
-  plugins_dir="$XDG_CONFIG_HOME/zsh/plugins"
-fi
+plugins_dir="/usr/share/zsh/plugins"
 
-source $plugins_dir/fzf-tab-git/fzf-tab.zsh 2>/dev/null
 source $plugins_dir/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 source $plugins_dir/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 # source $plugins_dir/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
 source $plugins_dir/zsh-history-substring-search/zsh-history-substring-search.zsh 2>/dev/null
-source /etc/profile.d/undistract-me.sh 2>/dev/null
+source $plugins_dir/fzf-tab-git/fzf-tab.zsh 2>/dev/null
+source $plugins_dir/zsh-notify/notify.plugin.zsh 2>/dev/null
 
 # Fix comment highlight
 ZSH_HIGHLIGHT_STYLES[comment]=fg=#414868
@@ -146,6 +118,3 @@ is_installed starship && eval "$(starship init zsh)" || true
 
 # Quick cd/jump
 is_installed zoxide && eval "$(zoxide init zsh --no-cmd)" || true
-
-# App which corrects previous console commands
-is_installed thefuck && eval "$(thefuck --alias)" || true
