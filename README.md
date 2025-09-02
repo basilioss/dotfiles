@@ -1,6 +1,7 @@
 # Dotfiles
 
-- Screenshots: [link](https://www.reddit.com/r/unixporn/search/?q=author%3A-basilios-%20flair_name%3A%22Screenshot%22&sort=new)
+<img width="500" src="https://github.com/user-attachments/assets/f6c5f154-7b33-4859-b094-8f58db4ac210" />
+
 - Window manager: [dwm](https://github.com/basilioss/dwm)
 - Terminal: [alacritty](https://github.com/zenixls2/alacritty)
 - App launcher: [dmenu](https://github.com/basilioss/dmenu)
