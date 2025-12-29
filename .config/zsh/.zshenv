@@ -7,15 +7,14 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_LIB_HOME="${HOME}/.local/lib"
 
 # Recursively add $XDG_BIN_HOME to $PATH
-export PATH="$PATH:${$(find $XDG_BIN_HOME -type d -printf %p:)%%:}"
+export PATH="$PATH:/home/$USER/.nix-profile/bin:${$(find $XDG_BIN_HOME -type d -printf %p:)%%:}"
 
 # Apps
 export EDITOR=hx
 export VISUAL=hx
 
 # Directories
-export ZK_NOTEBOOK_DIR="$HOME/notes"
-export NOTES_DIR="$ZK_NOTEBOOK_DIR/pages"
+export NOTES_DIR="/mnt/d/share/notes"
 
 # Environment
 #export LS_COLORS="$(dircolors)"

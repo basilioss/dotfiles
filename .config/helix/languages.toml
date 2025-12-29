@@ -1,12 +1,3 @@
-[language-server.zk-lsp]
-command = "zk"
-args = ["lsp"]
-
-[[language]]
-name = "markdown"
-roots = [".zk"]
-language-servers = [ "zk-lsp" ]
-
 [[language]]
 name = "bash"
 formatter = { command = "shfmt" , args = ["-i", "2", "-ci", "-sr"] }

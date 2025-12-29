@@ -11,6 +11,11 @@ unset command
 alias \
   g='git' \
   v='$EDITOR' \
+  s="/mnt/c/Program\ Files/Sublime\ Text/sublime_text.exe" \
+  ne="$NOTES_DIR/notes.sh encrypt" \
+  nd="$NOTES_DIR/notes.sh decrypt" \
+  nv="nd 2>/dev/null; v $NOTES_DIR/notes.md; ne" \
+  ns="cd $NOTES_DIR && nd 2>/dev/null; s notes.md; ne" \
   curl="curl -sL" \
   nix-shell="nix-shell --command zsh" \
   wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"' \

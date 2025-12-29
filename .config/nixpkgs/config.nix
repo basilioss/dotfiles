@@ -44,9 +44,8 @@
         trash-cli
         tree
         vimv
-        xdg-ninja
+        # xdg-ninja
         yt-dlp
-        zk
         # mods # Command-line AI
         # scc # Count lines of code 
         # tmpmail
