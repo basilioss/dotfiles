@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# Resolve sync conflicts in all syncthing folders
+# https://github.com/basilioss/dotfiles
+
+folders="$(grep -P 'folder id=".+" label' "$HOME/.config/syncthing/config.xml" | cut -d'"' -f 6 | sed "s/\/$//g")"
+
+for f in $folders; do
+  # See ../forks/syncthing-resolve-conflicts
+  syncthing-resolve-conflicts -f -d "$f"
+done

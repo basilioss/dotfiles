@@ -6,6 +6,7 @@ export PATH="$PATH:$HOME/.dotnet/tools:$GOPATH/bin"
 export EDITOR=helix
 export VISUAL=helix
 export BROWSER=firefox
+export DIFFPROG=delta
 
 # Directories
 export SCREENSHOTS="$HOME/main/pix/screenshots"
