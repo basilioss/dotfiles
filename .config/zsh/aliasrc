@@ -97,7 +97,3 @@ tldr() { curl "cheat.sh/$1" ; }
 
 # Get External IP
 alias getip='curl -s https://ipinfo.io/json | jq'
-
-# AI
-# alias mods="OPENAI_API_KEY=$(kpass show-password "OpenAI API") mods"
-# alias sgpt="OPENAI_API_KEY=$(kpass show-password "OpenAI API") sgpt"
