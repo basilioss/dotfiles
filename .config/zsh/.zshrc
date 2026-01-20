@@ -11,7 +11,7 @@ source "$XDG_CONFIG_HOME/zsh/aliasrc"
 
 HISTFILE=~/.config/zsh/history
 HISTSIZE=10000
-SAVEHIST=10000
+SAVEHIST=$HISTSIZE
 setopt APPEND_HISTORY
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS # Ignore duplicated commands in history list.
@@ -22,10 +22,10 @@ setopt HIST_IGNORE_SPACE # Ignore commands that start with a space.
 
 ### Completion ################################################################
 
-# Basic auto/tab completion
+# https://github.com/zsh-users/zsh-completions
+fpath=(/usr/share/zsh/site-functions $fpath)
+
 autoload -Uz compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
 compinit -i
 _comp_options+=(globdots)		# Include hidden files.
 
