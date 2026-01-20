@@ -12,7 +12,6 @@ alias \
   t='tmux' \
   p='yay' \
   v='$EDITOR' \
-  n='$EDITOR $NOTES_DIR/notes.md' \
   m='mpv --shuffle --no-osc --term-osd-bar --save-position-on-quit --geometry=50%x50%' \
   free='free -h' \
   curl="curl -sL" \
@@ -23,7 +22,6 @@ alias \
   grep='grep --color=auto' \
   diff='diff --color=auto' \
   cal='cal -m --color=auto' \
-  pacman='sudo pacman --color=auto' \
 
 # File manager
 alias \
@@ -68,6 +66,12 @@ powerpoint() { [ "$*" = "" ] && onlyoffice-desktopeditors --new=slide || office 
 # Dotfiles
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias dot=dotbare
+
+# Notes
+alias \
+  n="(cd $NOTES_DIR; nd 2>/dev/null; $EDITOR $NOTES_DIR/notes.md; ne)" \
+  ne="$NOTES_DIR/notes.sh encrypt" \
+  nd="$NOTES_DIR/notes.sh decrypt" \
 
 # Open temporary file scratch pad and copy saved content to clipboard on exit
 alias tmpv='FILE=$(mktemp /tmp/tmp.XXXXX.md) && $EDITOR $FILE && clip.exe < $FILE && "rm" $FILE'
