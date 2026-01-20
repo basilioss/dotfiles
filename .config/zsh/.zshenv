@@ -9,8 +9,6 @@ export BROWSER=firefox
 export DIFFPROG=delta
 
 # Directories
-export SCREENSHOTS="$HOME/main/pix/screenshots"
-export WALLPAPERS="$HOME/main/pix/wallpapers"
 export MUSIC_DIR="$HOME/main/lib/music"
 export NOTES_DIR="$HOME/main/share/notes"
 export DOTBARE_DIR="$HOME/.dotfiles"
