@@ -9,7 +9,8 @@ done; unset command
 # General
 alias \
   g='git' \
-  p='paru' \
+  t='tmux' \
+  p='yay' \
   v='$EDITOR' \
   n='$EDITOR $NOTES_DIR/notes.md' \
   m='mpv --shuffle --no-osc --term-osd-bar --save-position-on-quit --geometry=50%x50%' \
@@ -23,7 +24,6 @@ alias \
   diff='diff --color=auto' \
   cal='cal -m --color=auto' \
   pacman='sudo pacman --color=auto' \
-  paru='paru --color=auto' \
 
 # File manager
 alias \
