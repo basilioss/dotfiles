@@ -57,12 +57,6 @@ zi() { __zoxide_zi "$@" && ld ; }
 # List all installed packages by size
 alias pkgs-size="pacman -Qi | grep -E '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nrk 2 | grep MiB"
 
-# Only Office
-office() { onlyoffice-desktopeditors --view="$(readlink -f "$*")" ; }
-word() { [ "$*" = "" ] && onlyoffice-desktopeditors --new=doc || office "$*" ; }
-excel() { [ "$*" = "" ] && onlyoffice-desktopeditors --new=cell || office "$*" ; }
-powerpoint() { [ "$*" = "" ] && onlyoffice-desktopeditors --new=slide || office "$*" ; }
-
 # Dotfiles
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias dot=dotbare
