@@ -1,0 +1,13 @@
+com.github.finefindus.eyedropper
+com.github.johnfactotum.Foliate
+com.github.tchx84.Flatseal
+com.github.tenderowl.frog
+com.raggesilver.BlackBox
+io.bassi.Amberol
+io.github.shiftey.Desktop
+io.gitlab.news_flash.NewsFlash
+io.missioncenter.MissionCenter
+org.gnome.World.PikaBackup
+org.kde.kdenlive
+org.keepassxc.KeePassXC
+org.telegram.desktop
