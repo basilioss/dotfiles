@@ -13,7 +13,7 @@ while true; do
   capacity="$(cat "${battery}/capacity" 2>&1)"
   status="$(cat "${battery}/status" 2>&1)"
 
-  if [ "${capacity}" -lt 30 ] && [ "${status}" = "Discharging" ]
+  if [ "${capacity}" -lt 35 ] && [ "${status}" = "Discharging" ]
   then
     notify-send "Charge your battery (${capacity}% left)" -i "${icon_low}"
     sleep "${sleep_time}"

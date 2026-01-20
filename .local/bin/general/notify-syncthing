@@ -5,7 +5,7 @@
 # https://github.com/basilioss/dotfiles
 
 folders="$(grep -P 'folder id=".+" label' "$HOME/.config/syncthing/config.xml" | cut -d'"' -f 6 | sed "s/\/$//g")"
-check_interval=30m
+check_interval=3h
 
 while true; do
   for f in $folders; do

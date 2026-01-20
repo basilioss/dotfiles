@@ -2,6 +2,8 @@
 
 clipboard="$(xclip -o -sel clip)"
 host="https://0x0.st"
+# host="https://uguu.se"
+# host="send.vis.ee"
 url_shortener="tinyurl.com/api-create.php?url=$clipboard"
 
 if [ -f "$1" ]; then

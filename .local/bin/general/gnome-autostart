@@ -10,4 +10,5 @@ xset r rate 300 50
 # playerctld daemon &
 # udiskie &
 notify-syncthing &
+notify-battery &
 git-backup &
