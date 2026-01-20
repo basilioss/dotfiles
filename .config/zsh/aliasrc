@@ -68,7 +68,7 @@ alias \
   nd="$NOTES_DIR/notes.sh decrypt" \
 
 # Open temporary file scratch pad and copy saved content to clipboard on exit
-alias tmpv='FILE=$(mktemp /tmp/tmp.XXXXX.md) && $EDITOR $FILE && clip.exe < $FILE && "rm" $FILE'
+alias tmpv='FILE=$(mktemp /tmp/tmp.XXXXX.md) && $EDITOR $FILE && wl-copy -n < $FILE && "rm" $FILE'
 
 # Open shell in a temporary dir
 alias tmpsh='(DIR=$(mktemp -d) && cd $DIR && $SHELL && "rm" -rf $DIR)'
