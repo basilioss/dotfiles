@@ -1,0 +1,16 @@
+[com/raggesilver/BlackBox]
+font='JetBrainsMono Nerd Font 13'
+terminal-cell-width=1.0
+terminal-bell=false
+terminal-padding=(10, 10, 10, 10)
+theme-light='Adwaita'
+theme-dark='Adwaita Dark'
+window-width=1717
+window-height=930
+terminal-cell-height=1.0
+theme-bold-is-bright=false
+use-sixel=false
+scrollback-lines=10000
+style-preference=2
+remember-window-size=true
+was-maximized=false
