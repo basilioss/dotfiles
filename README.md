@@ -39,3 +39,7 @@ tmux # Open tmux and press: Ctrl+Space + Shift+I
 
 ![image](https://github.com/basilioss/dotfiles/assets/71596800/72ea1747-4f6b-4439-b89f-e68e7b389bad)
 ![image](https://github.com/basilioss/dotfiles/assets/71596800/bd174034-0b16-4d82-a180-cb299237acb1)
+
+---
+
+See also [gnome](https://github.com/basilioss/dotfiles/tree/gnome) and [dwm](https://github.com/basilioss/dotfiles/tree/dwm) branches
