@@ -1,4 +1,5 @@
 7zip
+adw-gtk-theme
 alsa-utils
 amd-ucode
 android-file-transfer
@@ -15,7 +16,6 @@ bison
 bluez
 bluez-utils
 bottom
-bridge-utils
 cataclysm-dda
 cataclysm-dda-tiles
 celluloid
@@ -34,6 +34,7 @@ docker
 dotnet-runtime-6.0
 efibootmgr
 evince
+ex-vi-compat
 exfatprogs
 expect
 fakeroot
@@ -103,8 +104,10 @@ helix
 hyperfine
 iptables-nft
 jq
+keyd
 kiwix-tools
 lib32-glu
+lib32-libpulse
 lib32-mesa
 lib32-vulkan-radeon
 libldap
@@ -186,7 +189,6 @@ slop
 snapshot
 sshfs
 starship
-steam
 sudo
 sushi
 syncthing
@@ -198,6 +200,7 @@ tesseract-data-ukr
 testdisk
 texinfo
 timeshift
+timew
 timidity++
 tk
 tmux
@@ -215,7 +218,6 @@ unzip
 usbutils
 v4l2loopback-utils
 vde2
-vi
 virt-manager
 virt-viewer
 vulkan-radeon

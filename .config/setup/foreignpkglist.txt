@@ -1,6 +1,7 @@
-adw-gtk3
+bridge-utils
 cloudflare-warp-bin
 dashbinsh
+dmg2img
 dotbare
 fzf-tab-git
 gallery-dl
@@ -9,6 +10,7 @@ gnome-shell-extension-just-perfection-desktop
 gnome-shell-extension-rounded-window-corners-git
 laptop-mode-tools
 pacman-cleanup-hook
+pfetch
 pup
 qt5-webengine
 simple-mtpfs

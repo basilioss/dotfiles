@@ -19,7 +19,7 @@ export COLORTERM=truecolor
 export BAT_THEME="base16"
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export FZF_DEFAULT_OPTS="-m --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all"
+export FZF_DEFAULT_OPTS="-m --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all --color=pointer:4"
 export QT_QPA_PLATFORMTHEME=gtk3
 export MOZ_ENABLE_WAYLAND=1
 

@@ -6,7 +6,7 @@
 
 icon_full="/usr/share/icons/Qogir/24/panel/battery-full-charged.svg"
 icon_low="/usr/share/icons/Qogir/24/panel/battery-caution.svg"
-sleep_time=3m
+sleep_time=30m
 
 while true; do
   battery="/sys/class/power_supply/BAT1"
